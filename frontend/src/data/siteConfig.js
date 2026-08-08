@@ -75,13 +75,13 @@ const siteConfig = {
     // Paste the Trustindex widget ID from the embed code they give you
     // (looks like "abc123def456"). While this is an empty string, the
     // section renders a graceful placeholder instead of the widget.
-    trustindexWidgetId: "",
+    trustindexWidgetId: "bcaf63578df98153d6860e9d810",
     // The Trustindex loader script URL from your embed snippet
     // (usually https://cdn.trustindex.io/loader.js).
     trustindexScriptUrl: "https://cdn.trustindex.io/loader.js",
     // Your Google "leave a review" short link (g.page/r/...), used by the
     // "Leave us a review" button. Paste it when you have it.
-    googleReviewLink: "",
+    googleReviewLink: "https://g.page/r/CVhCBro8FWmNEBM/review",
     heading: "What our customers say",
     subheading: "Real reviews from real Essex County moves.",
   },
