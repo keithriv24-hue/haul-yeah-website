@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import TallyPopupButton from "../components/site/TallyPopupButton";
 import FAQAccordion from "../components/site/FAQAccordion";
+import GoogleReviews from "../components/site/GoogleReviews";
 import siteConfig from "../data/siteConfig";
 import { getServiceBySlug, services } from "../data/services";
 import { getLocationBySlug, locations } from "../data/locations";
@@ -319,6 +320,9 @@ export default function ServicePage() {
           </div>
         </div>
       </section>
+
+      {/* ── Google Reviews ───────────────────────────────────── */}
+      <GoogleReviews sectionId={`reviews-service-${service.slug}`} />
 
       {/* ── Final CTA ────────────────────────────────────────── */}
       <MidCTA

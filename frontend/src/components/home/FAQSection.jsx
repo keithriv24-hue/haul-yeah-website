@@ -9,7 +9,6 @@ import siteConfig from "../../data/siteConfig";
 export default function FAQSection() {
   return (
     <section
-      id="reviews"
       className="border-b border-slate-200 bg-white py-20 sm:py-28"
       aria-labelledby="faq-heading"
       data-testid="faq-section"

@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import TallyPopupButton from "../components/site/TallyPopupButton";
 import FAQAccordion from "../components/site/FAQAccordion";
+import GoogleReviews from "../components/site/GoogleReviews";
 import siteConfig from "../data/siteConfig";
 import { getLocationBySlug, locations } from "../data/locations";
 import { services } from "../data/services";
@@ -306,6 +307,9 @@ export default function LocationPage() {
           </ul>
         </div>
       </section>
+
+      {/* ── Google Reviews ─────────────────────────────────── */}
+      <GoogleReviews sectionId={`reviews-${location.slug}`} />
 
       {/* ── Final CTA band ──────────────────────────────────── */}
       <section

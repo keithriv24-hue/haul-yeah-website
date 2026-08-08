@@ -7,6 +7,7 @@ import LocationsSection from "../components/home/LocationsSection";
 import HowItWorks from "../components/home/HowItWorks";
 import FAQSection from "../components/home/FAQSection";
 import FinalCTA from "../components/home/FinalCTA";
+import GoogleReviews from "../components/site/GoogleReviews";
 import siteConfig from "../data/siteConfig";
 import { buildFaqJsonLd, buildMovingCompanyJsonLd } from "../lib/seo";
 
@@ -57,6 +58,7 @@ export default function Home() {
       <TrustBar />
       <ServicesGrid />
       <WhySection />
+      <GoogleReviews />
       <LocationsSection />
       <HowItWorks />
       <FAQSection />
