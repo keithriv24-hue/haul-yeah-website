@@ -1,10 +1,17 @@
 /*
  * siteConfig.js
  * ─────────────────────────────────────────────────────────────
- * SINGLE SOURCE OF TRUTH for Haul Yeah Moving marketing site.
+ * SINGLE SOURCE OF TRUTH for site-wide business data & branding.
  *
- * A non-developer can edit any value below to change site copy.
- * Do NOT rename keys — components read from these exact names.
+ * • Service and location page content lives in their OWN data files:
+ *     /app/frontend/src/data/services.js
+ *     /app/frontend/src/data/locations.js
+ *   Add a service or a town by adding one object in that file — this
+ *   creates the page and the internal links automatically. Then add
+ *   one line in /app/frontend/public/sitemap.xml so crawlers see it.
+ *
+ * • A non-developer can safely edit any value below to change copy.
+ *   Do NOT rename keys — components read from these exact names.
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -20,8 +27,20 @@ const siteConfig = {
     hoursLong: "Open 7 days a week",
     serviceArea: "Essex County, NJ",
     napLine: "Haul Yeah Moving · Essex County, NJ · (862) 250-3216",
-    // Change this before launch to your production domain.
-    baseUrl: "https://weekend-movers-nj.preview.emergentagent.com",
+    // Production domain. Change here + regenerate /public/sitemap.xml
+    // if the domain ever changes. This value is the ONE source used
+    // for canonical URLs, JSON-LD `url` fields, and og:url meta tags.
+    baseUrl: "https://haulyeahmoves.com",
+  },
+
+  branding: {
+    // Owner-approved logo mark (JPEG). Swap the file at /app/frontend/public/logo.jpg
+    // to update the header, favicon, and og:image everywhere.
+    logoPath: "/logo.jpg",
+    logoAlt: "Haul Yeah Moving logo",
+    // Used for favicon <link> and og:image meta.
+    faviconPath: "/logo.jpg",
+    ogImagePath: "/logo.jpg",
   },
 
   contact: {
@@ -37,6 +56,14 @@ const siteConfig = {
       "https://tally.so/embed/kdpE5d?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1",
     fallbackUrl: "https://tally.so/r/kdpE5d",
     scriptUrl: "https://tally.so/widgets/embed.js",
+  },
+
+  analytics: {
+    // Owner will supply a GA4 Measurement ID later. While this is an
+    // empty string, /app/frontend/src/lib/analytics.js trackEvent()
+    // is a total no-op — no requests fire, no console noise.
+    // Example future value: "G-XXXXXXXXXX"
+    measurementId: "",
   },
 
   nav: [
@@ -55,10 +82,10 @@ const siteConfig = {
     formCardTitle: "Get My Free Quote",
     formCardSubtitle: "Response in under 5 minutes.",
     secondaryCta: "Or text us for a same-day quote",
-    imageUrl:
-      "https://static.prod-images.emergentagent.com/jobs/16ab488a-3b3e-470f-9641-dde89e5faaad/images/43217f156accfc67f6cf98d02182da55c389b010e91c182da1d7964878bc0aed.jpeg",
+    // Real Haul Yeah crew photo (swap the file at /app/frontend/public/images/ to update).
+    imageUrl: "/images/photo-1.webp",
     imageAlt:
-      "Haul Yeah movers loading a 26-foot truck in Essex County NJ",
+      "Haul Yeah Moving crew member smiling from the cab of a 26-ft moving truck in Essex County NJ",
   },
 
   trustBadges: [
@@ -66,69 +93,6 @@ const siteConfig = {
     "5 Insured 26-ft Trucks",
     "7 Days a Week",
     "Response in Under 5 Minutes",
-  ],
-
-  services: [
-    {
-      name: "Local Residential Movers",
-      slug: "local-movers",
-      tagline: "Full-service home moves across NJ.",
-      icon: "Home",
-    },
-    {
-      name: "Apartment Movers",
-      slug: "apartment-movers",
-      tagline: "Walk-ups, elevators, tight staircases — handled.",
-      icon: "Building2",
-    },
-    {
-      name: "Small Moves & Small Load Movers",
-      slug: "small-moves",
-      tagline: "A single sofa or a studio — no minimums.",
-      icon: "PackageOpen",
-    },
-    {
-      name: "Last Minute & Same-Day Movers",
-      slug: "same-day-movers",
-      tagline: "Booked and moving today.",
-      icon: "Zap",
-    },
-    {
-      name: "Weekend Movers",
-      slug: "weekend-movers",
-      tagline: "Our specialty. Saturday & Sunday moves.",
-      icon: "CalendarDays",
-    },
-    {
-      name: "Long Distance Movers",
-      slug: "long-distance-movers",
-      tagline: "NJ up and down the East Coast.",
-      icon: "Truck",
-    },
-    {
-      name: "Office & Commercial Movers",
-      slug: "commercial-movers",
-      tagline: "Nights & weekends so you don't lose a day.",
-      icon: "Briefcase",
-    },
-    {
-      name: "Packing & Unpacking Services",
-      slug: "packing-services",
-      tagline: "Materials, boxes, and pro-grade packing.",
-      icon: "Box",
-    },
-    {
-      name: "Piano & Heavy Item Movers",
-      slug: "piano-movers",
-      tagline: "Pianos, safes, treadmills — we're built for it.",
-      icon: "Music",
-    },
-    {
-      name: "Labor-Only Loading & Unloading Help",
-      slug: "labor-only-movers",
-      tagline: "Got a truck? We'll bring the muscle.",
-      icon: "HardHat",
-    },
   ],
 
   whyUs: [
@@ -155,33 +119,42 @@ const siteConfig = {
   ],
 
   whyImage: {
-    url: "https://static.prod-images.emergentagent.com/jobs/16ab488a-3b3e-470f-9641-dde89e5faaad/images/1f4fdf2b047942b4e5d727d8c83d9e5c6693b45cff5784e2aa5c74a219d34e7b.jpeg",
-    alt: "Haul Yeah Moving fleet of insured 26-foot moving trucks in Essex County NJ",
+    // Real Haul Yeah crew photo — mover with crossed arms in front of NJ-plated 26-ft truck.
+    url: "/images/photo-4.webp",
+    alt: "Haul Yeah mover standing in front of a New Jersey-plated 26-ft moving truck in Essex County",
   },
 
-  serviceStripImages: [
-    {
+  howItWorksImage: {
+    // Two movers in the truck cab, one writing on a clipboard — real crew photo.
+    url: "/images/photo-5.webp",
+    alt: "Haul Yeah Moving crew going over a move plan in the truck cab before dispatching a job",
+  },
+
+  finalCtaImage: {
+    // Two movers by the truck, waving / high-fiving — real crew photo.
+    url: "/images/photo-2.webp",
+    alt: "Haul Yeah Moving crew ready for a weekend move in Essex County NJ",
+  },
+
+  teamImage: {
+    // Three-man Haul Yeah crew sitting on the truck liftgate — real crew photo.
+    // Used on service pages (labor-only, local-movers) as a trust visual.
+    url: "/images/photo-3.webp",
+    alt: "Haul Yeah Moving three-man crew sitting on the liftgate of a 26-ft moving truck",
+  },
+
+  // Backup / secondary images. AI-generated stock — used only where no real
+  // company photo fits yet (e.g., a packing scene page). Owner will replace over time.
+  aiImages: {
+    packing: {
       url: "https://static.prod-images.emergentagent.com/jobs/16ab488a-3b3e-470f-9641-dde89e5faaad/images/cf0573943788ee38273716f042ac7415e715fae846b22bd0ae581161b9445eb5.jpeg",
-      alt: "Haul Yeah professional packing service in a New Jersey home",
+      alt: "Haul Yeah professional packing service wrapping items in a New Jersey home",
     },
-    {
+    apartment: {
       url: "https://static.prod-images.emergentagent.com/jobs/16ab488a-3b3e-470f-9641-dde89e5faaad/images/8414f310fd394bec1a5bc97262879c476aa9ad26838d29185c9016df1054f1f1.jpeg",
       alt: "Haul Yeah apartment movers carrying boxes into a New Jersey building",
     },
-  ],
-
-  locations: [
-    { name: "East Orange", slug: "east-orange-nj" },
-    { name: "Newark", slug: "newark-nj" },
-    { name: "Montclair", slug: "montclair-nj" },
-    { name: "Bloomfield", slug: "bloomfield-nj" },
-    { name: "West Orange", slug: "west-orange-nj" },
-    { name: "Orange", slug: "orange-nj" },
-    { name: "Irvington", slug: "irvington-nj" },
-    { name: "Nutley", slug: "nutley-nj" },
-    { name: "Belleville", slug: "belleville-nj" },
-    { name: "Jersey City", slug: "jersey-city-nj" },
-  ],
+  },
 
   howItWorks: [
     {

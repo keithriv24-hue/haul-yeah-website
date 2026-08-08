@@ -1,0 +1,30 @@
+{
+  "summary": "Phase 2 frontend testing of Haul Yeah Moving marketing site. Verified homepage, all 10 /services/<slug> pages, all 10 /movers/<slug> pages, cross-links, JSON-LD, Tally popup, footer, robots/sitemap, real crew photos, no stars/rated/★ text, and no-op analytics. 20/20 content pages render at HTTP 200 with correct title, exactly one H1, correct canonical to https://haulyeahmoves.com/..., Service+FAQPage or MovingCompany+FAQPage JSON-LD, ≥2 intro paragraphs, ≥5 included items (services), ≥3 highlighted services + all-services chip list + ≥3 nearby towns (locations), Tally quote buttons and tel:+18622503216 links. Uniqueness of first intro paragraph = 10/10 for services and 10/10 for locations. Cross-links from /services/weekend-movers → /movers/newark-nj and from /movers/newark-nj → /services/apartment-movers both work. Tally popup opens on click (iframe present). window.gtag is undefined (no-op analytics confirmed). All 5 crew photos (/images/photo-1..5.webp) return HTTP 200 and photo-1 (hero) + photo-4 (why) load with naturalWidth > 0. Homepage MovingCompany JSON-LD has url=https://haulyeahmoves.com and areaServed=11. Header logo mark, footer with 10+10 links, favicon=/logo.jpg, og:image=/logo.jpg all correct. robots.txt contains 'Sitemap: https://haulyeahmoves.com/sitemap.xml'. sitemap.xml has exactly 21 <url> entries (a 22nd match in the raw file is inside an XML comment). ONE real SEO issue found: every subpage has TWO <meta name=description> tags in the DOM — the static default from public/index.html plus the React-19-hoisted per-page one. React 19 appends rather than replaces, so crawlers may pick up the wrong (default) description on every service and location page. The unique per-page description IS present but is the 2nd tag, not the 1st.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Per-page SEO meta description",
+        "issue": "public/index.html hard-codes a default <meta name=\"description\"> that is NEVER removed by React 19. On every service/location page the DOM contains TWO <meta name=description> tags (default + per-page). Crawlers commonly honor the first one, which means the unique per-page descriptions in services.js / locations.js are effectively invisible to Google. Same risk applies to any other head tag statically declared in index.html (title/og tags override cleanly because React 19 dedupes title, but 'description' is not deduped).",
+        "affected_selectors": ["meta[name=description]"]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Remove the static <meta name=\"description\"> from /app/frontend/public/index.html (or replace it with a placeholder that React overwrites) so that every /services/<slug> and /movers/<slug> page exposes ONLY its unique per-page description to crawlers. After the fix, document.querySelectorAll('meta[name=description]').length should equal 1 on every route, and the first one should be the page-specific text."
+  ],
+  "critical_code_review_comments": [
+    "index.html hosts static SEO defaults that conflict with React 19 head-hoisting for non-deduped tags like <meta name=description>. Prefer letting React inject every SEO tag (title/description/canonical/og:*), with index.html only carrying <title>Haul Yeah Moving</title> as a boot placeholder.",
+    "All 20 subpages currently emit an identical desc_len=127 when read via document.querySelector('meta[name=description]') because the default meta is queried first. This is silent — no error — but harmful to SEO parity across the network of pages."
+  ],
+  "updated_files": [],
+  "success_rate": {"frontend": "97%"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Phase 2 pages all render correctly. Only outstanding fix is removing the duplicate <meta name=description> from public/index.html. When re-testing, verify document.querySelectorAll('meta[name=description]').length === 1 on /services/piano-movers and /movers/newark-nj, and that the sole description matches the copy from services.js/locations.js (e.g. Piano page should start with 'Piano movers NJ — uprights, baby grands...').",
+  "rca of the issue": "React 19 hoists <meta> nodes from render output into <head> by APPEND (not replace) unless the tag has a react-specific dedup key. 'title' is deduped, but 'meta[name=description]' is not — so the static default in index.html and the per-page React-injected meta co-exist. Fix: delete (or blank) the static default in /app/frontend/public/index.html so only the per-page hoisted meta remains."
+}

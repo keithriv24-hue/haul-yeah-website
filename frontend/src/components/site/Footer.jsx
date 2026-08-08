@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Phone, MessageSquare, Mail, Truck } from "lucide-react";
 import Logo from "./Logo";
 import siteConfig from "../../data/siteConfig";
+import { services } from "../../data/services";
+import { locations } from "../../data/locations";
 
 const currentYear = new Date().getFullYear();
 
@@ -65,7 +67,7 @@ export default function Footer() {
               Services
             </h3>
             <ul className="mt-6 space-y-3">
-              {siteConfig.services.map((s) => (
+              {services.map((s) => (
                 <li key={s.slug}>
                   <Link
                     to={`/services/${s.slug}`}
@@ -85,7 +87,7 @@ export default function Footer() {
               Service Area
             </h3>
             <ul className="mt-6 space-y-3">
-              {siteConfig.locations.map((l) => (
+              {locations.map((l) => (
                 <li key={l.slug}>
                   <Link
                     to={`/movers/${l.slug}`}

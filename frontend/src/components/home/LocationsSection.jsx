@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MapPin, ArrowRight } from "lucide-react";
 import siteConfig from "../../data/siteConfig";
+import { locations } from "../../data/locations";
 
 /**
  * Locations grid — 10 NJ town cards linking to /movers/[slug] placeholders.
@@ -44,7 +45,7 @@ export default function LocationsSection() {
           className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5"
           data-testid="locations-grid"
         >
-          {siteConfig.locations.map((loc) => (
+          {locations.map((loc) => (
             <li key={loc.slug}>
               <Link
                 to={`/movers/${loc.slug}`}

@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://weekend-movers-nj.preview.emergentagent.com/sitemap.xml
+Sitemap: https://haulyeahmoves.com/sitemap.xml

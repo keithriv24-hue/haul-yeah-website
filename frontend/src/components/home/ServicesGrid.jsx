@@ -14,6 +14,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import siteConfig from "../../data/siteConfig";
+import { services } from "../../data/services";
 
 const ICON_MAP = {
   Home,
@@ -69,8 +70,8 @@ export default function ServicesGrid() {
           className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
           data-testid="services-grid"
         >
-          {siteConfig.services.map((service, index) => {
-            const Icon = ICON_MAP[service.icon] || Truck;
+          {services.map((service, index) => {
+            const Icon = ICON_MAP[service.iconName] || Truck;
             const featured = index === 0;
             return (
               <li

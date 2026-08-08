@@ -1,6 +1,7 @@
 import React from "react";
 import siteConfig from "../../data/siteConfig";
 import { openTallyPopup } from "../../lib/tally";
+import { trackEvent } from "../../lib/analytics";
 
 /**
  * Universal "Free Quote" button.
@@ -37,6 +38,7 @@ export default function TallyPopupButton({
   const handleClick = (e) => {
     // Prevent the anchor from navigating; the Tally script (or fallback) handles it.
     e.preventDefault();
+    trackEvent("tally_open", { source: testId });
     openTallyPopup();
   };
 
