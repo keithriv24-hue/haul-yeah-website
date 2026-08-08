@@ -76,9 +76,12 @@ const siteConfig = {
     // (looks like "abc123def456"). While this is an empty string, the
     // section renders a graceful placeholder instead of the widget.
     trustindexWidgetId: "bcaf63578df98153d6860e9d810",
-    // The Trustindex loader script URL from your embed snippet
-    // (usually https://cdn.trustindex.io/loader.js).
-    trustindexScriptUrl: "https://cdn.trustindex.io/loader.js",
+    // NOTE: The Trustindex loader script is loaded ONCE globally via
+    // /app/frontend/public/index.html so SPA route changes never have to
+    // re-load it. The component (GoogleReviews.jsx) fetches the widget's
+    // content.html from the Trustindex CDN and hands it to the loader's
+    // TrustindexWidget class to activate — this avoids a race where the
+    // widget failed to paint after two consecutive client-side navigations.
     // Your Google "leave a review" short link (g.page/r/...), used by the
     // "Leave us a review" button. Paste it when you have it.
     googleReviewLink: "https://g.page/r/CVhCBro8FWmNEBM/review",

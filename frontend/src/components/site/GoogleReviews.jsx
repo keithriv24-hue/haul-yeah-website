@@ -1,85 +1,68 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { MessageSquareQuote, ArrowUpRight } from "lucide-react";
 import siteConfig from "../../data/siteConfig";
 
 /**
- * GoogleReviews — Trustindex widget mount, with a branded placeholder
- * for pre-launch (empty widget id).
+ * GoogleReviews — Trustindex widget mount.
  *
- * Behavior:
- *   - Reads siteConfig.reviews (trustindexWidgetId, trustindexScriptUrl,
- *     googleReviewLink, heading, subheading).
- *   - If trustindexWidgetId is set: renders a <div class="ti-widget"
- *     data-widget-id={id}> and lazily injects Trustindex's loader script
- *     (src = `${scriptUrl}?${id}`) exactly ONCE per page load — safe when
- *     the component appears on multiple pages. Uses IntersectionObserver
- *     to defer the script until the section approaches the viewport.
- *     Also re-calls window.Trustindex.init() on subsequent SPA mounts if
- *     it exists so client-side route changes still initialize the widget.
- *   - If trustindexWidgetId is empty: renders a branded placeholder card
- *     so pre-launch layouts never look broken.
- *   - "Leave us a review" orange button links to siteConfig.reviews.googleReviewLink
- *     when set (target=_blank, rel=noopener). Hidden entirely otherwise.
+ * WHY THIS INTEGRATION IS SUBTLE
+ * ──────────────────────────────
+ * Trustindex ships a "just drop this <script>" loader (loader.js?WIDGET_ID)
+ * that self-replaces with a widget div and fetches content.html. That works
+ * fine on the *first* mount in a page's lifetime, but it is stateful and
+ * race-prone across SPA navigations: repeated dynamic <script> injections
+ * of the same URL don't reliably fire the widget-content fetch on the
+ * *third* consecutive mount (Home → Newark → Weekend Movers).
  *
- * No custom review JSON-LD is emitted — Trustindex injects its own.
+ * The reliable approach is to drive the two pieces separately:
+ *
+ * 1. Load loader.js ONCE, globally, at the app's <head>. That sets up:
+ *      • the Trustindex class on window
+ *      • a MutationObserver on document.body that auto-processes any new
+ *        `.ti-widget` element (fetches CSS, wires up layout / slider etc)
+ *    (See public/index.html.)
+ *
+ * 2. On each GoogleReviews mount, fetch content.html for our widget ID
+ *    directly from the CDN and inject the returned `<div class="ti-widget">`
+ *    HTML into our mount container. The MutationObserver notices the new
+ *    node and Trustindex activates the widget (styles it, sets sizes, etc).
+ *
+ * That approach:
+ *   - works identically on hard-load and any SPA navigation chain,
+ *   - lets us key the section by pathname for a guaranteed clean remount,
+ *   - avoids the flaky repeated-<script>-injection dance entirely,
+ *   - is lazy: we only fetch when the section approaches the viewport.
  */
-
-// Module-level guard so we inject the loader script exactly once across
-// mounts (homepage + location page + service page can all render this).
-let scriptInjected = false;
 
 function isBrowser() {
   return typeof window !== "undefined" && typeof document !== "undefined";
 }
 
-function injectTrustindexLoader(scriptUrl, widgetId) {
-  if (!isBrowser() || !widgetId) return;
-
-  const src = `${scriptUrl}?${widgetId}`;
-
-  if (scriptInjected) {
-    // Already injected once — best-effort re-init on subsequent mounts.
-    if (window.Trustindex && typeof window.Trustindex.init === "function") {
-      try {
-        window.Trustindex.init();
-      } catch {
-        /* swallow */
-      }
-    }
-    return;
-  }
-
-  // Belt-and-suspenders: skip if some other code already added this exact src.
-  if (document.querySelector(`script[src="${src}"]`)) {
-    scriptInjected = true;
-    return;
-  }
-
-  const s = document.createElement("script");
-  s.src = src;
-  s.async = true;
-  s.defer = true;
-  document.body.appendChild(s);
-  scriptInjected = true;
+// Compute the widget's content URL from a widget ID.
+// Trustindex hosts widgets at cdn.trustindex.io/widgets/<first 2 chars>/<id>/content.html
+function contentUrlFor(widgetId) {
+  const prefix = widgetId.substring(0, 2);
+  return `https://cdn.trustindex.io/widgets/${prefix}/${widgetId}/content.html`;
 }
 
-export default function GoogleReviews({ sectionId = "reviews" }) {
+function GoogleReviewsInner({ sectionId }) {
   const {
     trustindexWidgetId,
-    trustindexScriptUrl,
     googleReviewLink,
     heading,
     subheading,
   } = siteConfig.reviews;
 
-  const rootRef = useRef(null);
+  const sectionRef = useRef(null);
+  const mountRef = useRef(null);
   const [nearViewport, setNearViewport] = useState(false);
 
-  // Lazy-load: mark the section "near viewport" when it comes within 300 px.
+  // Lazy-load: mark near-viewport when the section approaches the fold.
   useEffect(() => {
     if (!isBrowser()) return;
     if (!trustindexWidgetId) return;
-    if (!rootRef.current) return;
+    if (!sectionRef.current) return;
     if (typeof IntersectionObserver === "undefined") {
       setNearViewport(true);
       return;
@@ -93,23 +76,79 @@ export default function GoogleReviews({ sectionId = "reviews" }) {
           }
         });
       },
-      { rootMargin: "300px 0px" },
+      { rootMargin: "400px 0px" },
     );
-    obs.observe(rootRef.current);
+    obs.observe(sectionRef.current);
     return () => obs.disconnect();
   }, [trustindexWidgetId]);
 
-  // Inject / re-init the Trustindex loader once the section approaches view.
+  // Fetch widget HTML and inject; Trustindex's MutationObserver handles the
+  // rest (CSS load, layout activation).
   useEffect(() => {
-    if (nearViewport && trustindexWidgetId) {
-      injectTrustindexLoader(trustindexScriptUrl, trustindexWidgetId);
-    }
-  }, [nearViewport, trustindexWidgetId, trustindexScriptUrl]);
+    if (!isBrowser()) return;
+    if (!nearViewport) return;
+    if (!trustindexWidgetId) return;
+    const mount = mountRef.current;
+    if (!mount) return;
+
+    let cancelled = false;
+
+    fetch(contentUrlFor(trustindexWidgetId), { credentials: "omit" })
+      .then((r) => (r.ok ? r.text() : ""))
+      .then((html) => {
+        if (cancelled) return;
+        if (!html) return;
+        if (!mount.isConnected) return;
+
+        // Feed the content into Trustindex's own load pipeline. Its load()
+        // method parses the HTML, replaces the placeholder with the widget
+        // div, loads the correct preset CSS (e.g. layout 14 · light-background),
+        // and calls format/resize/registerEvents. Fall back to a plain
+        // innerHTML injection if Trustindex globals aren't ready yet — the
+        // MutationObserver set up by loader.js in index.html will still
+        // activate the widget (styles may lag by one microtask).
+        const TW = window.TrustindexWidget;
+        if (typeof TW === "function") {
+          const placeholder = document.createElement("div");
+          placeholder.contentHtml = html;
+          placeholder.key = trustindexWidgetId;
+          mount.appendChild(placeholder);
+          try {
+            new TW(null, placeholder);
+          } catch {
+            mount.innerHTML = html;
+            if (typeof window.renderTrustindexWidgets === "function") {
+              try {
+                window.renderTrustindexWidgets();
+              } catch {
+                /* swallow */
+              }
+            }
+          }
+        } else {
+          mount.innerHTML = html;
+          if (typeof window.renderTrustindexWidgets === "function") {
+            try {
+              window.renderTrustindexWidgets();
+            } catch {
+              /* swallow */
+            }
+          }
+        }
+      })
+      .catch(() => {
+        /* Network error — leave the placeholder visible. */
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [nearViewport, trustindexWidgetId]);
 
   return (
     <section
       id={sectionId}
-      ref={rootRef}
+      ref={sectionRef}
       className="border-b border-slate-200 bg-white py-20 sm:py-28"
       aria-labelledby="google-reviews-heading"
       data-testid="google-reviews-section"
@@ -133,14 +172,8 @@ export default function GoogleReviews({ sectionId = "reviews" }) {
           ) : null}
         </div>
 
-        <div className="mt-12" data-testid="google-reviews-slot">
-          {trustindexWidgetId ? (
-            <div
-              className="ti-widget"
-              data-widget-id={trustindexWidgetId}
-              data-testid="trustindex-widget"
-            />
-          ) : (
+        <div className="mt-12" ref={mountRef} data-testid="google-reviews-slot">
+          {trustindexWidgetId ? null : (
             <div
               className="mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-md border border-dashed border-slate-300 bg-slate-50 p-10 text-center"
               data-testid="reviews-placeholder"
@@ -182,4 +215,14 @@ export default function GoogleReviews({ sectionId = "reviews" }) {
       </div>
     </section>
   );
+}
+
+/**
+ * Outer wrapper: rekey by pathname so React fully remounts the inner
+ * component on every SPA navigation. This guarantees a clean fetch +
+ * effect lifecycle for the widget on every route change.
+ */
+export default function GoogleReviews({ sectionId = "reviews" }) {
+  const { pathname } = useLocation();
+  return <GoogleReviewsInner key={pathname} sectionId={sectionId} />;
 }
