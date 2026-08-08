@@ -1,0 +1,6 @@
+# robots.txt for Haul Yeah Moving
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://weekend-movers-nj.preview.emergentagent.com/sitemap.xml
