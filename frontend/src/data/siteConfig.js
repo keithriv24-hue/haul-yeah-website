@@ -88,9 +88,9 @@ const siteConfig = {
     formCardSubtitle: "Response in under 5 minutes.",
     secondaryCta: "Or text us for a same-day quote",
     // Real Haul Yeah crew photo (swap the file at /app/frontend/public/images/ to update).
-    imageUrl: "/images/photo-1.webp",
+    imageUrl: "/images/crew-open-truck-box.webp",
     imageAlt:
-      "Haul Yeah Moving crew member smiling from the cab of a 26-ft moving truck in Essex County NJ",
+      "Haul Yeah Moving three-man crew at the open box of a 26-ft moving truck in Essex County NJ",
   },
 
   trustBadges: [
@@ -125,27 +125,27 @@ const siteConfig = {
 
   whyImage: {
     // Real Haul Yeah crew photo — mover with crossed arms in front of NJ-plated 26-ft truck.
-    url: "/images/photo-4.webp",
-    alt: "Haul Yeah mover standing in front of a New Jersey-plated 26-ft moving truck in Essex County",
+    url: "/images/mover-crossed-arms-nj-truck.webp",
+    alt: "Haul Yeah mover standing arms-crossed in front of a New Jersey-plated 26-ft moving truck in Essex County",
   },
 
   howItWorksImage: {
-    // Two movers in the truck cab, one writing on a clipboard — real crew photo.
-    url: "/images/photo-5.webp",
-    alt: "Haul Yeah Moving crew going over a move plan in the truck cab before dispatching a job",
+    // Real crew photo — Haul Yeah crew working inside the truck with a wooden pallet and hand truck.
+    url: "/images/crew-inside-truck-pallet.webp",
+    alt: "Haul Yeah Moving crew loading a wooden pallet with a pallet jack inside a 26-ft moving truck",
   },
 
   finalCtaImage: {
-    // Two movers by the truck, waving / high-fiving — real crew photo.
-    url: "/images/photo-2.webp",
-    alt: "Haul Yeah Moving crew ready for a weekend move in Essex County NJ",
+    // Real crew photo — two movers high-fiving next to the white 26-ft truck.
+    url: "/images/movers-high-five.webp",
+    alt: "Two Haul Yeah movers high-fiving after a successful New Jersey move",
   },
 
   teamImage: {
-    // Three-man Haul Yeah crew sitting on the truck liftgate — real crew photo.
+    // Real crew photo — three-man Haul Yeah crew on the liftgate, middle mover in a safety vest.
     // Used on service pages (labor-only, local-movers) as a trust visual.
-    url: "/images/photo-3.webp",
-    alt: "Haul Yeah Moving three-man crew sitting on the liftgate of a 26-ft moving truck",
+    url: "/images/crew-liftgate-safety-vest.webp",
+    alt: "Haul Yeah Moving three-man crew posed on the liftgate of a 26-ft moving truck, with the middle crew member in a safety vest",
   },
 
   // Backup / secondary images. AI-generated stock — used only where no real
