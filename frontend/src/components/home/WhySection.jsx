@@ -58,6 +58,7 @@ export default function WhySection() {
               <TallyPopupButton
                 testId="why-section-quote-btn"
                 size="lg"
+                showConsent
               >
                 Get My Free Quote
               </TallyPopupButton>

@@ -56,6 +56,7 @@ export default function FinalCTA() {
               testId="final-cta-quote-btn"
               size="lg"
               className="w-full sm:w-auto"
+              showConsent
             >
               Get My Free Quote
             </TallyPopupButton>

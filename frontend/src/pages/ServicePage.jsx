@@ -124,7 +124,7 @@ export default function ServicePage() {
             </div>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <TallyPopupButton testId="service-hero-quote-btn" size="lg">
+              <TallyPopupButton testId="service-hero-quote-btn" size="lg" showConsent>
                 Get My Free Quote
               </TallyPopupButton>
               <a

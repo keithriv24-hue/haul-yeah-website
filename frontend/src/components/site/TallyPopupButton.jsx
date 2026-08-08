@@ -2,12 +2,22 @@ import React from "react";
 import siteConfig from "../../data/siteConfig";
 import { openTallyPopup } from "../../lib/tally";
 import { trackEvent } from "../../lib/analytics";
+import QuoteConsent from "./QuoteConsent";
 
 /**
  * Universal "Free Quote" button.
- * Uses data-tally-open (script auto-wires it) AND an onClick fallback
- * (which either calls Tally.openPopup or opens the plain form URL).
- * Renders as an <a> so if JS is off, clicking still opens the form.
+ * ─────────────────────────────────────────────────────────────
+ * Renders as an <a> so if JS is off, clicking still opens the plain form.
+ * On click we call openTallyPopup(), which:
+ *   1. Waits for Meta identifiers (fbclid / _fbp / _fbc / event_source_url)
+ *   2. Opens Tally.openPopup with those as hiddenFields
+ *   3. Falls back to opening the plain form URL with the identifiers as
+ *      query params in a new tab if the Tally script is blocked.
+ *
+ * Set showConsent={true} on prominent page-level CTAs to render the SMS/TCPA
+ * consent microcopy directly under the button. Compact CTAs (header, mobile
+ * bar) omit it to avoid clutter — the consent is still visible in the inline
+ * embed on the homepage and next to every primary quote CTA on inner pages.
  */
 export default function TallyPopupButton({
   children = "Free Quote",
@@ -16,6 +26,7 @@ export default function TallyPopupButton({
   className = "",
   testId = "tally-popup-button",
   fullWidth = false,
+  showConsent = false,
   ...rest
 }) {
   const base =
@@ -36,21 +47,16 @@ export default function TallyPopupButton({
   };
 
   const handleClick = (e) => {
-    // Prevent the anchor from navigating; the Tally script (or fallback) handles it.
     e.preventDefault();
     trackEvent("tally_open", { source: testId });
     openTallyPopup();
   };
 
-  return (
+  const anchor = (
     <a
       href={siteConfig.tally.fallbackUrl}
       target="_blank"
       rel="noopener noreferrer"
-      data-tally-open={siteConfig.tally.formId}
-      data-tally-layout="modal"
-      data-tally-width="700"
-      data-tally-hide-title="1"
       data-testid={testId}
       onClick={handleClick}
       className={`${base} ${variants[variant] || variants.primary} ${
@@ -60,5 +66,18 @@ export default function TallyPopupButton({
     >
       {children}
     </a>
+  );
+
+  if (!showConsent) return anchor;
+
+  // Wrap so button + consent stack vertically even inside flex-row parents.
+  return (
+    <div
+      className={"flex flex-col items-start gap-2 " + (fullWidth ? "w-full" : "")}
+      data-testid={`${testId}-group`}
+    >
+      {anchor}
+      <QuoteConsent className="max-w-sm" />
+    </div>
   );
 }

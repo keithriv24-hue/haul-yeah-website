@@ -64,6 +64,11 @@ const siteConfig = {
     // is a total no-op — no requests fire, no console noise.
     // Example future value: "G-XXXXXXXXXX"
     measurementId: "",
+    // Meta (Facebook) Pixel — the base pixel snippet lives in
+    // /app/frontend/public/index.html <head>. This ID is stored here
+    // for one-place editing / reference. Client-side navigation
+    // PageView events fire from Layout.jsx via useLocation.
+    metaPixelId: "1913145279380964",
   },
 
   nav: [

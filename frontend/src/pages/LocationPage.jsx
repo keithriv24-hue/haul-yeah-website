@@ -120,7 +120,7 @@ export default function LocationPage() {
             </div>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <TallyPopupButton testId="location-hero-quote-btn" size="lg">
+              <TallyPopupButton testId="location-hero-quote-btn" size="lg" showConsent>
                 Get My Free Quote
               </TallyPopupButton>
               <a
@@ -327,6 +327,7 @@ export default function LocationPage() {
               testId="location-final-quote-btn"
               size="lg"
               className="w-full sm:w-auto"
+              showConsent
             >
               Get My Free Quote
             </TallyPopupButton>
