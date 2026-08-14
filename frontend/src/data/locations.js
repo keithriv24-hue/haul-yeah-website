@@ -19,7 +19,7 @@ export const locations = [
     seo: {
       title: "East Orange, NJ Movers | Haul Yeah Moving",
       description:
-        "Local movers in East Orange, NJ — two-family walk-ups, apartments, small houses. Weekend and same-day availability. Licensed, insured. Free quote in 5 minutes.",
+        "Local movers in East Orange, NJ — two-family walk-ups, apartments, small houses. Weekend and same-day availability. All-in pricing. Free quote in 5 minutes.",
     },
     kicker: "Home base.",
     intro: [
@@ -54,24 +54,24 @@ export const locations = [
     seo: {
       title: "Newark, NJ Movers | Haul Yeah Moving",
       description:
-        "Movers in Newark, NJ — Ironbound, downtown, high-rises, walk-ups. COI-ready, licensed and insured. Same-day and weekend availability. Free quote in 5 minutes.",
+        "Movers in Newark, NJ — Ironbound, downtown, high-rises, walk-ups. Building move-in paperwork coordinated. Same-day and weekend availability. Free quote in 5 minutes.",
     },
     kicker: "Downtown, Ironbound, and everything in between.",
     intro: [
-      "Newark is New Jersey's biggest city, and moving here is a completely different job depending on where in the city you are. Downtown high-rises want COIs a week before move day. The Ironbound wants a truck squeezed onto a narrow one-way. North Newark rowhouses want a crew that isn't scared of stairs.",
-      "Haul Yeah moves Newark residents every weekend. We know which downtown buildings require insurance certs 48 hours in advance, which streets in the Ironbound only unload during business hours, and which Weequahic blocks have parking restrictions worth planning around.",
+      "Newark is New Jersey's biggest city, and moving here is a completely different job depending on where in the city you are. Downtown high-rises want move-in paperwork a week before move day. The Ironbound wants a truck squeezed onto a narrow one-way. North Newark rowhouses want a crew that isn't scared of stairs.",
+      "Haul Yeah moves Newark residents every weekend. We know which downtown buildings require move-in paperwork 48 hours in advance, which streets in the Ironbound only unload during business hours, and which Weequahic blocks have parking restrictions worth planning around.",
       "Whether you're moving into a downtown condo, out of a Bergen Street walk-up, or across the river from a friend's place in Jersey City, we'll give you a straight all-in number and show up on time.",
     ],
     localTouch:
-      "COI-required downtown high-rises, narrow Ironbound one-ways, and walk-up rowhouses in the North and Central Ward. We plan the parking and the paperwork before the crew rolls.",
+      "Downtown high-rises with paperwork requirements, narrow Ironbound one-ways, and walk-up rowhouses in the North and Central Ward. We plan the parking and the paperwork before the crew rolls.",
     faqs: [
       {
-        q: "Do Newark high-rises require a Certificate of Insurance?",
-        a: "Most downtown Newark high-rises (near Military Park, Prudential Center, and Mulberry Street) require a COI 24–48 hours before move day. We route the paperwork through our carrier for free — usually turnaround is same-day. Send us your building's requirements as soon as you book.",
+        q: "How do you handle Newark high-rise move-in requirements?",
+        a: "Most downtown Newark high-rises (near Military Park, Prudential Center, and Mulberry Street) require move-in paperwork and an elevator reservation 24–48 hours before move day. Send us your building's requirements as soon as you book and we'll walk through what applies.",
       },
       {
         q: "How much do movers cost in Newark?",
-        a: "Local Newark moves run about $500–$1,600 depending on load size, stairs, and building COI turnaround. A studio downtown is usually $600–$900; a 2BR walk-up in the North Ward lands around $1,000–$1,400.",
+        a: "Local Newark moves run about $500–$1,600 depending on load size, stairs, and building paperwork turnaround. A studio downtown is usually $600–$900; a 2BR walk-up in the North Ward lands around $1,000–$1,400.",
       },
       {
         q: "Can you move me on a weekend in Newark?",
@@ -89,7 +89,7 @@ export const locations = [
     seo: {
       title: "Montclair, NJ Movers | Haul Yeah Moving",
       description:
-        "Montclair, NJ movers — Victorian walk-ups, brownstones, Watchung Plaza. Licensed and insured, weekend and same-day availability. Free quote in 5 minutes.",
+        "Montclair, NJ movers — Victorian walk-ups, brownstones, Watchung Plaza. Weekend and same-day availability. Free quote in 5 minutes.",
     },
     kicker: "Victorian walk-ups. Brownstones. Tree-lined streets.",
     intro: [
@@ -124,16 +124,16 @@ export const locations = [
     seo: {
       title: "Bloomfield, NJ Movers | Haul Yeah Moving",
       description:
-        "Movers in Bloomfield, NJ — commuter town homes, apartment complexes, small-load moves. Licensed, insured, weekend and same-day. Free quote in 5 minutes.",
+        "Movers in Bloomfield, NJ — commuter town homes, apartment complexes, small-load moves. Weekend and same-day. Free quote in 5 minutes.",
     },
     kicker: "Watchung Plaza. Broughton Ave. Brookdale Park.",
     intro: [
       "Bloomfield is a commuter town at its core — a lot of people who live here work in NYC and Newark, which means most Bloomfield moves happen on weekends and evenings. We're built for that.",
-      "The housing mix leans colonials, split-levels, and mid-size apartment complexes near Bloomfield Center. Watchung Plaza and the streets around Brookdale Park are usually straightforward move logistics — solid parking, clear staircases, driveways that fit a 26-ft truck.",
+      "The housing mix leans colonials, split-levels, and mid-size apartment complexes near Bloomfield Center. Watchung Plaza and the streets around Brookdale Park are usually straightforward move logistics — solid parking, clear staircases, driveways that comfortably fit even our biggest 26 ft trucks when that's the right call.",
       "We do a lot of small moves in Bloomfield too — one-bedroom apartments, storage-unit runs, and adult kids moving out of parents' basements. Whichever end of the size range you're on, ask for a real number.",
     ],
     localTouch:
-      "Colonials near Brookdale Park, apartment complexes near Bloomfield Center, and easy 26-ft-truck driveways — logistics-friendly compared to denser neighboring towns.",
+      "Colonials near Brookdale Park, apartment complexes near Bloomfield Center, and driveways that fit anything from a 16 ft van to a full 26 ft truck — logistics-friendly compared to denser neighboring towns.",
     faqs: [
       {
         q: "How much do movers cost in Bloomfield, NJ?",
@@ -159,13 +159,13 @@ export const locations = [
     seo: {
       title: "West Orange, NJ Movers | Haul Yeah Moving",
       description:
-        "Local movers in West Orange, NJ — hillside homes, Eagle Rock, Pleasantdale. Licensed and insured, weekend availability. Free quote in under 5 minutes.",
+        "Local movers in West Orange, NJ — hillside homes, Eagle Rock, Pleasantdale. Weekend availability. Free quote in under 5 minutes.",
     },
     kicker: "Hillside homes and hardwood floors.",
     intro: [
       "West Orange is one of the more spread-out towns we serve. Bigger single-family homes than East Orange or Newark, more square footage, more staircases, and hillside driveways that put your truck at a 10-degree angle before the ramp even drops.",
       "Neighborhoods like Pleasantdale, Redwood Estates, Gregory, and the streets around Eagle Rock Reservation all have their quirks — long driveways, tight garage angles, and the kind of hardwood floors that need runners the second we step inside.",
-      "We do full-house moves, piano moves, and packing services in West Orange every week. Our 26-ft trucks handle the driveways; our crews handle the hardwood.",
+      "We do full-house moves, piano moves, and packing services in West Orange every week. Our trucks — a fleet from 16 ft up to 26 ft — handle the driveways; our crews handle the hardwood.",
     ],
     localTouch:
       "Big single-family homes, hillside driveways, hardwood floors that need protection from the front door in. We bring the runners.",
@@ -176,7 +176,7 @@ export const locations = [
       },
       {
         q: "Can you handle hillside driveways?",
-        a: "Yes — West Orange driveways are steep in a lot of neighborhoods, and our 26-ft trucks handle them fine. If your driveway is unusually tight, we'll switch to a smaller truck and shuttle to the bigger one on the street.",
+        a: "Yes — West Orange driveways are steep in a lot of neighborhoods, and we match the truck to the driveway from a fleet that ranges 16 ft to 26 ft. If your driveway is unusually tight, we'll bring a smaller truck and shuttle from a bigger one on the street.",
       },
       {
         q: "Do you move pianos out of West Orange homes?",
@@ -194,7 +194,7 @@ export const locations = [
     seo: {
       title: "Orange, NJ Movers | Haul Yeah Moving",
       description:
-        "Movers in Orange, NJ — two-family homes, apartment buildings, Main Street walk-ups. Licensed, insured, weekend and same-day availability.",
+        "Movers in Orange, NJ — two-family homes, apartment buildings, Main Street walk-ups. Weekend and same-day availability.",
     },
     kicker: "Two-family homes and Main Street walk-ups.",
     intro: [
@@ -229,11 +229,11 @@ export const locations = [
     seo: {
       title: "Irvington, NJ Movers | Haul Yeah Moving",
       description:
-        "Movers in Irvington, NJ — apartment buildings, multi-family homes, dense residential. Licensed, insured, weekend and same-day. Free quote in 5 minutes.",
+        "Movers in Irvington, NJ — apartment buildings, multi-family homes, dense residential. Weekend and same-day. Free quote in 5 minutes.",
     },
     kicker: "Multi-family homes, dense blocks, tight moves.",
     intro: [
-      "Irvington is one of the densest towns we serve. Multi-family homes, mid-size apartment buildings, and blocks where finding legal parking for a 26-ft truck takes a phone call to the building first.",
+      "Irvington is one of the densest towns we serve. Multi-family homes, mid-size apartment buildings, and blocks where finding legal parking for a full-size 26 ft truck sometimes takes a phone call to the building first — we'll size down to a 16 or 20 ft truck when the block calls for it.",
       "We handle small, same-day, and weekend moves in Irvington every week. The neighborhoods around Springfield Ave, Chancellor Ave, and Ellis Ave are all on our regular dispatch board.",
       "Because parking and stairs are the two variables that most affect an Irvington move, we bake both into the quote upfront — you get a real all-in number, not a 'we'll see on move day.'",
     ],
@@ -264,16 +264,16 @@ export const locations = [
     seo: {
       title: "Nutley, NJ Movers | Haul Yeah Moving",
       description:
-        "Local movers in Nutley, NJ — Franklin Ave homes, family-friendly neighborhoods, easy driveways. Licensed and insured. Free quote in 5 minutes.",
+        "Local movers in Nutley, NJ — Franklin Ave homes, family-friendly neighborhoods, easy driveways. Free quote in 5 minutes.",
     },
     kicker: "Franklin Ave. Yantacaw Park. Family blocks.",
     intro: [
       "Nutley is a quieter town on our dispatch board — mostly single-family homes on residential blocks, a few small apartment buildings near Franklin Ave, and a housing stock that trends slightly larger and family-owned.",
-      "Move logistics in Nutley are usually the easy end of the range: driveways that fit a 26-ft truck, staircases that aren't 100 years old, and blocks where street parking isn't a fight.",
+      "Move logistics in Nutley are usually the easy end of the range: driveways that fit any truck in our 16–26 ft fleet, staircases that aren't 100 years old, and blocks where street parking isn't a fight.",
       "We do a lot of 'growing family' moves in Nutley — 1BR apartments into 3BR houses, or across town from one starter home to a bigger one. Ask for an all-in quote.",
     ],
     localTouch:
-      "Single-family homes with real driveways, mostly straightforward staircases, and streets that accommodate a 26-ft truck without a fight.",
+      "Single-family homes with real driveways, mostly straightforward staircases, and streets that accommodate anything from a 16 ft to a full 26 ft truck without a fight.",
     faqs: [
       {
         q: "How much do movers cost in Nutley, NJ?",
@@ -299,7 +299,7 @@ export const locations = [
     seo: {
       title: "Belleville, NJ Movers | Haul Yeah Moving",
       description:
-        "Movers in Belleville, NJ — Cape Cods, two-family homes, Silver Lake, along the Passaic River. Licensed, insured, weekend and same-day. Free quote in 5 minutes.",
+        "Movers in Belleville, NJ — Cape Cods, two-family homes, Silver Lake, along the Passaic River. Weekend and same-day. Free quote in 5 minutes.",
     },
     kicker: "Cape Cods, two-families, quiet river-side blocks.",
     intro: [
@@ -334,20 +334,20 @@ export const locations = [
     seo: {
       title: "Jersey City, NJ Movers | Haul Yeah Moving",
       description:
-        "Movers in Jersey City, NJ — high-rises, downtown, Journal Square, Grove Street. COI-ready. Licensed and insured, weekend availability. Free quote in 5 minutes.",
+        "Movers in Jersey City, NJ — high-rises, downtown, Journal Square, Grove Street. Building move-in paperwork coordinated. Weekend availability. Free quote in 5 minutes.",
     },
-    kicker: "High-rise moves. COIs. Freight elevator windows.",
+    kicker: "High-rise moves. Move-in paperwork. Freight elevator windows.",
     intro: [
-      "Jersey City moves are a different sport than most Essex County jobs — the vast majority of them are high-rise buildings with COI requirements, freight elevator reservations, and 60-minute loading windows before the next crew is up.",
-      "We move Jersey City residents every week. Downtown, Journal Square, Grove Street, Newport, and Exchange Place — different buildings, different management companies, mostly the same paperwork drill: COI 48 hours before, elevator reservation with the front desk, protection pads on the freight lift walls.",
+      "Jersey City moves are a different sport than most Essex County jobs — the vast majority of them are high-rise buildings with move-in paperwork requirements, freight elevator reservations, and 60-minute loading windows before the next crew is up.",
+      "We move Jersey City residents every week. Downtown, Journal Square, Grove Street, Newport, and Exchange Place — different buildings, different management companies, mostly the same paperwork drill: documentation 48 hours before, elevator reservation with the front desk, protection pads on the freight lift walls.",
       "Our crews come dressed for the front desk, on time for the elevator window, and with the tools that make high-rise moves fast (wardrobe boxes, hand trucks, straps for a full-height elevator load).",
     ],
     localTouch:
-      "High-rise buildings with COI paperwork, freight elevator reservations, and strict loading windows. We route paperwork and time the crew to the elevator.",
+      "High-rise buildings with move-in paperwork, freight elevator reservations, and strict loading windows. We route the paperwork and time the crew to the elevator.",
     faqs: [
       {
-        q: "Do Jersey City buildings require a Certificate of Insurance?",
-        a: "Yes — most high-rise buildings in Jersey City (especially downtown and Newport) require a COI 24–72 hours before move day. Send us your building's requirements when you book and we'll route it to our insurance carrier at no cost.",
+        q: "How do you handle Jersey City high-rise move-in paperwork?",
+        a: "Most high-rise buildings in Jersey City (especially downtown and Newport) require documentation and an elevator reservation 24–72 hours before move day. Send us your building's requirements when you book and we'll walk through what applies at no cost.",
       },
       {
         q: "How much do movers cost in Jersey City?",

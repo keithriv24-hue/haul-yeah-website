@@ -1,0 +1,64 @@
+{
+  "summary": "Frontend-only content audit for the licensed/insured/COI purge and 16-26 ft fleet replacement across the Haul Yeah Moving marketing site. Walked every route on the preview URL (1 home + 10 services + 10 locations + robots.txt + sitemap.xml) doing a case-insensitive DOM-text scan for /licens|insur|COI/, plus targeted structural checks (trust bar count, hero chips, footer, JSON-LD, meta title/description, Tally iframe, Meta Pixel, tel/sms, SMS consent, Google Reviews widget, robots/sitemap). All required rewrites landed except TWO leftover 'COI' references on the Newark and Jersey City location pages. Everything else (trust bar reduced to 3 badges, hero chip 'Trucks 16-26 ft', footer 'Truck fleet' box, MovingCompany JSON-LD description, all 10 service pages, all 8 other location pages, Tally embed + popup, fbq(), tel:/sms: links, SMS consent, Google Reviews Carey Shorts on Home + Newark + Weekend Movers via SPA nav, robots.txt, sitemap.xml with 21 URLs) is clean.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "content_violations": [
+      {
+        "route": "/movers/newark-nj",
+        "file": "/app/frontend/src/data/locations.js",
+        "line": 61,
+        "exact_string_in_dom": "Downtown high-rises want COIs a week before move day.",
+        "issue": "First intro paragraph still contains a 'COIs' claim. Must be rewritten to use 'move-in paperwork' phrasing consistent with the rest of the Newark rewrite (meta description and FAQ already say 'move-in paperwork').",
+        "priority": "HIGH"
+      },
+      {
+        "route": "/movers/jersey-city-nj",
+        "file": "/app/frontend/src/data/locations.js",
+        "line": 339,
+        "exact_string_in_dom": "High-rise moves. COIs. Freight elevator windows.",
+        "issue": "kicker field still contains 'COIs'. Should be rewritten to something like 'High-rise moves. Move-in paperwork. Freight elevator windows.' to match the rest of the Jersey City rewrite (localTouch, FAQ, and meta description already use 'paperwork').",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "verified_passing_checks": [
+    "Homepage trust bar: exactly 3 badges rendered ['Trucks From 16-26 ft', '7 Days a Week', 'Response in Under 5 Minutes']; no 'Licensed & Insured' badge.",
+    "Homepage hero subhead: 'Affordable local moving in Essex County. Get an all-in quote fast.' (no licensed/insured).",
+    "Homepage hero chips: 'Trucks 16-26 ft', 'Reply in under 5 min', '7 days a week'.",
+    "Homepage <title>: 'Haul Yeah Moving | Weekend & Same-Day Movers in Essex County, NJ' and meta description matches spec exactly with no licensed/insured.",
+    "Homepage MovingCompany JSON-LD description: 'Local moving company specializing in weekend, same-day, and small moves in Essex County, New Jersey.' (no 'Licensed and insured'). areaServed lists 11 items (10 towns + Essex County).",
+    "Homepage FAQPage JSON-LD: 6 questions present and valid JSON.",
+    "Footer brand paragraph: 'Weekend moves made easy. Local movers serving Essex County, NJ, 7 days a week.' — no licensed/insured.",
+    "Footer trust box: title 'Truck fleet', body 'A fleet of trucks from 16 ft to 26 ft — the right size for every move.'",
+    "All 10 service pages: DOM scan for /licens|insur|COI/ returned zero hits in visible text.",
+    "8 of 10 location pages (east-orange, montclair, bloomfield, west-orange, orange, irvington, nutley, belleville) clean for licensed/insured/COI in DOM text.",
+    "Every visited location page hero right-panel pill list shows 'Trucks from 16-26 ft', '7 days a week', 'Response in under 5 minutes'.",
+    "Tally iframe on homepage: src includes tally.so/embed/kdpE5d — regression clean.",
+    "window.fbq === 'function' on homepage — Meta Pixel initialized.",
+    "tel:+18622503216 (6 links) and sms:+18622503216 (4 links) present on homepage across header/hero/footer.",
+    "SMS consent microcopy 'Msg & data rates may apply' present.",
+    "Google Reviews widget paints 'Carey Shorts' + stars on Home (after scroll to #reviews) AND on /movers/newark-nj AND on /services/weekend-movers, including chained SPA nav Home -> Newark -> Weekend Movers. Trustindex fix from prior iteration NOT regressed.",
+    "/robots.txt returns 200.",
+    "/sitemap.xml returns 200 with 21 <url> entries (10 services + 10 locations + home).",
+    "Zero console errors on homepage, /services/local-movers, /movers/east-orange-nj (only image loader log)."
+  ],
+  "test_report_links": [],
+  "action_items": [
+    "Rewrite /app/frontend/src/data/locations.js line 61 (Newark intro paragraph) — replace 'Downtown high-rises want COIs a week before move day.' with a 'move-in paperwork' phrasing, e.g. 'Downtown high-rises want move-in paperwork a week before move day.'",
+    "Rewrite /app/frontend/src/data/locations.js line 339 (Jersey City kicker) — replace 'High-rise moves. COIs. Freight elevator windows.' with e.g. 'High-rise moves. Move-in paperwork. Freight elevator windows.'"
+  ],
+  "critical_code_review_comments": [
+    "Two stray 'COI' strings slipped past the purge in data/locations.js (Newark intro line 61, Jersey City kicker line 339). Recommend adding a build-time or CI check that greps the src tree for /licens|insur|\\bCOI\\b/ (case-insensitive) and fails the build; whitelist only image alt text containing '26-ft moving truck'.",
+    "public/sitemap.xml comment block on lines 3-5 contains a row of dashes ('--------------------------------------------------------------') inside an XML comment which is invalid XML (comments cannot contain '--'). Browser shows 'Comment must not contain --' error. Pre-existing (unrelated to this iteration) but should be cleaned up so search engines can parse the sitemap.",
+    "Google Reviews widget only paints after the #reviews section enters the viewport (IntersectionObserver/lazy activation). This is fine but noted — a direct load without scrolling shows an empty section for the first ~1-2s. Not regressed, but consider eager-activate to improve perceived reliability."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped per request)", "frontend": "95% (2 minor content strings still contain 'COIs')"},
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Only 2 leftover COI strings remain — both in /app/frontend/src/data/locations.js (Newark intro line 61, Jersey City kicker line 339). After main agent rewrites those two strings, retest by loading /movers/newark-nj and /movers/jersey-city-nj and confirming DOM text no longer matches /licens|insur|COI/i. Rest of site is content-clean and structural regressions (Tally, Pixel, Trustindex reviews, JSON-LD, tel/sms) all verified passing."
+}

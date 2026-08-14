@@ -1,12 +1,12 @@
 import React from "react";
-import { ShieldCheck, Truck, CalendarDays, Zap } from "lucide-react";
+import { Truck, CalendarDays, Zap } from "lucide-react";
 import siteConfig from "../../data/siteConfig";
 
 /**
- * Trust bar — 4 factual badges. NO star ratings. NO review scores.
+ * Trust bar — 3 factual badges. NO star ratings. NO review scores.
  * Navy background with subtle grain overlay for tactile depth.
  */
-const ICONS = [ShieldCheck, Truck, CalendarDays, Zap];
+const ICONS = [Truck, CalendarDays, Zap];
 
 export default function TrustBar() {
   return (
@@ -15,9 +15,9 @@ export default function TrustBar() {
       aria-label="Trust and credibility"
       data-testid="trust-bar"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 gap-y-6 px-4 py-8 sm:grid-cols-4 sm:px-6 sm:py-10 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-4 gap-y-6 px-4 py-8 sm:grid-cols-3 sm:px-6 sm:py-10 lg:px-8">
         {siteConfig.trustBadges.map((label, i) => {
-          const Icon = ICONS[i] || ShieldCheck;
+          const Icon = ICONS[i] || Truck;
           return (
             <div
               key={label}

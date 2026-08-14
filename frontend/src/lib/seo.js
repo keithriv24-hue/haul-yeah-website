@@ -18,7 +18,7 @@ function movingCompanyEntity(areaServed) {
     "@id": MOVING_COMPANY_ID,
     name: siteConfig.business.name,
     description:
-      "Licensed and insured local moving company specializing in weekend, same-day, and small moves in Essex County, New Jersey.",
+      "Local moving company specializing in weekend, same-day, and small moves in Essex County, New Jersey.",
     url: siteConfig.business.baseUrl,
     telephone: siteConfig.contact.phoneTel,
     email: siteConfig.contact.email,

@@ -39,14 +39,14 @@ export const services = [
     seo: {
       title: "Local Residential Movers in NJ | Haul Yeah Moving",
       description:
-        "Local residential movers in Essex County and North NJ. Licensed and insured, transparent all-in pricing, 7 days a week. Free quote in under 5 minutes.",
+        "Local residential movers in Essex County and North NJ. Transparent all-in pricing, 7 days a week. Free quote in under 5 minutes.",
     },
     kicker: "Full-service local moving",
     lede: "Family-size home moves across Essex County and North Jersey.",
     intro: [
       "Local moves shouldn't be a stressful, day-long ordeal. Haul Yeah handles full-service residential moves across Essex, Bergen, Passaic, Hudson, and Union County — starting with a real quote in your inbox and ending with your bed made in the new place if you want it that way.",
-      "Two-family in East Orange? Single-family colonial in West Orange? Studio in Newark? Same crew, same all-in price you were quoted, same weekends-are-normal-hours attitude. Our 26-ft trucks handle most 1–3 bedroom homes in one trip. Bigger place? Two trucks, same day.",
-      "We're a licensed and insured NJ mover — not a booking site that hands your job off to whoever picked up the phone. The person you texted for a quote is the same crew size that shows up on move day. Local movers near me shouldn't be a mystery box.",
+      "Two-family in East Orange? Single-family colonial in West Orange? Studio in Newark? Same crew, same all-in price you were quoted, same weekends-are-normal-hours attitude. Our trucks — a fleet from 16 ft up to 26 ft — get matched to your load; most 1–3 bedroom homes ride in one trip. Bigger place? Two trucks, same day.",
+      "We're a straight-shooting NJ mover — not a booking site that hands your job off to whoever picked up the phone. The person you texted for a quote is the same crew size that shows up on move day. Local movers near me shouldn't be a mystery box.",
     ],
     included: {
       heading: "What a local residential move includes",
@@ -101,8 +101,8 @@ export const services = [
         a: "For most local moves in Essex County, one flight or a standard front-stoop is included. Long-carry stairs (4+ flights, or a long walk from the truck) may add a small fee — we tell you upfront on the quote, never on move day.",
       },
       {
-        q: "Are Haul Yeah movers actually licensed and insured?",
-        a: "Yes — Haul Yeah is a licensed and insured moving company in New Jersey. We carry cargo insurance, workers' comp for our crews, and general liability. If your building asks for a Certificate of Insurance, we send it over before move day at no charge.",
+        q: "Do you charge by the hour or a flat rate?",
+        a: "For local NJ moves we quote a flat all-in price — the number you see is the number you pay, including fuel, tolls, blankets, and the truck. Only our labor-only service bills hourly, with a two-hour minimum instead of the four-hour minimums other movers push.",
       },
     ],
     relatedServices: ["apartment-movers", "small-moves", "weekend-movers"],
@@ -119,22 +119,22 @@ export const services = [
     seo: {
       title: "Apartment Movers in NJ | Haul Yeah Moving",
       description:
-        "Apartment movers NJ — walk-ups, elevators, high-rises. Certificate of Insurance included. Licensed and insured, 7 days a week. Free quote in 5 minutes.",
+        "Apartment movers NJ — walk-ups, elevators, high-rises. Building move-in paperwork coordinated. 7 days a week. Free quote in 5 minutes.",
     },
     kicker: "Studios, 1BR, 2BR — you name it",
     lede: "Walk-ups, elevators, tight staircases — we've done this building.",
     intro: [
-      "Apartment moves are their own sport. Different rules than a house move: elevator reservations, COI paperwork, front-desk sign-ins, a 45-minute freight-lift window before someone else has it booked.",
-      "Haul Yeah does apartment movers NJ jobs across Newark, Jersey City, Montclair, East Orange, Irvington, Bloomfield, and the rest of North Jersey every week. Studios in downtown Newark. Walk-up 2-bedrooms in Montclair. High-rise 1-bedrooms in Jersey City with a strict COI checklist. We know the drill.",
-      "Our crews come dressed, on time, and with the pieces buildings actually check for: a Certificate of Insurance emailed the day before, floor runners for the lobby, wardrobe boxes so your closets travel in one shot.",
+      "Apartment moves are their own sport. Different rules than a house move: elevator reservations, front-desk sign-ins, a 45-minute freight-lift window before someone else has it booked.",
+      "Haul Yeah does apartment movers NJ jobs across Newark, Jersey City, Montclair, East Orange, Irvington, Bloomfield, and the rest of North Jersey every week. Studios in downtown Newark. Walk-up 2-bedrooms in Montclair. High-rise 1-bedrooms in Jersey City with a strict move-in paperwork checklist. We know the drill.",
+      "Our crews come dressed, on time, and with the pieces buildings actually check for: floor runners for the lobby, elevator protection, wardrobe boxes so your closets travel in one shot.",
     ],
     included: {
       heading: "What an apartment move includes",
       items: [
         {
-          title: "Certificate of Insurance (COI)",
+          title: "Building coordination",
           description:
-            "Sent to your building manager the day before, formatted the way high-rises want it. No extra charge.",
+            "We call your building the day before, confirm the elevator window, and align on protocol so move day starts on time.",
         },
         {
           title: "Elevator and freight-lift protection",
@@ -164,13 +164,13 @@ export const services = [
       ],
     },
     midCTA: {
-      heading: "COI needed? We'll send it.",
-      body: "Give us your building name and requirements — we route the paperwork.",
+      heading: "Building-specific requirements?",
+      body: "Send us your building name and its move-in checklist — we plan around it.",
     },
     faqs: [
       {
-        q: "Do you provide a Certificate of Insurance (COI)?",
-        a: "Yes — free of charge. Send us your building's COI requirements (usually a PDF template listing the building owner, management company, and coverage minimums) and we'll route it to our insurance carrier. Most buildings get it back within one business day; some management companies need 2 days, so send it as soon as you book.",
+        q: "How do you handle building move-in coordination?",
+        a: "We call your building management the day before your move to confirm the elevator window, freight-lift protection requirements, and any front-desk protocol. If your building has specific move-in paperwork, forward it to us as soon as you book and we'll walk you through what applies.",
       },
       {
         q: "What if my building requires a freight elevator reservation?",
@@ -232,9 +232,9 @@ export const services = [
             "Weekends and weekdays. Text us in the morning, move in the afternoon.",
         },
         {
-          title: "Building COI included",
+          title: "Building paperwork handled",
           description:
-            "For apartment buildings that require it, we send the paperwork at no charge.",
+            "For apartment buildings that require move-in documentation, we coordinate the paperwork at no charge.",
         },
         {
           title: "Two-mover default",
@@ -279,7 +279,7 @@ export const services = [
     seo: {
       title: "Same-Day & Last Minute Movers in NJ | Haul Yeah Moving",
       description:
-        "Same day movers NJ. Text now, move today. Weekends included. Licensed, insured, transparent pricing. Real quote in under 5 minutes.",
+        "Same day movers NJ. Text now, move today. Weekends included. Transparent all-in pricing. Real quote in under 5 minutes.",
     },
     kicker: "Book this morning, move this afternoon.",
     lede: "Real availability for same-day and next-day moves in Essex County.",
@@ -338,11 +338,11 @@ export const services = [
       },
       {
         q: "What can't be moved same-day?",
-        a: "Very large full-house moves (4+ bedrooms), moves requiring a building COI from a management company that takes 2+ business days, and long-distance moves usually can't happen same-day. Everything else is usually on the table.",
+        a: "Very large full-house moves (4+ bedrooms), moves requiring building move-in paperwork from a management company that takes 2+ business days, and long-distance moves usually can't happen same-day. Everything else is usually on the table.",
       },
       {
         q: "Is same-day only for small moves?",
-        a: "No — we regularly do same-day 1BR and 2BR apartment moves. If the load fits in one truck and neither building requires multi-day COI paperwork, we can usually make it happen.",
+        a: "No — we regularly do same-day 1BR and 2BR apartment moves. If the load fits in one truck and neither building requires multi-day move-in paperwork, we can usually make it happen.",
       },
     ],
     relatedServices: ["weekend-movers", "small-moves", "apartment-movers"],
@@ -359,7 +359,7 @@ export const services = [
     seo: {
       title: "Weekend Movers in NJ | Haul Yeah Moving",
       description:
-        "Weekend movers NJ — Saturday and Sunday specialists in Essex County. Licensed, insured, and actually staffed for the weekend rush. Free quote in 5 minutes.",
+        "Weekend movers NJ — Saturday and Sunday specialists in Essex County. Actually staffed for the weekend rush. Free quote in 5 minutes.",
     },
     kicker: "The Saturday-Sunday specialists.",
     lede: "Weekends aren't our exception. They're the whole reason we exist.",
@@ -392,9 +392,9 @@ export const services = [
             "7 AM–9 AM loads available for buildings with strict elevator windows.",
         },
         {
-          title: "Weekend COI turnaround",
+          title: "Weekend paperwork turnaround",
           description:
-            "Buildings that only accept COIs during business hours: we route ahead.",
+            "For buildings that only accept move-in paperwork during business hours, we plan and route ahead.",
         },
         {
           title: "No 'weekend hourly' games",
@@ -445,7 +445,7 @@ export const services = [
     lede: "Direct-drive long-distance moves — no warehouse handoffs, no mystery arrival window.",
     intro: [
       "Long-distance movers usually consolidate your stuff with three other people's on a big rig, then hand it off between drivers. That's why arrival windows come as '3–14 business days.'",
-      "Haul Yeah's long-distance service is different — we drive your job direct with one of our own 26-ft trucks and our own crew. Loads Saturday in Essex County, arrives Monday morning in North Carolina. One driver, one truck, one crew you already met.",
+      "Haul Yeah's long-distance service is different — we drive your job direct with one of our own trucks and our own crew. Loads Saturday in Essex County, arrives Monday morning in North Carolina. One driver, one truck, one crew you already met.",
       "We handle direct-drive moves from NJ down the East Coast (MD, DC, VA, NC) and up through NY, CT, and MA. If your route is inside about 600 miles from Newark, we're a fit. Beyond that, we'll be honest and point you toward a bigger van line.",
     ],
     included: {
@@ -472,9 +472,9 @@ export const services = [
             "If your new place isn't ready, we can stage the truck for one night.",
         },
         {
-          title: "COI at both ends",
+          title: "Building coordination at both ends",
           description:
-            "Origin and destination buildings both get insurance paperwork.",
+            "We coordinate with the origin and destination buildings on elevator windows and any move-in paperwork.",
         },
         {
           title: "Real arrival window",
@@ -494,15 +494,15 @@ export const services = [
       },
       {
         q: "Will my stuff be transferred to another truck?",
-        a: "No. Every long-distance job we book is direct-drive on one of our own 26-ft trucks with our own crew. Your load doesn't sit in a warehouse, doesn't get consolidated with strangers' furniture, and doesn't switch drivers.",
+        a: "No. Every long-distance job we book is direct-drive on one of our own trucks with our own crew. Your load doesn't sit in a warehouse, doesn't get consolidated with strangers' furniture, and doesn't switch drivers.",
       },
       {
         q: "When will my stuff arrive?",
         a: "Because we drive direct, your arrival window is a real 24–48 hours, not a 3–14 day range. Most East Coast corridors (NJ→DC, NJ→Boston, NJ→NC) unload within 24 hours of pickup.",
       },
       {
-        q: "Do I need a Certificate of Insurance at both ends?",
-        a: "Yes if either origin or destination building requires it. We handle both COIs from our carrier at no extra charge — send us both buildings' requirements when you book.",
+        q: "How do you handle multi-day storage in transit?",
+        a: "If your new place isn't ready when we arrive, we can hold your load overnight on the truck (up to 24 hours) at no extra charge. For longer gaps, we can point you to a local short-term storage partner near the destination.",
       },
     ],
     relatedServices: ["packing-services", "commercial-movers", "local-movers"],
@@ -519,14 +519,14 @@ export const services = [
     seo: {
       title: "Office & Commercial Movers in NJ | Haul Yeah Moving",
       description:
-        "Office and commercial movers NJ — night and weekend moves so your team doesn't lose a workday. Licensed, insured, COI-ready. Free quote in 5 minutes.",
+        "Office and commercial movers NJ — night and weekend moves so your team doesn't lose a workday. Weekend windows, IT reassembly, and full move planning. Free quote in 5 minutes.",
     },
     kicker: "Move the office. Don't lose the workweek.",
     lede: "Night, weekend, and after-hours office moves across Essex County and North Jersey.",
     intro: [
       "The best time to move an office is when the office is closed. That's why our commercial jobs mostly run Friday nights, Saturdays, or Sundays — so Monday morning your team walks into a working space, not a stack of taped boxes.",
       "Haul Yeah handles small and mid-size office moves in Essex, Hudson, Union, Bergen, and Passaic Counties — law offices, medical clinics, marketing agencies, coworking pods, and small retail. We do inventory before pickup, label by desk, and reassemble monitors and IT setups at the drop.",
-      "Every commercial job gets a dedicated project lead, a written moving plan (with a floor map if the new suite has one), and full COIs for both buildings. No handoff between crews. No 'the driver isn't allowed in this building' surprises.",
+      "Every commercial job gets a dedicated project lead, a written moving plan (with a floor map if the new suite has one), and coordinated paperwork with both buildings. No handoff between crews. No 'the driver isn't allowed in this building' surprises.",
     ],
     included: {
       heading: "What a commercial move includes",
@@ -547,9 +547,9 @@ export const services = [
             "Chairs, desks, arms, monitors — put back the way they came apart.",
         },
         {
-          title: "COI at both buildings",
+          title: "Building paperwork at both ends",
           description:
-            "Landlord-ready, sent 24–48 hours before move.",
+            "Landlord and management-company documentation coordinated 24–48 hours before move.",
         },
         {
           title: "Freight elevator coordination",
@@ -689,7 +689,7 @@ export const services = [
     seo: {
       title: "Piano & Heavy Item Movers in NJ | Haul Yeah Moving",
       description:
-        "Piano movers NJ — uprights, baby grands, safes, treadmills, gun safes. Skid boards, straps, and 3–4 mover crews. Licensed and insured. Free quote in minutes.",
+        "Piano movers NJ — uprights, baby grands, safes, treadmills, gun safes. Skid boards, straps, and 3–4 mover crews. Free quote in minutes.",
     },
     kicker: "Pianos. Safes. Treadmills. Yes, we do those.",
     lede: "Heavy, awkward, and expensive-to-replace — that's our lane.",
@@ -732,9 +732,9 @@ export const services = [
             "Nothing rides bare in the truck. Ever.",
         },
         {
-          title: "Insurance to match",
+          title: "Careful handling to match",
           description:
-            "Our cargo insurance covers heavy items at declared value.",
+            "For high-value pieces we walk you through the plan — load order, stair route, protection — before move day so nothing rides on chance.",
         },
       ],
     },
@@ -774,7 +774,7 @@ export const services = [
     seo: {
       title: "Labor-Only Movers in NJ | Haul Yeah Moving",
       description:
-        "Labor only movers NJ — you rent the truck, we bring the crew. Loading, unloading, or both. Licensed and insured. Free quote in under 5 minutes.",
+        "Labor only movers NJ — you rent the truck, we bring the crew. Loading, unloading, or both. Two-hour minimum. Free quote in under 5 minutes.",
     },
     kicker: "Got a truck? We'll bring the muscle.",
     lede: "You rent the truck, we bring the crew — loading, unloading, or both.",
@@ -836,8 +836,8 @@ export const services = [
         a: "Yes — PODS, ReloCubes, and U-Box units are common labor-only jobs for us. We tetris the container tight so nothing shifts in transit and you get the full cubic footage you paid for.",
       },
       {
-        q: "Do you provide insurance on labor-only jobs?",
-        a: "Yes — our workers' comp and general liability apply on labor-only jobs. Cargo insurance on the load itself depends on the truck rental company's terms (U-Haul, Penske, PODS each have their own). We'll walk you through it before the crew shows up.",
+        q: "What's the smallest labor-only job you'll take?",
+        a: "Anything from a single item that needs muscle — one couch to a second floor, a treadmill out of a basement, a Peloton across town — up through a small studio load. Two-hour minimum, then real hourly billing after that. If you've already rented the truck or a friend is bringing an F-150, we bring the crew and the gear.",
       },
     ],
     relatedServices: ["small-moves", "local-movers", "piano-movers"],

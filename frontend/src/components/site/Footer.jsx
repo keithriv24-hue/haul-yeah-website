@@ -21,8 +21,8 @@ export default function Footer() {
           <div>
             <Logo />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-slate-600">
-              {siteConfig.business.tagline}. Licensed & insured local movers
-              serving {siteConfig.business.serviceArea}, 7 days a week.
+              {siteConfig.business.tagline}. Local movers serving{" "}
+              {siteConfig.business.serviceArea}, 7 days a week.
             </p>
 
             <div className="mt-6 space-y-3">
@@ -124,11 +124,11 @@ export default function Footer() {
               <div className="flex items-center gap-2 text-navy">
                 <Truck className="h-4 w-4" strokeWidth={2.4} />
                 <span className="font-display text-xs font-bold uppercase tracking-widest">
-                  Licensed & Insured
+                  Truck fleet
                 </span>
               </div>
               <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                NJ-licensed and insured mover. {siteConfig.business.fleet}.
+                A fleet of {siteConfig.business.fleet}.
               </p>
             </div>
           </div>

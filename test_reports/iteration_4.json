@@ -1,0 +1,57 @@
+{
+  "summary": "Iteration 4 focused re-verification of the two remaining COI violations (Newark + Jersey City) plus sitemap.xml XML comment fix. All targeted fixes verified. Full site-wide DOM grep for /licens|insur|COI/i across 21 pages (/, 10 /services/*, 10 /movers/*) returns ZERO matches in visible React copy (Trustindex/iframes excluded per scope). All regressions from iteration_3 still hold. Zero console errors on the 5 spot-checked pages.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verification_results": {
+    "COI_purge": {
+      "newark_intro_new_copy": "'Downtown high-rises want move-in paperwork a week before move day.' PRESENT",
+      "jersey_city_kicker_new_copy": "'High-rise moves. Move-in paperwork. Freight elevator windows.' PRESENT",
+      "sitewide_grep_matches": "0 matches across /, all 10 /services/*, all 10 /movers/* pages"
+    },
+    "homepage_regressions": {
+      "title": "Haul Yeah Moving | Weekend & Same-Day Movers in Essex County, NJ (unchanged)",
+      "meta_description": "unchanged (Affordable movers NJ. Weekend movers NJ...)",
+      "trust_bar_badges": "3 badges present: Trucks From 16–26 ft, 7 Days a Week, Response in Under 5 Minutes",
+      "footer_truck_fleet": "'TRUCK FLEET' heading + body 'A fleet of trucks from 16 ft to 26 ft — the right size for every move.' present",
+      "tally_iframe": "present (src contains tally.so/embed)",
+      "meta_pixel_fbq": "typeof window.fbq === 'function' ✓",
+      "tel_sms_links": "tel:+18622503216 ✓, sms:+18622503216 ✓",
+      "sms_consent": "'Msg & data rates may apply' present",
+      "jsonld": "MovingCompany + FAQPage, both valid JSON; areaServed = 11 items ✓"
+    },
+    "trustindex_google_reviews": {
+      "homepage_hard_load": "Carey Shorts present after scroll (lazy-loaded)",
+      "newark_hard_load": "Verified in earlier full-sweep (lazy, appears after scroll)",
+      "weekend_movers_hard_load": "Same lazy behaviour; loads on scroll",
+      "chained_spa_nav_home_newark_weekend": "Widget host present; text loads on scroll on each route — no SPA nav breakage detected",
+      "note": "Widget is lazy-loaded on scroll into viewport; not visible above-the-fold. This matches iteration_3 behaviour and is not a regression."
+    },
+    "seo_files": {
+      "robots_txt": "HTTP 200",
+      "sitemap_xml": "HTTP 200; xml.etree parses cleanly (no 'Comment must not contain --' error); 21 real <url> entries (the 22nd <url> match is inside the XML comment as literal text)"
+    },
+    "console_errors": {
+      "/": 0,
+      "/services/local-movers": 0,
+      "/movers/east-orange-nj": 0,
+      "/movers/newark-nj": 0,
+      "/movers/jersey-city-nj": 0,
+      "/services/weekend-movers": 0
+    }
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Non-blocking (out of current scope): /app/frontend/public/sitemap.xml lists service slugs (small-moves, commercial-movers, packing-services, labor-only-movers) and mover slugs (west-orange-nj, orange-nj, nutley-nj) that DO NOT match the actual React routes (last-minute-movers, office-movers, furniture-delivery, junk-removal, hillside-nj, maplewood-nj, south-orange-nj). This will cause 404s for search engines crawling the sitemap. Recommend main agent align sitemap.xml with actual routes in App.js/locations.js."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped per scope)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All COI/licensed/insured strings are purged from React copy across all 21 pages. Sitemap.xml now parses without XML comment error. Trustindex widget is lazy-loaded — must scroll page before asserting on 'Carey Shorts' text. Note the sitemap.xml/route mismatch flagged in critical_code_review_comments for future work."
+}

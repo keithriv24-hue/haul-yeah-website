@@ -21,8 +21,7 @@ const siteConfig = {
     shortName: "Haul Yeah",
     tagline: "Weekend moves made easy",
     secondaryTagline: "NJ's weekend movers",
-    licensedInsured: true,
-    fleet: "5 insured 26-ft trucks",
+    fleet: "trucks from 16 ft to 26 ft — the right size for every move",
     hoursShort: "7 days a week",
     hoursLong: "Open 7 days a week",
     serviceArea: "Essex County, NJ",
@@ -101,7 +100,7 @@ const siteConfig = {
     kicker: "NJ's Weekend Movers",
     h1: "New Jersey's Weekend Movers — Booked in Minutes.",
     subhead:
-      "Affordable, licensed & insured local moving. Get an all-in quote fast.",
+      "Affordable local moving in Essex County. Get an all-in quote fast.",
     formCardTitle: "Get My Free Quote",
     formCardSubtitle: "Response in under 5 minutes.",
     secondaryCta: "Or text us for a same-day quote",
@@ -112,8 +111,7 @@ const siteConfig = {
   },
 
   trustBadges: [
-    "Licensed & Insured in NJ",
-    "5 Insured 26-ft Trucks",
+    "Trucks From 16–26 ft",
     "7 Days a Week",
     "Response in Under 5 Minutes",
   ],
@@ -137,7 +135,7 @@ const siteConfig = {
     {
       title: "Damage-Free Guarantee",
       description:
-        "Blankets, straps, floor runners, and 26-ft trucks driven by pros. If we break it, we make it right.",
+        "Blankets, straps, floor runners, and a fleet of 16–26 ft trucks driven by pros. If we break it, we make it right.",
     },
   ],
 
@@ -207,7 +205,7 @@ const siteConfig = {
     },
     {
       q: "What are red flags when hiring movers?",
-      a: "No written estimate, cash-only demands, a huge upfront deposit, no USDOT or MC number for interstate jobs, no proof of NJ licensing and insurance, no real business presence, and reviews that all sound identical. If a quote seems dramatically lower than everyone else, they're usually planning to make up the difference with hourly extras and 'truck fees' on move day.",
+      a: "No written estimate, cash-only demands, a huge upfront deposit, no USDOT or MC number for interstate jobs, no real business presence, and reviews that all sound identical. If a quote seems dramatically lower than everyone else, they're usually planning to make up the difference with hourly extras and 'truck fees' on move day.",
     },
     {
       q: "What's the most affordable moving company in NJ?",
@@ -238,7 +236,7 @@ const siteConfig = {
       title:
         "Haul Yeah Moving | Weekend & Same-Day Movers in Essex County, NJ",
       description:
-        "Affordable, licensed and insured movers NJ. Weekend movers NJ, same day movers NJ, and small-move specialists in Essex County. Free quote in under 5 minutes.",
+        "Affordable movers NJ. Weekend movers NJ, same day movers NJ, and small-move specialists in Essex County. Free quote in under 5 minutes.",
     },
   },
 

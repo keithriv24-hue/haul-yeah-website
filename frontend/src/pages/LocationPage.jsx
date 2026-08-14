@@ -8,7 +8,6 @@ import {
   MapPin,
   MessageSquare,
   Phone,
-  ShieldCheck,
   Truck,
   Zap,
   CalendarDays,
@@ -145,8 +144,7 @@ export default function LocationPage() {
                 {location.localTouch}
               </p>
               <ul className="mt-6 space-y-3">
-                <TrustPill icon={ShieldCheck} label="Licensed & insured in NJ" />
-                <TrustPill icon={Truck} label="5 insured 26-ft trucks" />
+                <TrustPill icon={Truck} label="Trucks from 16–26 ft" />
                 <TrustPill icon={CalendarDays} label="7 days a week" />
                 <TrustPill icon={Zap} label="Response in under 5 minutes" />
               </ul>

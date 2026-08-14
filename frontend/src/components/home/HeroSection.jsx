@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageSquare, ShieldCheck, Zap } from "lucide-react";
+import { MessageSquare, Truck, Zap } from "lucide-react";
 import TallyInlineEmbed from "../site/TallyInlineEmbed";
 import siteConfig from "../../data/siteConfig";
 
@@ -93,8 +93,8 @@ export default function HeroSection() {
           {/* Inline trust chips */}
           <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
             <li className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-navy">
-              <ShieldCheck className="h-4 w-4 text-orange" strokeWidth={2.4} />
-              Licensed & insured NJ
+              <Truck className="h-4 w-4 text-orange" strokeWidth={2.4} />
+              Trucks 16–26 ft
             </li>
             <li className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-navy">
               <Zap className="h-4 w-4 text-orange" strokeWidth={2.4} />
