@@ -1,0 +1,38 @@
+# robots.txt for Haul Yeah Moving
+# Baseline: everything crawlable by any bot.
+User-agent: *
+Allow: /
+
+# Explicit allow blocks (redundant but unambiguous — some crawlers only
+# honor rules addressed to them by name).
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.haulyeahmoves.com/sitemap.xml

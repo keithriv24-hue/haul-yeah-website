@@ -1,0 +1,13 @@
+# Cloudflare Pages redirects — one rule per line, first match wins.
+#
+# ── COMPLIANCE ────────────────────────────────────────────────────────
+# /services/long-distance-movers was pulled on 2026-08-15.
+# Interstate household-goods moves require FMCSA operating authority
+# (USDOT + MC numbers). We advertised the service without displaying one,
+# while our own homepage FAQ lists exactly that as a red flag when hiring
+# a mover. The page is 301'd to the local page until authority is granted.
+#
+# DO NOT restore this page until the USDOT and MC numbers exist AND are
+# displayed in the site footer.
+/services/long-distance-movers  /services/local-movers  301
+/services/long-distance-movers/ /services/local-movers/ 301
