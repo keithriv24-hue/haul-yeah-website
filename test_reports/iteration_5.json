@@ -1,0 +1,44 @@
+{
+  "summary": "Iteration 5 verification of puppeteer downgrade (^25 -> ^24) and prerender hardening. Verified: (1) all 21 build/*/index.html files present with x-prerendered meta and canonical URLs, (2) homepage build/index.html contains MovingCompany + FAQPage JSON-LD, (862) 250-3216, and x-prerendered meta '/', (3) services/weekend-movers/index.html contains @type:Service JSON-LD, (4) no <script src> tags reference ap.emergent.sh/static/array.js or connect.facebook.net in prerendered files, (5) puppeteer pinned to ^24.0.0 in package.json, yarn.lock resolves to 24.43.1, (6) no PUPPETEER_SKIP_* refs outside prerender.js error message, (7) build/robots.txt is byte-identical to public/robots.txt with all required Allow blocks + Sitemap, (8) production URL still serves empty <div id='root'></div> with NO x-prerendered meta (as expected — production not redeployed). Preview URL regression: homepage renders correct H1, Tally iframe (tally.so/embed) loads, all 3 trust badges present, truck-fleet footer copy present, fbq is a function, canonical=https://haulyeahmoves.com/. SPA nav /movers/east-orange-nj shows H1 'Local Movers in East Orange, NJ' with correct canonical; /services/weekend-movers shows H1 'Weekend Movers in NJ' with correct canonical. Zero console errors during preview run.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "build_output_checks": {
+    "prerendered_file_count": "21/21 PASS",
+    "x_prerendered_meta_all_routes": "PASS (every file has exactly 1 x-prerendered meta tag)",
+    "homepage_movingcompany_jsonld": "PASS",
+    "homepage_faqpage_jsonld": "PASS",
+    "homepage_phone_number": "PASS ((862) 250-3216 present)",
+    "weekend_movers_service_jsonld": "PASS",
+    "east_orange_h1_canonical": "PASS ('Local Movers in East Orange, NJ' + canonical to haulyeahmoves.com/movers/east-orange-nj)",
+    "no_runtime_script_src_tags": "PASS (no <script src=...ap.emergent.sh/static/array.js> or connect.facebook.net script tags)",
+    "puppeteer_pin": "PASS (package.json ^24.0.0, yarn.lock 24.43.1)",
+    "no_skip_download_env": "PASS (only appears in prerender.js error message text)",
+    "robots_txt_identical": "PASS (public/robots.txt == build/robots.txt, contains all named Allow blocks + Sitemap)",
+    "production_still_empty_root": "PASS (curl of / and /movers/east-orange-nj on https://haulyeahmoves.com returns empty <div id='root'></div>, no x-prerendered meta — production not redeployed yet, as expected)"
+  },
+  "preview_runtime_checks": {
+    "homepage_h1": "PASS - \"New Jersey's Weekend Movers — Booked in Minutes.\"",
+    "hero_tally_iframe": "PASS (tally.so/embed present)",
+    "trust_badges": "PASS (16-26 ft, 7 Days a Week, Response Under 5 Minutes all present)",
+    "truck_fleet_footer": "PASS ('right size for every move' text found)",
+    "fbq_function": "PASS (typeof window.fbq === 'function')",
+    "canonical_home": "PASS (https://haulyeahmoves.com/)",
+    "spa_nav_east_orange": "PASS (H1 'Local Movers in East Orange, NJ', canonical updates correctly)",
+    "spa_nav_weekend_movers": "PASS (H1 'Weekend Movers in NJ', canonical updates correctly)",
+    "console_errors": "0 errors"
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Puppeteer downgrade to ^24 and prerender hardening verified. All 21 prerendered artifacts on disk are correct with x-prerendered meta tags, JSON-LD, canonicals, and stripped runtime scripts. Preview URL (CRA dev server, un-prerendered) shows no regression. Production URL still serves empty root shell as expected until owner redeploys. Ready for redeploy.",
+  "rca of the issue": "N/A — verification-only iteration. Prior deploy failure RCA (documented by main agent): puppeteer@25.7.0 requires Node >=22.12.0 but Emergent deploy container runs Node 20.18.1. Mitigation: puppeteer pinned to ^24.0.0 (engines >=18), yarn.lock now resolves 24.43.1. Prerender script hardened with 4-tier Chromium path fallback + loud actionable error on failure."
+}

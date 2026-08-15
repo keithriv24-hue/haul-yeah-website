@@ -17,7 +17,6 @@
 const fs = require("fs");
 const path = require("path");
 const http = require("http");
-const { pathToFileURL } = require("url");
 const puppeteer = require("puppeteer");
 const serveHandler = require("serve-handler");
 
@@ -79,15 +78,89 @@ function startStaticServer(rootDir, port = 0) {
   });
 }
 
+async function resolveChromiumPath() {
+  // 1. Explicit override — deploy platforms should set this.
+  if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+    if (fs.existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
+      return { path: process.env.PUPPETEER_EXECUTABLE_PATH, source: "PUPPETEER_EXECUTABLE_PATH" };
+    }
+    log(
+      `[prerender] warn: PUPPETEER_EXECUTABLE_PATH=${process.env.PUPPETEER_EXECUTABLE_PATH} does not exist on disk; falling through`,
+    );
+  }
+  if (process.env.CHROME_PATH && fs.existsSync(process.env.CHROME_PATH)) {
+    return { path: process.env.CHROME_PATH, source: "CHROME_PATH" };
+  }
+
+  // 2. Puppeteer's own bundled Chromium (downloaded by postinstall on fresh
+  //    `yarn install` unless the environment vetoes it).
+  try {
+    const bundled = puppeteer.executablePath();
+    if (bundled && fs.existsSync(bundled)) {
+      return { path: bundled, source: "puppeteer bundled" };
+    }
+  } catch (_) {
+    /* puppeteer never downloaded — fall through */
+  }
+
+  // 3. Common system Chromium/Chrome binaries.
+  const candidates = [
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
+    "/usr/bin/google-chrome",
+    "/usr/bin/google-chrome-stable",
+    "/snap/bin/chromium",
+    "/opt/google/chrome/chrome",
+  ];
+  for (const p of candidates) {
+    if (fs.existsSync(p)) {
+      return { path: p, source: `system fallback (${p})` };
+    }
+  }
+
+  // 4. Nothing worked — bail loudly so the deploy log tells the operator
+  //    exactly what's missing and what to do about it.
+  console.error(
+    [
+      "",
+      "════════════════════════════════════════════════════════════════════════",
+      "[prerender] ERROR: no usable Chromium binary found on this builder.",
+      "════════════════════════════════════════════════════════════════════════",
+      "",
+      "The prerender script needs a real headless Chromium to render every",
+      "route to static HTML. Fix ONE of the following on the build environment:",
+      "",
+      "  1. Set env var  PUPPETEER_EXECUTABLE_PATH=/path/to/chromium",
+      "     e.g. PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium",
+      "",
+      "  2. Let puppeteer download its bundled Chromium during `yarn install`.",
+      "     Ensure neither  PUPPETEER_SKIP_DOWNLOAD=true  nor",
+      "     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true  is set at install time,",
+      "     and that the builder can reach https://storage.googleapis.com.",
+      "",
+      "  3. Install a system Chromium/Chrome into one of:",
+      "       /usr/bin/chromium",
+      "       /usr/bin/chromium-browser",
+      "       /usr/bin/google-chrome",
+      "       /usr/bin/google-chrome-stable",
+      "     e.g. `apt-get install -y chromium` on Debian/Ubuntu.",
+      "",
+      "  4. TEMPORARY escape hatch if you must ship without SEO HTML:",
+      "     run  `yarn build:nossg`  instead of  `yarn build`.",
+      "",
+      "════════════════════════════════════════════════════════════════════════",
+      "",
+    ].join("\n"),
+  );
+  process.exit(2);
+}
+
 async function launchBrowser() {
-  const executablePath =
-    process.env.PUPPETEER_EXECUTABLE_PATH ||
-    process.env.CHROME_PATH ||
-    (fs.existsSync("/usr/bin/chromium") ? "/usr/bin/chromium" : undefined) ||
-    (fs.existsSync("/usr/bin/google-chrome") ? "/usr/bin/google-chrome" : undefined);
+  const { path: executablePath, source } = await resolveChromiumPath();
+  log(`[prerender] chromium: ${executablePath}  (${source})`);
   return puppeteer.launch({
     headless: "shell",
-    executablePath, // undefined = use puppeteer's bundled Chromium (post-install)
+    executablePath,
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
@@ -129,7 +202,7 @@ async function prerenderRoute(browser, port, route) {
   // <title>/<meta> hoists have landed into <head>.
   await new Promise((r) => setTimeout(r, 250));
 
-  const html = await page.evaluate(() => {
+  const html = await page.evaluate((routeIn) => {
     // Remove Tally iframes (injected by tally.so/widgets/embed.js at runtime).
     document
       .querySelectorAll('iframe[src*="tally.so"], iframe[data-tally-src]')
@@ -167,8 +240,24 @@ async function prerenderRoute(browser, port, route) {
         'script[data-ti-widget-inited], script[src*="cdn.trustindex.io"]',
       )
       .forEach((el) => el.removeAttribute("data-ti-widget-inited"));
+
+    // Diagnostic marker: one look at view-source tells you (a) whether the
+    // response is our prerendered artifact vs. an SPA-fallback of /, and
+    // (b) which route file the host actually served.
+    const head = document.head;
+    if (head) {
+      // Wipe any prior marker (shouldn't exist, but be safe on double-runs).
+      head
+        .querySelectorAll('meta[name="x-prerendered"]')
+        .forEach((m) => m.remove());
+      const marker = document.createElement("meta");
+      marker.setAttribute("name", "x-prerendered");
+      marker.setAttribute("content", routeIn);
+      head.insertBefore(marker, head.firstChild);
+    }
+
     return "<!doctype html>\n" + document.documentElement.outerHTML;
-  });
+  }, route);
 
   await page.close();
   return html;
