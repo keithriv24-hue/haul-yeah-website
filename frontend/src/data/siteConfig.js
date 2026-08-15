@@ -69,7 +69,7 @@ const siteConfig = {
     // empty string, /app/frontend/src/lib/analytics.js trackEvent()
     // is a total no-op — no requests fire, no console noise.
     // Example future value: "G-XXXXXXXXXX"
-    measurementId: "",
+    measurementId: "G-E5STH1G8FF",
     // Meta (Facebook) Pixel — the base pixel snippet lives in
     // /app/frontend/public/index.html <head>. This ID is stored here
     // for one-place editing / reference. Client-side navigation
