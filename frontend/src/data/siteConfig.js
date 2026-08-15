@@ -87,7 +87,7 @@ const siteConfig = {
     // With 0 reviews the widget paints an empty box under a heading that
     // promises "Real reviews from real Essex County moves" — which reads
     // worse to a customer than having no reviews section at all.
-    enabled: false,
+    enabled: true,
     // Paste the Trustindex widget ID from the embed code they give you
     // (looks like "abc123def456"). While this is an empty string, the
     // section renders a graceful placeholder instead of the widget.
