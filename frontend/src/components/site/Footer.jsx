@@ -136,6 +136,28 @@ export default function Footer() {
 
         {/* Bottom NAP bar */}
         <div className="mt-16 border-t border-slate-200 pt-8">
+          {/* Regulator numbers. Renders nothing until siteConfig.compliance
+              is populated — see the note on that block. NJ requires the
+              Public Mover licence number to appear in advertising. */}
+          {(siteConfig.compliance.njMoverLicense ||
+            siteConfig.compliance.usDot ||
+            siteConfig.compliance.mcNumber) && (
+            <p
+              className="mb-4 text-xs text-slate-500"
+              data-testid="footer-compliance-line"
+            >
+              {[
+                siteConfig.compliance.njMoverLicense &&
+                  `${siteConfig.compliance.prefixLabel} ${siteConfig.compliance.njMoverLicense}`,
+                siteConfig.compliance.usDot &&
+                  `USDOT ${siteConfig.compliance.usDot}`,
+                siteConfig.compliance.mcNumber &&
+                  `MC ${siteConfig.compliance.mcNumber}`,
+              ]
+                .filter(Boolean)
+                .join("  ·  ")}
+            </p>
+          )}
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <p
               className="text-xs font-semibold uppercase tracking-widest text-navy"

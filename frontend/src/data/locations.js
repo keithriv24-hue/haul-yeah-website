@@ -17,7 +17,7 @@ export const locations = [
     name: "East Orange",
     h1: "Local Movers in East Orange, NJ",
     seo: {
-      title: "East Orange, NJ Movers | Haul Yeah Moving",
+      title: "Movers in East Orange, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Local movers in East Orange, NJ — two-family walk-ups, apartments, small houses. Weekend and same-day availability. All-in pricing. Free quote in 5 minutes.",
     },
@@ -52,7 +52,7 @@ export const locations = [
     name: "Newark",
     h1: "Local Movers in Newark, NJ",
     seo: {
-      title: "Newark, NJ Movers | Haul Yeah Moving",
+      title: "Movers in Newark, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Movers in Newark, NJ — Ironbound, downtown, high-rises, walk-ups. Building move-in paperwork coordinated. Same-day and weekend availability. Free quote in 5 minutes.",
     },
@@ -87,7 +87,7 @@ export const locations = [
     name: "Montclair",
     h1: "Local Movers in Montclair, NJ",
     seo: {
-      title: "Montclair, NJ Movers | Haul Yeah Moving",
+      title: "Movers in Montclair, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Montclair, NJ movers — Victorian walk-ups, brownstones, Watchung Plaza. Weekend and same-day availability. Free quote in 5 minutes.",
     },
@@ -122,7 +122,7 @@ export const locations = [
     name: "Bloomfield",
     h1: "Local Movers in Bloomfield, NJ",
     seo: {
-      title: "Bloomfield, NJ Movers | Haul Yeah Moving",
+      title: "Movers in Bloomfield, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Movers in Bloomfield, NJ — commuter town homes, apartment complexes, small-load moves. Weekend and same-day. Free quote in 5 minutes.",
     },
@@ -157,7 +157,7 @@ export const locations = [
     name: "West Orange",
     h1: "Local Movers in West Orange, NJ",
     seo: {
-      title: "West Orange, NJ Movers | Haul Yeah Moving",
+      title: "Movers in West Orange, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Local movers in West Orange, NJ — hillside homes, Eagle Rock, Pleasantdale. Weekend availability. Free quote in under 5 minutes.",
     },
@@ -192,7 +192,7 @@ export const locations = [
     name: "Orange",
     h1: "Local Movers in Orange, NJ",
     seo: {
-      title: "Orange, NJ Movers | Haul Yeah Moving",
+      title: "Movers in Orange, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Movers in Orange, NJ — two-family homes, apartment buildings, Main Street walk-ups. Weekend and same-day availability.",
     },
@@ -227,7 +227,7 @@ export const locations = [
     name: "Irvington",
     h1: "Local Movers in Irvington, NJ",
     seo: {
-      title: "Irvington, NJ Movers | Haul Yeah Moving",
+      title: "Movers in Irvington, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Movers in Irvington, NJ — apartment buildings, multi-family homes, dense residential. Weekend and same-day. Free quote in 5 minutes.",
     },
@@ -262,7 +262,7 @@ export const locations = [
     name: "Nutley",
     h1: "Local Movers in Nutley, NJ",
     seo: {
-      title: "Nutley, NJ Movers | Haul Yeah Moving",
+      title: "Movers in Nutley, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Local movers in Nutley, NJ — Franklin Ave homes, family-friendly neighborhoods, easy driveways. Free quote in 5 minutes.",
     },
@@ -297,7 +297,7 @@ export const locations = [
     name: "Belleville",
     h1: "Local Movers in Belleville, NJ",
     seo: {
-      title: "Belleville, NJ Movers | Haul Yeah Moving",
+      title: "Movers in Belleville, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Movers in Belleville, NJ — Cape Cods, two-family homes, Silver Lake, along the Passaic River. Weekend and same-day. Free quote in 5 minutes.",
     },
@@ -332,7 +332,7 @@ export const locations = [
     name: "Jersey City",
     h1: "Local Movers in Jersey City, NJ",
     seo: {
-      title: "Jersey City, NJ Movers | Haul Yeah Moving",
+      title: "Movers in Jersey City, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Movers in Jersey City, NJ — high-rises, downtown, Journal Square, Grove Street. Building move-in paperwork coordinated. Weekend availability. Free quote in 5 minutes.",
     },

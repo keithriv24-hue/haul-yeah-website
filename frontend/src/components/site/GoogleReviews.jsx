@@ -46,6 +46,64 @@ function contentUrlFor(widgetId) {
   return `https://cdn.trustindex.io/widgets/${prefix}/${widgetId}/content.html`;
 }
 
+/**
+ * Pre-launch trust block. Rendered instead of the widget while
+ * siteConfig.reviews.enabled is false, so a visitor never sees a heading
+ * that promises reviews sitting above an empty box.
+ */
+function PreReviewTrustBlock({ sectionId }) {
+  const { kicker, heading, body, points } = siteConfig.reviews.preLaunch;
+  return (
+    <section
+      id={sectionId}
+      className="border-b border-slate-200 bg-white py-20 sm:py-28"
+      aria-labelledby="pre-review-heading"
+      data-testid="pre-review-trust-section"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="font-display text-xs font-bold uppercase tracking-[0.28em] text-orange">
+            {kicker}
+          </p>
+          <h2
+            id="pre-review-heading"
+            className="mt-4 font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-4xl lg:text-5xl"
+            data-testid="pre-review-heading"
+          >
+            {heading}
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+            {body}
+          </p>
+        </div>
+
+        <ul
+          className="mt-12 grid gap-4 sm:grid-cols-2"
+          data-testid="pre-review-points"
+        >
+          {points.map((point, i) => (
+            <li
+              key={point.title}
+              className="rounded-md border border-slate-200 bg-slate-50 p-6"
+              data-testid={`pre-review-point-${i}`}
+            >
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-sm bg-orange text-white">
+                <MessageSquareQuote className="h-4 w-4" strokeWidth={2.4} />
+              </span>
+              <h3 className="mt-4 font-display text-lg font-bold tracking-tight text-navy">
+                {point.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {point.description}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 function GoogleReviewsInner({ sectionId }) {
   const {
     trustindexWidgetId,
@@ -224,5 +282,8 @@ function GoogleReviewsInner({ sectionId }) {
  */
 export default function GoogleReviews({ sectionId = "reviews" }) {
   const { pathname } = useLocation();
+  if (!siteConfig.reviews.enabled) {
+    return <PreReviewTrustBlock sectionId={sectionId} />;
+  }
   return <GoogleReviewsInner key={pathname} sectionId={sectionId} />;
 }

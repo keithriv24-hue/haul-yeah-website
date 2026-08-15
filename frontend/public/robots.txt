@@ -35,4 +35,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://haulyeahmoves.com/sitemap.xml
+Sitemap: https://www.haulyeahmoves.com/sitemap.xml

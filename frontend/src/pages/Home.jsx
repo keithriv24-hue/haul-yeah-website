@@ -40,6 +40,9 @@ export default function Home() {
       <meta property="og:type" content="website" />
       <meta property="og:url" content={siteConfig.business.baseUrl + "/"} />
       <meta property="og:image" content={`${siteConfig.business.baseUrl}${siteConfig.branding.ogImagePath}`} />
+      <meta property="og:image:width" content={siteConfig.branding.ogImageWidth} />
+      <meta property="og:image:height" content={siteConfig.branding.ogImageHeight} />
+      <meta property="og:image:alt" content={siteConfig.branding.ogImageAlt} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={`${siteConfig.business.baseUrl}${siteConfig.branding.ogImagePath}`} />
       <link rel="canonical" href={siteConfig.business.baseUrl + "/"} />

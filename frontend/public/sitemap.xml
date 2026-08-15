@@ -2,7 +2,7 @@
 <!--
   Haul Yeah Moving — sitemap.xml
 
-  Base URL is https://haulyeahmoves.com (also lives as
+  Base URL is https://www.haulyeahmoves.com (also lives as
   siteConfig.business.baseUrl in /app/frontend/src/data/siteConfig.js).
 
   Adding a new service or town? Add one <url> entry below AND one
@@ -10,32 +10,33 @@
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://haulyeahmoves.com/</loc>
+    <loc>https://www.haulyeahmoves.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <url><loc>https://www.haulyeahmoves.com/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
   <!-- Services -->
-  <url><loc>https://haulyeahmoves.com/services/local-movers</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/apartment-movers</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/small-moves</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/same-day-movers</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/weekend-movers</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/long-distance-movers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/commercial-movers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/packing-services</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/piano-movers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://haulyeahmoves.com/services/labor-only-movers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/local-movers/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/apartment-movers/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/small-moves/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/same-day-movers/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/weekend-movers/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/commercial-movers/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/packing-services/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/piano-movers/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/services/labor-only-movers/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Locations -->
-  <url><loc>https://haulyeahmoves.com/movers/east-orange-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/newark-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/montclair-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/bloomfield-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/west-orange-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/orange-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/irvington-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/nutley-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/belleville-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://haulyeahmoves.com/movers/jersey-city-nj</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/east-orange-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/newark-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/montclair-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/bloomfield-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/west-orange-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/orange-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/irvington-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/nutley-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/belleville-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.haulyeahmoves.com/movers/jersey-city-nj/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

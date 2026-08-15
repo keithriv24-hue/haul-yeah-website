@@ -47,7 +47,7 @@ export default function LocationPage() {
 
   if (!location) return <NotFound />;
 
-  const canonical = `${siteConfig.business.baseUrl}/movers/${location.slug}`;
+  const canonical = `${siteConfig.business.baseUrl}/movers/${location.slug}/`;
   const ogImage = `${siteConfig.business.baseUrl}${siteConfig.branding.ogImagePath}`;
 
   const locationLd = buildLocationJsonLd(location);
@@ -71,6 +71,9 @@ export default function LocationPage() {
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content={siteConfig.branding.ogImageWidth} />
+      <meta property="og:image:height" content={siteConfig.branding.ogImageHeight} />
+      <meta property="og:image:alt" content={siteConfig.branding.ogImageAlt} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={ogImage} />
       <script

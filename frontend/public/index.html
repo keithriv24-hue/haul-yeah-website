@@ -15,16 +15,23 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://tally.so" />
-        <link rel="preconnect" href="https://cdn.trustindex.io" />
         <script async src="https://tally.so/widgets/embed.js"></script>
-        <!-- Trustindex loader (Google Reviews widget).
+        <!-- TRUSTINDEX IS DISABLED. Re-enable BOTH of these together:
+               1. siteConfig.reviews.enabled = true
+               2. uncomment the preconnect + loader script below
+             Leaving the loader in while the widget is off costs a DNS
+             lookup + script fetch on every page for zero rendered content.
+
+        <link rel="preconnect" href="https://cdn.trustindex.io" />
+        <script async src="https://cdn.trustindex.io/loader.js"></script>
+        -->
+        <!-- Trustindex loader notes (Google Reviews widget).
              Loading it once here gives us:
                • window.Trustindex + window.renderTrustindexWidgets
                • a MutationObserver on <body> that auto-activates any
                  .ti-widget element inserted into the DOM (used by our
                  GoogleReviews.jsx which fetches content.html directly and
                  injects it — avoids a race across chained SPA navigations). -->
-        <script async src="https://cdn.trustindex.io/loader.js"></script>
         <!-- Meta Pixel Code -->
         <script>
           !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -37,7 +44,12 @@
         <noscript><img height="1" width="1" style="display:none"
           src="https://www.facebook.com/tr?id=1913145279380964&ev=PageView&noscript=1" /></noscript>
         <!-- End Meta Pixel Code -->
-        <title>Haul Yeah Moving | Weekend & Same-Day Movers in Essex County, NJ</title>
+        <!-- NO <title> HERE ON PURPOSE.
+             Every route owns its own <title>, <meta name="description">,
+             <link rel="canonical"> and og:* tags via React 19 head hoisting
+             (see src/pages/Home.jsx, ServicePage.jsx, LocationPage.jsx).
+             A static <title> in this shell produced a second, wrong title in
+             the prerendered HTML of all 20 sub-pages. Do not re-add it. -->
         <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
     </head>

@@ -37,7 +37,7 @@ export const services = [
     tagline: "Full-service home moves across NJ.",
     h1: "Local Residential Movers in NJ",
     seo: {
-      title: "Local Residential Movers in NJ | Haul Yeah Moving",
+      title: "Local Movers in Essex County, NJ | Haul Yeah Moving",
       description:
         "Local residential movers in Essex County and North NJ. Transparent all-in pricing, 7 days a week. Free quote in under 5 minutes.",
     },
@@ -117,7 +117,7 @@ export const services = [
     tagline: "Walk-ups, elevators, tight staircases — handled.",
     h1: "Apartment Movers in NJ",
     seo: {
-      title: "Apartment Movers in NJ | Haul Yeah Moving",
+      title: "Apartment Movers in Essex County, NJ | Haul Yeah Moving",
       description:
         "Apartment movers NJ — walk-ups, elevators, high-rises. Building move-in paperwork coordinated. 7 days a week. Free quote in 5 minutes.",
     },
@@ -197,7 +197,7 @@ export const services = [
     tagline: "A single sofa or a studio — no minimums.",
     h1: "Small Move & Small Load Movers in NJ",
     seo: {
-      title: "Small Move Movers in NJ | Haul Yeah Moving",
+      title: "Small Move Movers in NJ | No Hour Minimums | Haul Yeah",
       description:
         "Small load movers NJ — single sofa, studio, or one room. No four-hour minimum. Same-day and weekend availability. Free quote in under 5 minutes.",
     },
@@ -357,7 +357,7 @@ export const services = [
     tagline: "Our specialty. Saturday & Sunday moves.",
     h1: "Weekend Movers in NJ",
     seo: {
-      title: "Weekend Movers in NJ | Haul Yeah Moving",
+      title: "Weekend Movers in NJ | Saturday & Sunday | Haul Yeah",
       description:
         "Weekend movers NJ — Saturday and Sunday specialists in Essex County. Actually staffed for the weekend rush. Free quote in 5 minutes.",
     },
@@ -431,93 +431,13 @@ export const services = [
   },
 
   {
-    slug: "long-distance-movers",
-    name: "Long Distance Movers",
-    iconName: "Truck",
-    tagline: "NJ up and down the East Coast.",
-    h1: "Long Distance Movers from NJ",
-    seo: {
-      title: "Long Distance Movers in NJ | Haul Yeah Moving",
-      description:
-        "Long distance movers from NJ up and down the East Coast. Direct-drive routes, no warehouse handoffs, all-in pricing. Free quote in 5 minutes.",
-    },
-    kicker: "NJ, up and down the East Coast.",
-    lede: "Direct-drive long-distance moves — no warehouse handoffs, no mystery arrival window.",
-    intro: [
-      "Long-distance movers usually consolidate your stuff with three other people's on a big rig, then hand it off between drivers. That's why arrival windows come as '3–14 business days.'",
-      "Haul Yeah's long-distance service is different — we drive your job direct with one of our own trucks and our own crew. Loads Saturday in Essex County, arrives Monday morning in North Carolina. One driver, one truck, one crew you already met.",
-      "We handle direct-drive moves from NJ down the East Coast (MD, DC, VA, NC) and up through NY, CT, and MA. If your route is inside about 600 miles from Newark, we're a fit. Beyond that, we'll be honest and point you toward a bigger van line.",
-    ],
-    included: {
-      heading: "What a long-distance move includes",
-      items: [
-        {
-          title: "Direct-drive route",
-          description:
-            "Your stuff never gets warehoused or transferred to a second truck.",
-        },
-        {
-          title: "Same crew, load and unload",
-          description:
-            "The movers you met at pickup are the same crew at the drop.",
-        },
-        {
-          title: "Flat all-in mileage",
-          description:
-            "Fuel, tolls, per-diem — quoted once, not renegotiated on the road.",
-        },
-        {
-          title: "Overnight-hold available",
-          description:
-            "If your new place isn't ready, we can stage the truck for one night.",
-        },
-        {
-          title: "Building coordination at both ends",
-          description:
-            "We coordinate with the origin and destination buildings on elevator windows and any move-in paperwork.",
-        },
-        {
-          title: "Real arrival window",
-          description:
-            "A 24–48 hour delivery window, not 'sometime next week.'",
-        },
-      ],
-    },
-    midCTA: {
-      heading: "Direct-drive quote in minutes",
-      body: "Tell us your two zip codes. We'll price the route honestly.",
-    },
-    faqs: [
-      {
-        q: "How far is 'long-distance' for you?",
-        a: "We handle direct-drive long-distance moves inside roughly 600 miles from our NJ base — the East Coast corridor from Boston down to Raleigh, and inland to Pittsburgh and DC. Beyond that we'll refer you honestly to a full van-line partner instead of stretching.",
-      },
-      {
-        q: "Will my stuff be transferred to another truck?",
-        a: "No. Every long-distance job we book is direct-drive on one of our own trucks with our own crew. Your load doesn't sit in a warehouse, doesn't get consolidated with strangers' furniture, and doesn't switch drivers.",
-      },
-      {
-        q: "When will my stuff arrive?",
-        a: "Because we drive direct, your arrival window is a real 24–48 hours, not a 3–14 day range. Most East Coast corridors (NJ→DC, NJ→Boston, NJ→NC) unload within 24 hours of pickup.",
-      },
-      {
-        q: "How do you handle multi-day storage in transit?",
-        a: "If your new place isn't ready when we arrive, we can hold your load overnight on the truck (up to 24 hours) at no extra charge. For longer gaps, we can point you to a local short-term storage partner near the destination.",
-      },
-    ],
-    relatedServices: ["packing-services", "commercial-movers", "local-movers"],
-    relatedTowns: ["newark-nj", "jersey-city-nj", "montclair-nj", "west-orange-nj"],
-    image: IMG.why,
-  },
-
-  {
     slug: "commercial-movers",
     name: "Office & Commercial Movers",
     iconName: "Briefcase",
     tagline: "Nights & weekends so you don't lose a day.",
     h1: "Office & Commercial Movers in NJ",
     seo: {
-      title: "Office & Commercial Movers in NJ | Haul Yeah Moving",
+      title: "Office & Commercial Movers in Essex County, NJ | Haul Yeah",
       description:
         "Office and commercial movers NJ — night and weekend moves so your team doesn't lose a workday. Weekend windows, IT reassembly, and full move planning. Free quote in 5 minutes.",
     },
@@ -590,7 +510,7 @@ export const services = [
         a: "Yes — furniture disposal is an add-on. We can also route it to a donation partner if the desks and chairs are still in reusable shape. Tell us during the quote so we can plan the truck space.",
       },
     ],
-    relatedServices: ["long-distance-movers", "packing-services", "labor-only-movers"],
+    relatedServices: ["packing-services", "labor-only-movers"],
     relatedTowns: ["newark-nj", "jersey-city-nj", "montclair-nj", "west-orange-nj"],
     image: IMG.hero,
   },
@@ -675,7 +595,7 @@ export const services = [
         a: "No problem — we work with what you've got. We'll bring any extras we need and only charge for what we actually use. If you overbought, we can take unused boxes off your hands at the end.",
       },
     ],
-    relatedServices: ["local-movers", "long-distance-movers", "apartment-movers"],
+    relatedServices: ["local-movers", "apartment-movers"],
     relatedTowns: ["montclair-nj", "west-orange-nj", "nutley-nj", "bloomfield-nj"],
     image: IMG.packing,
   },
@@ -687,7 +607,7 @@ export const services = [
     tagline: "Pianos, safes, treadmills — we're built for it.",
     h1: "Piano & Heavy Item Movers in NJ",
     seo: {
-      title: "Piano & Heavy Item Movers in NJ | Haul Yeah Moving",
+      title: "Piano Movers in NJ | Safes & Heavy Items | Haul Yeah",
       description:
         "Piano movers NJ — uprights, baby grands, safes, treadmills, gun safes. Skid boards, straps, and 3–4 mover crews. Free quote in minutes.",
     },
@@ -760,7 +680,7 @@ export const services = [
         a: "Yes — those are common heavy items for us. Treadmills usually fold or partially disassemble; Pelotons we disassemble the touchscreen arm and pedals for tight staircases. Both are common add-ons to a full move.",
       },
     ],
-    relatedServices: ["local-movers", "labor-only-movers", "long-distance-movers"],
+    relatedServices: ["local-movers", "labor-only-movers"],
     relatedTowns: ["west-orange-nj", "montclair-nj", "nutley-nj", "bloomfield-nj"],
     image: IMG.team,
   },
@@ -772,7 +692,7 @@ export const services = [
     tagline: "Got a truck? We'll bring the muscle.",
     h1: "Labor-Only Loading & Unloading Help in NJ",
     seo: {
-      title: "Labor-Only Movers in NJ | Haul Yeah Moving",
+      title: "Labor-Only Movers & Moving Help in NJ | Haul Yeah",
       description:
         "Labor only movers NJ — you rent the truck, we bring the crew. Loading, unloading, or both. Two-hour minimum. Free quote in under 5 minutes.",
     },

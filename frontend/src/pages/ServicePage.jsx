@@ -49,7 +49,7 @@ export default function ServicePage() {
   if (!service) return <NotFound />;
 
   const Icon = ICON_MAP[service.iconName] || Truck;
-  const canonical = `${siteConfig.business.baseUrl}/services/${service.slug}`;
+  const canonical = `${siteConfig.business.baseUrl}/services/${service.slug}/`;
   const ogImage = `${siteConfig.business.baseUrl}${siteConfig.branding.ogImagePath}`;
 
   const serviceLd = buildServiceJsonLd(service);
@@ -72,6 +72,9 @@ export default function ServicePage() {
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content={siteConfig.branding.ogImageWidth} />
+      <meta property="og:image:height" content={siteConfig.branding.ogImageHeight} />
+      <meta property="og:image:alt" content={siteConfig.branding.ogImageAlt} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={ogImage} />
       <script
@@ -150,7 +153,8 @@ export default function ServicePage() {
                 alt={service.image.alt}
                 width="1200"
                 height="900"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
                 decoding="async"
                 className="relative aspect-[4/3] w-full rounded-md border border-slate-200 object-cover shadow-lg"
                 data-testid="service-hero-image"

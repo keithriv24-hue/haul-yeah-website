@@ -23,7 +23,28 @@ const serveHandler = require("serve-handler");
 const ROOT = path.resolve(__dirname, "..");
 const BUILD_DIR = path.join(ROOT, "build");
 const SITEMAP = path.join(ROOT, "public", "sitemap.xml");
-const ORIGIN = "https://haulyeahmoves.com";
+const ORIGIN = "https://www.haulyeahmoves.com";
+
+// Pristine copy of the CRA shell, taken BEFORE any route is written.
+//
+// WHY THIS EXISTS (this was a real, shipped bug):
+// The static server below SPA-falls-back to /index.html. Because "/" is the
+// first entry in sitemap.xml, the loop used to overwrite build/index.html with
+// the *prerendered homepage* on iteration 1. Every route after that then booted
+// from a shell whose <head> already contained the homepage's hoisted <title>,
+// <link rel="canonical"> and og:* tags — and React hoisted the real page's tags
+// on top of them. Result: 3 <title> tags and 2 conflicting canonicals on all
+// 20 sub-pages, with one canonical pointing at the homepage.
+//
+// Fix: snapshot the shell here, serve THAT as the SPA fallback, delete it at
+// the end so it never ships.
+const SHELL_NAME = "__prerender-shell.html";
+const SHELL_PATH = path.join(BUILD_DIR, SHELL_NAME);
+
+// Routes that must be prerendered but must NOT appear in sitemap.xml
+// (noindex conversion pages). Keeps them out of Google while still giving
+// Cloudflare Pages a real static file to serve on a direct hit.
+const EXTRA_ROUTES = ["/thank-you"];
 
 // Hosts we never let load during prerender. Blocking these means:
 //   • Meta Pixel never fires PageView
@@ -64,9 +85,9 @@ function startStaticServer(rootDir, port = 0) {
     const server = http.createServer((req, res) =>
       serveHandler(req, res, {
         public: rootDir,
-        // Serve prerendered files if they exist, then SPA-fallback to /index.html
-        // so any route the prerender hasn't overwritten yet still boots as SPA.
-        rewrites: [{ source: "**", destination: "/index.html" }],
+        // Serve prerendered files if they exist, then SPA-fallback to the
+        // PRISTINE shell (never the live index.html — see SHELL_PATH above).
+        rewrites: [{ source: "**", destination: `/${SHELL_NAME}` }],
         cleanUrls: false,
         trailingSlash: false,
       }),
@@ -241,6 +262,46 @@ async function prerenderRoute(browser, port, route) {
       )
       .forEach((el) => el.removeAttribute("data-ti-widget-inited"));
 
+    // ── Singleton <head> tag ASSERTION ───────────────────────────────
+    // There must be exactly ONE <title>, one canonical, one description and
+    // one of each og:/twitter: property per document.
+    //
+    // WHY WE FAIL THE BUILD INSTEAD OF AUTO-DEDUPING:
+    // An earlier version of this fix deleted the extras and kept the LAST of
+    // each. Testing against the previously shipped HTML showed that rule is
+    // wrong for <title>: React hoists the page title FIRST and the stale
+    // shell titles follow, while for <link rel=canonical> and og:* the
+    // correct tag is LAST. There is no position rule that is right for every
+    // tag type — so guessing would silently ship the homepage title on all 20
+    // sub-pages, which is the exact bug this whole change exists to kill.
+    //
+    // With the pristine-shell fix above there should be nothing to detect.
+    // If this ever throws, the cause is almost always one of:
+    //   • a <title>/<meta name=description>/<link rel=canonical> was re-added
+    //     to public/index.html (React must own those — see the note there), or
+    //   • the SPA fallback stopped pointing at the pristine shell.
+    const dupes = [];
+    const countBy = (selector, keyOf) => {
+      const seen = new Map();
+      document.head.querySelectorAll(selector).forEach((el) => {
+        const k = keyOf(el);
+        seen.set(k, (seen.get(k) || 0) + 1);
+      });
+      seen.forEach((n, k) => {
+        if (n > 1) dupes.push(`${k} ×${n}`);
+      });
+    };
+    countBy("title", () => "<title>");
+    countBy('link[rel="canonical"]', () => "<link rel=canonical>");
+    countBy("meta[name]", (el) => `meta[name="${el.getAttribute("name")}"]`);
+    countBy(
+      "meta[property]",
+      (el) => `meta[property="${el.getAttribute("property")}"]`,
+    );
+    if (dupes.length) {
+      window.__prerenderDupes = dupes;
+    }
+
     // Diagnostic marker: one look at view-source tells you (a) whether the
     // response is our prerendered artifact vs. an SPA-fallback of /, and
     // (b) which route file the host actually served.
@@ -259,7 +320,19 @@ async function prerenderRoute(browser, port, route) {
     return "<!doctype html>\n" + document.documentElement.outerHTML;
   }, route);
 
+  const dupes = await page.evaluate(() => window.__prerenderDupes || []);
   await page.close();
+
+  if (dupes.length) {
+    throw new Error(
+      `duplicate <head> tags on ${route}: ${dupes.join(", ")}. ` +
+        `Check that public/index.html has no <title>/<meta name=description>/` +
+        `<link rel=canonical>, and that the SPA fallback still points at ` +
+        `${SHELL_NAME}. Do NOT deploy this build — conflicting canonicals ` +
+        `make Google distrust all of them.`,
+    );
+  }
+
   return html;
 }
 
@@ -279,12 +352,34 @@ async function main() {
     process.exit(1);
   }
 
-  const routes = parseSitemapRoutes(SITEMAP);
-  if (!routes.length) {
+  const indexPath = path.join(BUILD_DIR, "index.html");
+  const indexHtml = fs.readFileSync(indexPath, "utf8");
+
+  // Guard: refuse to run against an already-prerendered build/. Doing so would
+  // snapshot a dirty shell and re-introduce the duplicate-<head> bug.
+  if (indexHtml.includes('name="x-prerendered"')) {
+    console.error(
+      "\n[prerender] ERROR: build/index.html is already prerendered.\n" +
+        "Run a clean `craco build` first — prerendering on top of a previous\n" +
+        "prerender duplicates <title> / <link rel=canonical> in every page.\n",
+    );
+    process.exit(1);
+  }
+
+  fs.writeFileSync(SHELL_PATH, indexHtml, "utf8");
+  log(`[prerender] pristine shell snapshotted → ${SHELL_NAME}`);
+
+  const sitemapRoutes = parseSitemapRoutes(SITEMAP);
+  if (!sitemapRoutes.length) {
     console.error("[prerender] no <loc> entries found in sitemap.xml.");
     process.exit(1);
   }
-  log(`[prerender] ${routes.length} routes from sitemap:`, routes.join(", "));
+  const routes = [...sitemapRoutes, ...EXTRA_ROUTES];
+  log(
+    `[prerender] ${routes.length} routes (${sitemapRoutes.length} from sitemap`,
+    `+ ${EXTRA_ROUTES.length} noindex):`,
+    routes.join(", "),
+  );
 
   const { server, port } = await startStaticServer(BUILD_DIR);
   log(`[prerender] static server on http://127.0.0.1:${port}`);
@@ -308,6 +403,11 @@ async function main() {
   } finally {
     if (browser) await browser.close();
     server.close();
+    // Never ship the shell — it would be a crawlable duplicate of the homepage.
+    if (fs.existsSync(SHELL_PATH)) {
+      fs.unlinkSync(SHELL_PATH);
+      log(`[prerender] removed ${SHELL_NAME}`);
+    }
   }
 
   if (failures.length) {

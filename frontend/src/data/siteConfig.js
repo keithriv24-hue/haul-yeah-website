@@ -29,7 +29,7 @@ const siteConfig = {
     // Production domain. Change here + regenerate /public/sitemap.xml
     // if the domain ever changes. This value is the ONE source used
     // for canonical URLs, JSON-LD `url` fields, and og:url meta tags.
-    baseUrl: "https://haulyeahmoves.com",
+    baseUrl: "https://www.haulyeahmoves.com",
   },
 
   branding: {
@@ -37,9 +37,16 @@ const siteConfig = {
     // to update the header, favicon, and og:image everywhere.
     logoPath: "/logo.jpg",
     logoAlt: "Haul Yeah Moving logo",
-    // Used for favicon <link> and og:image meta.
     faviconPath: "/logo.jpg",
-    ogImagePath: "/logo.jpg",
+    // Social share card. MUST be 1200x630 — this was /logo.jpg (a square
+    // logo) which rendered as a broken-looking crop in every Facebook,
+    // iMessage and WhatsApp preview and in Meta ad link previews.
+    // Regenerate from a real crew photo if the branding changes.
+    ogImagePath: "/images/og-cover.jpg",
+    ogImageWidth: "1200",
+    ogImageHeight: "630",
+    ogImageAlt:
+      "Haul Yeah Moving crew at the open box of a 26-ft moving truck in Essex County, NJ",
   },
 
   contact: {
@@ -71,6 +78,16 @@ const siteConfig = {
   },
 
   reviews: {
+    // ── MASTER SWITCH ────────────────────────────────────────────────
+    // false = the Reviews section renders the "new business, here's how to
+    //         vet us" trust block instead of an empty widget.
+    // true  = the Trustindex Google widget renders.
+    //
+    // FLIP THIS TO true ONLY WHEN YOU HAVE 3+ LIVE GOOGLE REVIEWS.
+    // With 0 reviews the widget paints an empty box under a heading that
+    // promises "Real reviews from real Essex County moves" — which reads
+    // worse to a customer than having no reviews section at all.
+    enabled: false,
     // Paste the Trustindex widget ID from the embed code they give you
     // (looks like "abc123def456"). While this is an empty string, the
     // section renders a graceful placeholder instead of the widget.
@@ -86,12 +103,71 @@ const siteConfig = {
     googleReviewLink: "https://g.page/r/CVhCBro8FWmNEBM/review",
     heading: "What our customers say",
     subheading: "Real reviews from real Essex County moves.",
+
+    // Shown when `enabled: false`. Deliberately says "we're new" out loud —
+    // owning it converts better than an empty five-star widget, and we do
+    // not fabricate reviews or credentials at any stage.
+    preLaunch: {
+      kicker: "Straight talk",
+      heading: "We're new. Here's how to check us out anyway.",
+      body:
+        "We're building our Google reviews one move at a time, and we'd rather say that than show you testimonials we made up. Until they stack up, judge us on the things you can verify before you pay anything.",
+      points: [
+        {
+          title: "A written number before you book",
+          description:
+            "You get the all-in price in writing — line by line — before any deposit changes hands.",
+        },
+        {
+          title: "Refundable deposit",
+            description:
+            "The deposit holds your date. Cancel outside our stated window and it comes back to you.",
+        },
+        {
+          title: "You talk to the owner",
+          description:
+            "Not a call center. The person quoting your move is the person answering for it on move day.",
+        },
+        {
+          title: "Real trucks, real crew",
+          description:
+            "The photos on this site are our own fleet and our own movers — not stock images.",
+        },
+      ],
+    },
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+   * COMPLIANCE — regulator-issued numbers.
+   *
+   * READ THIS BEFORE EDITING:
+   * Every field below renders ONLY when it is a non-empty string. Leave a
+   * value as "" until the number is actually issued. Do not put a
+   * placeholder, an "applied for" note, or a partner's number here.
+   *
+   * njMoverLicense — NJ Division of Consumer Affairs Public Mover licence.
+   *   Required to operate as an intrastate household-goods mover in NJ, and
+   *   NJ requires the licence number to appear in advertising. This website
+   *   is advertising.
+   *
+   * usDot / mcNumber — FMCSA interstate operating authority. Required before
+   *   any interstate (state-to-state) household-goods move is advertised or
+   *   performed. /services/long-distance-movers is 301'd in public/_redirects
+   *   until BOTH of these exist and render here.
+   * ───────────────────────────────────────────────────────────── */
+  compliance: {
+    njMoverLicense: "",
+    usDot: "",
+    mcNumber: "",
+    // Rendered in the footer above the copyright when any number is present.
+    prefixLabel: "NJ Public Mover Lic.",
   },
 
   nav: [
     { label: "Moving", href: "/" },
     { label: "Services", href: "/#services" },
     { label: "Locations", href: "/#locations" },
+    { label: "About", href: "/about" },
     { label: "Reviews", href: "/#reviews" },
     { label: "Contact", href: "/#contact" },
   ],
@@ -234,7 +310,7 @@ const siteConfig = {
   seo: {
     homepage: {
       title:
-        "Haul Yeah Moving | Weekend & Same-Day Movers in Essex County, NJ",
+        "Movers in Essex County, NJ | Same-Day & Weekend | Haul Yeah",
       description:
         "Affordable movers NJ. Weekend movers NJ, same day movers NJ, and small-move specialists in Essex County. Free quote in under 5 minutes.",
     },

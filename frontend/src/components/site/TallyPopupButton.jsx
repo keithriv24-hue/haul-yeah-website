@@ -1,7 +1,7 @@
 import React from "react";
 import siteConfig from "../../data/siteConfig";
 import { openTallyPopup } from "../../lib/tally";
-import { trackEvent } from "../../lib/analytics";
+import { trackQuoteStart } from "../../lib/analytics";
 import QuoteConsent from "./QuoteConsent";
 
 /**
@@ -48,7 +48,7 @@ export default function TallyPopupButton({
 
   const handleClick = (e) => {
     e.preventDefault();
-    trackEvent("tally_open", { source: testId });
+    trackQuoteStart(testId);
     openTallyPopup();
   };
 

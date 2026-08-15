@@ -50,7 +50,7 @@ export default function ServicesGrid() {
             className="mt-4 font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-4xl lg:text-5xl"
             data-testid="services-heading"
           >
-            Ten ways we get your stuff from A to B — the right way.
+            Nine ways we get your stuff from A to B — the right way.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
             Every move is different. Studios, weekend rushes, cross-town office

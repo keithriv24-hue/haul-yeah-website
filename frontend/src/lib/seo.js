@@ -66,8 +66,8 @@ export function buildLocationJsonLd(location) {
     "@context": "https://schema.org",
     ...movingCompanyEntity(areaServed),
     // Narrow the entity to the town's page URL
-    "@id": `${siteConfig.business.baseUrl}/movers/${location.slug}#business`,
-    url: `${siteConfig.business.baseUrl}/movers/${location.slug}`,
+    "@id": `${siteConfig.business.baseUrl}/movers/${location.slug}/#business`,
+    url: `${siteConfig.business.baseUrl}/movers/${location.slug}/`,
   };
 }
 
@@ -78,7 +78,7 @@ export function buildServiceJsonLd(service) {
     serviceType: service.name,
     name: service.h1,
     description: service.seo.description,
-    url: `${siteConfig.business.baseUrl}/services/${service.slug}`,
+    url: `${siteConfig.business.baseUrl}/services/${service.slug}/`,
     areaServed: [
       ...locations.map((l) => `${l.name}, NJ`),
       siteConfig.business.serviceArea,
