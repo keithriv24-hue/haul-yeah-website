@@ -185,7 +185,7 @@ export default function LocationPage() {
               return (
                 <li key={s.slug}>
                   <Link
-                    to={`/services/${s.slug}`}
+                    to={`/services/${s.slug}/`}
                     data-testid={`location-service-${s.slug}`}
                     className="group flex h-full flex-col justify-between rounded-md border border-slate-200 bg-white p-6 transition-colors hover:border-orange"
                   >
@@ -224,7 +224,7 @@ export default function LocationPage() {
             {allServices.map((s) => (
               <li key={s.slug}>
                 <Link
-                  to={`/services/${s.slug}`}
+                  to={`/services/${s.slug}/`}
                   data-testid={`location-service-chip-${s.slug}`}
                   className="inline-flex items-center gap-1 rounded-sm border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-navy transition-colors hover:border-orange hover:text-orange"
                 >
@@ -286,7 +286,7 @@ export default function LocationPage() {
             {nearby.map((t) => (
               <li key={t.slug}>
                 <Link
-                  to={`/movers/${t.slug}`}
+                  to={`/movers/${t.slug}/`}
                   data-testid={`nearby-town-${t.slug}`}
                   className="group flex h-full items-center justify-between gap-3 rounded-md border border-slate-200 bg-white p-4 transition-colors hover:border-orange"
                 >

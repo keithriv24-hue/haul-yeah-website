@@ -6,7 +6,8 @@ import siteConfig from "../data/siteConfig";
 export default function NotFound() {
   return (
     <>
-      <title>Page not found | {siteConfig.business.name}</title>
+      {/* Single text child ONLY — see the note in ThankYou.jsx. */}
+      <title>{`Page not found | ${siteConfig.business.name}`}</title>
       <meta name="robots" content="noindex" />
       <section className="mx-auto max-w-3xl px-4 py-24 text-left sm:px-6 lg:px-8">
         <p className="font-display text-xs font-bold uppercase tracking-[0.28em] text-orange">

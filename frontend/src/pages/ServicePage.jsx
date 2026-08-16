@@ -260,7 +260,7 @@ export default function ServicePage() {
                   return (
                     <li key={rs.slug}>
                       <Link
-                        to={`/services/${rs.slug}`}
+                        to={`/services/${rs.slug}/`}
                         data-testid={`related-service-${rs.slug}`}
                         className="group flex items-center justify-between gap-4 rounded-md border border-slate-200 bg-white px-5 py-4 transition-colors hover:border-orange"
                       >
@@ -300,7 +300,7 @@ export default function ServicePage() {
                 {relatedTowns.map((rt) => (
                   <li key={rt.slug}>
                     <Link
-                      to={`/movers/${rt.slug}`}
+                      to={`/movers/${rt.slug}/`}
                       data-testid={`related-town-${rt.slug}`}
                       className="group flex items-center justify-between gap-3 rounded-md border border-slate-200 bg-white px-4 py-4 transition-colors hover:border-orange"
                     >

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Phone, MessageSquare, Truck, MapPin, Clock } from "lucide-react";
 import siteConfig from "../data/siteConfig";
+import { buildMovingCompanyJsonLd } from "../lib/seo";
 import TallyPopupButton from "../components/site/TallyPopupButton";
 
 /**
@@ -55,6 +56,12 @@ export default function About() {
         content="Who we are: a weekend-first moving company based in Essex County, NJ. Our own trucks, our own crew, and a real number on the first call."
       />
       <link rel="canonical" href={`${siteConfig.business.baseUrl}/about/`} />
+      {/* Same MovingCompany entity as the homepage, same @id, so Google reads
+          every page as one business rather than several. This was the only
+          page in sitemap.xml with no structured data at all. */}
+      <script type="application/ld+json">
+        {JSON.stringify(buildMovingCompanyJsonLd())}
+      </script>
       <meta
         property="og:title"
         content="About Haul Yeah Moving | Essex County, NJ Movers"
