@@ -33,11 +33,16 @@ const siteConfig = {
   },
 
   branding: {
-    // Owner-approved logo mark (JPEG). Swap the file at /app/frontend/public/logo.jpg
-    // to update the header, favicon, and og:image everywhere.
-    logoPath: "/logo.jpg",
+    // Owner-approved logo mark. The header renders it at 40x40, so it is
+    // served as a 192px webp (~8KB). The full-resolution 1024px logo.jpg
+    // (~534KB) used to be the header image on EVERY page — 31% of total page
+    // weight for a 40px icon. Keep logo.jpg for structured data only.
+    logoPath: "/logo.webp",
+    // Full-resolution mark for schema.org / rich results. Not loaded by
+    // visitors — crawlers only.
+    logoSchemaPath: "/logo.jpg",
     logoAlt: "Haul Yeah Moving logo",
-    faviconPath: "/logo.jpg",
+    faviconPath: "/logo.webp",
     // Social share card. MUST be 1200x630 — this was /logo.jpg (a square
     // logo) which rendered as a broken-looking crop in every Facebook,
     // iMessage and WhatsApp preview and in Meta ad link previews.
@@ -167,7 +172,7 @@ const siteConfig = {
     { label: "Moving", href: "/" },
     { label: "Services", href: "/#services" },
     { label: "Locations", href: "/#locations" },
-    { label: "About", href: "/about" },
+    { label: "About", href: "/about/" },
     { label: "Reviews", href: "/#reviews" },
     { label: "Contact", href: "/#contact" },
   ],
