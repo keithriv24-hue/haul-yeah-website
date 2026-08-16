@@ -21,9 +21,17 @@ module.exports = {
           deep: "#08152B",
         },
         orange: {
-          DEFAULT: "#FF6B2C",
-          hover: "#E65A1F",
+          // Action orange. #FF6B2C measured 2.84:1 against white — it failed
+          // WCAG AA everywhere it carried text, INCLUDING white text on the
+          // primary "Free Quote" buttons, and it failed the 3:1 large-text
+          // bar too. #C2410C is 5.18:1 against white: same brand read, legible
+          // on a phone in direct sun, which is where half our traffic is.
+          DEFAULT: "#C2410C",
+          hover: "#9A3412",
           soft: "#FFF1E9",
+          // Decorative only — never put text in this colour, and never use it
+          // as a background behind text.
+          bright: "#FF6B2C",
         },
         cream: "#F8F5F0",
         ink: "#0A0F1A",

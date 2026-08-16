@@ -44,7 +44,7 @@ const SHELL_PATH = path.join(BUILD_DIR, SHELL_NAME);
 // Routes that must be prerendered but must NOT appear in sitemap.xml
 // (noindex conversion pages). Keeps them out of Google while still giving
 // Cloudflare Pages a real static file to serve on a direct hit.
-const EXTRA_ROUTES = ["/thank-you"];
+const EXTRA_ROUTES = ["/thank-you", "/404"];
 
 // Hosts we never let load during prerender. Blocking these means:
 //   • Meta Pixel never fires PageView
@@ -245,11 +245,16 @@ async function prerenderRoute(browser, port, route) {
       // fbq bootstrap; the request itself is aborted by the interceptor,
       // but the <script> tag is still in the DOM.
       const isPixelRuntime = src.includes("connect.facebook.net");
+      // GA4 loader, injected at runtime by components/site/Layout.jsx.
+      // Baking this tag into the static HTML made Layout's own guard
+      // short-circuit on real page loads, leaving window.gtag undefined and
+      // GA4 collecting nothing. Strip it — the effect re-injects it live.
+      const isGa4Runtime = src.includes("googletagmanager.com/gtag/js");
       // Tally widget runtime iframes/scripts. The static embed.js loader
       // stays; anything else pointing at tally.so is a runtime child.
       const isTallyRuntime =
         src.includes("tally.so") && !src.endsWith("/widgets/embed.js");
-      if (isPosthogRuntime || isPixelRuntime || isTallyRuntime) {
+      if (isPosthogRuntime || isPixelRuntime || isTallyRuntime || isGa4Runtime) {
         el.remove();
       }
     });
@@ -338,6 +343,14 @@ async function prerenderRoute(browser, port, route) {
 
 function outPathForRoute(route) {
   if (route === "/") return path.join(BUILD_DIR, "index.html");
+  // Cloudflare Pages serves a top-level 404.html with a real HTTP 404 status
+  // for any path that matches no file. Without it the host SPA-falls-back to
+  // index.html, so every unknown URL returned the full prerendered HOMEPAGE
+  // at HTTP 200 — homepage <title>, homepage JSON-LD and a canonical pointing
+  // at "/". That is a soft 404 on an unlimited number of URLs.
+  // React Router's path="*" renders <NotFound /> for "/404", so this capture
+  // is the real 404 view.
+  if (route === "/404") return path.join(BUILD_DIR, "404.html");
   const rel = route.replace(/^\/+/, "");
   return path.join(BUILD_DIR, rel, "index.html");
 }

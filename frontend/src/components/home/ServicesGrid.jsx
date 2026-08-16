@@ -83,7 +83,7 @@ export default function ServicesGrid() {
                 }
               >
                 <Link
-                  to={`/services/${service.slug}`}
+                  to={`/services/${service.slug}/`}
                   data-testid={`service-card-${service.slug}`}
                   className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-colors hover:border-navy sm:p-8 ${
                     featured

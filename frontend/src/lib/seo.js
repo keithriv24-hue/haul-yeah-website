@@ -23,7 +23,7 @@ function movingCompanyEntity(areaServed) {
     telephone: siteConfig.contact.phoneTel,
     email: siteConfig.contact.email,
     image: `${siteConfig.business.baseUrl}${siteConfig.branding.ogImagePath}`,
-    logo: `${siteConfig.business.baseUrl}${siteConfig.branding.logoPath}`,
+    logo: `${siteConfig.business.baseUrl}${siteConfig.branding.logoSchemaPath}`,
     areaServed,
     address: {
       "@type": "PostalAddress",

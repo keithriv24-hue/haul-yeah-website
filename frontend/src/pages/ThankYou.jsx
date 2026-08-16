@@ -36,7 +36,10 @@ export default function ThankYou() {
 
   return (
     <>
-      <title>Thanks — we&apos;re on it | {siteConfig.business.name}</title>
+      {/* Single text child ONLY. React 19 head hoisting silently renders an
+          EMPTY <title> when the element has more than one child, which is
+          what shipped here: /thank-you served <title></title>. */}
+      <title>{`Thanks — we’re on it | ${siteConfig.business.name}`}</title>
       <meta name="robots" content="noindex, nofollow" />
 
       <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">

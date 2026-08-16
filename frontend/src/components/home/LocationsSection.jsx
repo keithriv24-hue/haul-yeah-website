@@ -48,7 +48,7 @@ export default function LocationsSection() {
           {locations.map((loc) => (
             <li key={loc.slug}>
               <Link
-                to={`/movers/${loc.slug}`}
+                to={`/movers/${loc.slug}/`}
                 data-testid={`location-card-${loc.slug}`}
                 className="group flex h-full flex-col justify-between rounded-md border border-slate-200 bg-white p-5 transition-colors hover:border-orange"
               >

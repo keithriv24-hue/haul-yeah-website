@@ -151,11 +151,28 @@ function GoogleReviewsInner({ sectionId }) {
 
     let cancelled = false;
 
-    fetch(contentUrlFor(trustindexWidgetId), { credentials: "omit" })
+    // cache: "no-cache" forces a revalidation on every mount.
+    //
+    // WHY: Trustindex serves content.html with
+    //   Cache-Control: public, max-age=43200, immutable
+    // — 12 hours with NO revalidation. If the CDN returns an error body
+    // (lapsed subscription, failed card, outage) it gets pinned in the
+    // visitor's cache for half a day and nothing we deploy can correct it.
+    // This happened on 2026-08-15: a short billing gap served a
+    // "trial period has expired" notice that kept rendering long after the
+    // subscription was live. Revalidating costs a 304 with no body.
+    fetch(contentUrlFor(trustindexWidgetId), {
+      credentials: "omit",
+      cache: "no-cache",
+    })
       .then((r) => (r.ok ? r.text() : ""))
       .then((html) => {
         if (cancelled) return;
         if (!html) return;
+        // A 443-byte error notice and a real widget both arrive as HTTP 200.
+        // Only inject something that actually is a widget — otherwise fall
+        // through to the empty mount, never Trustindex's own marketing.
+        if (!html.includes("ti-widget")) return;
         if (!mount.isConnected) return;
 
         // Feed the content into Trustindex's own load pipeline. Its load()
