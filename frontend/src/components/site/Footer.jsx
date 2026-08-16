@@ -70,7 +70,7 @@ export default function Footer() {
               {services.map((s) => (
                 <li key={s.slug}>
                   <Link
-                    to={`/services/${s.slug}`}
+                    to={`/services/${s.slug}/`}
                     data-testid={`footer-service-${s.slug}`}
                     className="text-sm text-slate-600 transition-colors hover:text-orange"
                   >
@@ -90,7 +90,7 @@ export default function Footer() {
               {locations.map((l) => (
                 <li key={l.slug}>
                   <Link
-                    to={`/movers/${l.slug}`}
+                    to={`/movers/${l.slug}/`}
                     data-testid={`footer-location-${l.slug}`}
                     className="text-sm text-slate-600 transition-colors hover:text-orange"
                   >

@@ -30,6 +30,29 @@ export default function Layout({ children }) {
   useEffect(() => {
     const id = siteConfig?.analytics?.measurementId;
     if (!id) return;
+
+    // Define the gtag shim FIRST, unconditionally.
+    //
+    // WHY THE ORDER MATTERS (this was a real, shipped bug):
+    // scripts/prerender.js snapshots the DOM *after* effects have run, so the
+    // <script id="ga4-loader"> tag this effect appends was baked into the
+    // static HTML of every page. On a real visit the element already existed,
+    // the guard below returned early, and window.gtag was never defined — so
+    // every GA4 call in lib/analytics.js silently no-opped behind hasGtag().
+    // Result: gtag.js loaded on every page and the property received zero
+    // events. Never put the DOM guard above this block.
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== "function") {
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag("js", new Date());
+      // send_page_view false — Layout fires page_view per route below instead,
+      // otherwise SPA navigations are never counted.
+      window.gtag("config", id, { send_page_view: false });
+    }
+
+    // Only the <script> injection is guarded — the shim above must run either way.
     if (document.getElementById("ga4-loader")) return;
 
     const s = document.createElement("script");
@@ -37,15 +60,6 @@ export default function Layout({ children }) {
     s.async = true;
     s.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
     document.head.appendChild(s);
-
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
-    };
-    window.gtag("js", new Date());
-    // send_page_view false — Layout fires page_view per route below instead,
-    // otherwise SPA navigations are never counted.
-    window.gtag("config", id, { send_page_view: false });
   }, []);
 
   useEffect(() => {
