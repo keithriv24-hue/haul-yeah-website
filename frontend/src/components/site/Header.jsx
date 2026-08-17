@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import TallyPopupButton from "./TallyPopupButton";
 import siteConfig from "../../data/siteConfig";
 
 /**
- * Sticky top header for every page.
- * - Desktop: logo, nav links, hours pill, phone CTA, orange Free Quote button.
- * - Mobile: logo, hamburger menu (full-screen sheet), phone icon.
+ * Sticky black signage header.
+ * - Desktop: wordmark, nav with orange underline on hover, phone plate,
+ *   orange Free Quote plate.
+ * - Mobile: wordmark + hamburger. The phone/quote pair lives in the fixed
+ *   bottom MobileCTABar instead, so it is always reachable with a thumb.
  */
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -21,11 +23,7 @@ export default function Header() {
 
   // Prevent body scroll while mobile menu open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -33,15 +31,15 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"
+      className="sticky top-0 z-[60] bg-ink text-cream"
       data-testid="site-header"
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
-        <Logo />
+      <div className="wrap flex h-[62px] items-center justify-between sm:h-[70px]">
+        <Logo tone="cream" />
 
         {/* Desktop nav */}
         <nav
-          className="hidden items-center gap-8 lg:flex"
+          className="hidden items-center gap-7 lg:flex"
           aria-label="Primary"
           data-testid="desktop-nav"
         >
@@ -50,7 +48,7 @@ export default function Header() {
               key={item.label}
               href={item.href}
               data-testid={`nav-link-${item.label.toLowerCase()}`}
-              className="font-display text-sm font-semibold uppercase tracking-wide text-navy transition-colors hover:text-orange"
+              className="border-b-[3px] border-transparent py-1.5 text-[13px] font-semibold uppercase tracking-[0.1em] no-underline transition-colors hover:border-orange-bright"
             >
               {item.label}
             </a>
@@ -58,79 +56,57 @@ export default function Header() {
         </nav>
 
         {/* Desktop CTAs */}
-        <div className="hidden items-center gap-4 lg:flex">
-          <div
-            className="hidden items-center gap-2 border-l border-slate-200 pl-4 xl:flex"
-            data-testid="header-hours"
-          >
-            <span
-              className="inline-block h-2 w-2 rounded-full bg-orange"
-              aria-hidden="true"
-            />
-            <span className="text-xs font-semibold uppercase tracking-wider text-navy">
-              {siteConfig.business.hoursShort}
-            </span>
-          </div>
+        <div className="hidden items-center gap-3 lg:flex">
           <a
             href={`tel:${siteConfig.contact.phoneTel}`}
             data-testid="header-phone-link"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-orange"
+            className="plate hover:bg-cream hover:text-ink"
           >
-            <Phone className="h-4 w-4" strokeWidth={2.4} />
-            <span className="font-display">{siteConfig.contact.phoneDisplay}</span>
+            <span className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] opacity-70">
+              Call
+            </span>
+            {siteConfig.contact.phoneDisplay}
           </a>
           <TallyPopupButton
-            size="md"
+            variant="plate"
             testId="header-free-quote-btn"
+            className="border-orange-bright bg-orange-bright text-ink"
           >
-            Free Quote
+            Free quote
           </TallyPopupButton>
         </div>
 
-        {/* Mobile right cluster */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <a
-            href={`tel:${siteConfig.contact.phoneTel}`}
-            data-testid="mobile-header-phone"
-            aria-label={`Call ${siteConfig.contact.phoneDisplay}`}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-slate-200 text-navy transition-colors hover:bg-slate-50"
-          >
-            <Phone className="h-4 w-4" strokeWidth={2.4} />
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            data-testid="mobile-menu-toggle"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-slate-200 text-navy transition-colors hover:bg-slate-50"
-          >
-            {open ? (
-              <X className="h-5 w-5" strokeWidth={2.4} />
-            ) : (
-              <Menu className="h-5 w-5" strokeWidth={2.4} />
-            )}
-          </button>
-        </div>
+        {/* Mobile toggle */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          data-testid="mobile-menu-toggle"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="inline-flex h-11 w-11 items-center justify-center border-2 border-cream text-cream lg:hidden"
+        >
+          {open ? (
+            <X className="h-5 w-5" strokeWidth={2.6} />
+          ) : (
+            <Menu className="h-5 w-5" strokeWidth={2.6} />
+          )}
+        </button>
       </div>
 
       {/* Mobile menu panel */}
       {open && (
-        <div
-          className="lg:hidden"
-          data-testid="mobile-menu"
-        >
+        <div className="lg:hidden" data-testid="mobile-menu">
           <nav
-            className="border-t border-slate-200 bg-white px-4 pb-8 pt-4 sm:px-6"
+            className="wrap border-t-4 border-orange-bright bg-ink pb-8 pt-2"
             aria-label="Mobile primary"
           >
-            <ul className="flex flex-col divide-y divide-slate-100">
+            <ul className="flex flex-col">
               {siteConfig.nav.map((item) => (
-                <li key={item.label}>
+                <li key={item.label} className="border-b border-cream/15">
                   <a
                     href={item.href}
                     data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
-                    className="block py-4 font-display text-lg font-bold uppercase tracking-wide text-navy transition-colors hover:text-orange"
+                    className="block py-4 font-display text-2xl uppercase tracking-[-0.02em] no-underline"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
@@ -142,20 +118,15 @@ export default function Header() {
               <a
                 href={`tel:${siteConfig.contact.phoneTel}`}
                 data-testid="mobile-menu-call-btn"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-sm border-2 border-navy px-5 py-3 font-display text-sm font-bold uppercase tracking-wide text-navy transition-colors hover:bg-navy hover:text-white"
+                className="sbtn sbtn--ghost sbtn--full"
               >
-                <Phone className="h-4 w-4" strokeWidth={2.4} />
                 Call {siteConfig.contact.phoneDisplay}
               </a>
-              <TallyPopupButton
-                testId="mobile-menu-quote-btn"
-                fullWidth
-                size="lg"
-              >
-                Free Quote
+              <TallyPopupButton testId="mobile-menu-quote-btn" fullWidth>
+                Free quote
               </TallyPopupButton>
-              <p className="text-center text-xs uppercase tracking-widest text-slate-500">
-                {siteConfig.business.hoursShort} · Response in{" "}
+              <p className="text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-cream/60">
+                {siteConfig.business.hoursShort} · Reply in{" "}
                 {siteConfig.contact.responseTime}
               </p>
             </div>

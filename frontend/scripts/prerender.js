@@ -322,6 +322,58 @@ async function prerenderRoute(browser, port, route) {
       head.insertBefore(marker, head.firstChild);
     }
 
+    // ── TEXT-NODE BOUNDARY PRESERVATION ──────────────────────────────
+    // This is the fix for the React #418 hydration error that fired on
+    // EVERY page load of this site.
+    //
+    // THE PROBLEM
+    // We are not doing real SSR — we are snapshotting a live browser DOM and
+    // writing document.documentElement.outerHTML to disk. JSX like
+    //
+    //     {hero.h1Mid}{" "}
+    //     <span>{hero.h1Accent}</span>
+    //
+    // renders as TWO adjacent text nodes ("weekend movers" and " ") followed
+    // by an element. outerHTML serialises adjacent text nodes with nothing
+    // between them, so the browser reparses them as ONE text node on the next
+    // load. React then hydrates, expects two, finds one, and throws:
+    //   "Hydration failed because the server rendered text didn't match"
+    // React recovers by throwing away the entire prerendered tree and
+    // re-rendering it on the client — which is precisely the work the
+    // prerender exists to avoid, on all 21 pages.
+    //
+    // THE FIX
+    // ReactDOMServer solves this by emitting an empty comment (<!-- -->)
+    // between adjacent text nodes. We do the same thing here, walking the
+    // body and inserting a separator wherever two text nodes are siblings.
+    // The reparsed DOM then has the same node boundaries React expects.
+    //
+    // Do this LAST, immediately before serialising — inserting comment nodes
+    // earlier would confuse the element queries above.
+    (function separateAdjacentTextNodes(root) {
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+      const elements = [root];
+      let node = walker.nextNode();
+      while (node) {
+        elements.push(node);
+        node = walker.nextNode();
+      }
+      elements.forEach((el) => {
+        // <script> / <style> contents are raw text — never split them.
+        const tag = el.tagName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "TEXTAREA") return;
+        const kids = Array.from(el.childNodes);
+        for (let i = 0; i < kids.length - 1; i++) {
+          if (
+            kids[i].nodeType === Node.TEXT_NODE &&
+            kids[i + 1].nodeType === Node.TEXT_NODE
+          ) {
+            el.insertBefore(document.createComment(""), kids[i + 1]);
+          }
+        }
+      });
+    })(document.body);
+
     return "<!doctype html>\n" + document.documentElement.outerHTML;
   }, route);
 

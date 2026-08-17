@@ -5,10 +5,12 @@ import ServicesGrid from "../components/home/ServicesGrid";
 import WhySection from "../components/home/WhySection";
 import LocationsSection from "../components/home/LocationsSection";
 import HowItWorks from "../components/home/HowItWorks";
+import PricingBoard from "../components/home/PricingBoard";
 import FAQSection from "../components/home/FAQSection";
 import FinalCTA from "../components/home/FinalCTA";
 import GoogleReviews from "../components/site/GoogleReviews";
 import siteConfig from "../data/siteConfig";
+import useReveal from "../lib/useReveal";
 import { buildFaqJsonLd, buildMovingCompanyJsonLd } from "../lib/seo";
 
 /**
@@ -17,6 +19,8 @@ import { buildFaqJsonLd, buildMovingCompanyJsonLd } from "../lib/seo";
  * React 19 hoists <title>/<meta> into <head> automatically.
  */
 export default function Home() {
+  useReveal();
+
   useEffect(() => {
     // If user landed with a hash, respect it after initial layout.
     if (window.location.hash) {
@@ -61,6 +65,7 @@ export default function Home() {
       <TrustBar />
       <ServicesGrid />
       <WhySection />
+      <PricingBoard />
       <GoogleReviews />
       <LocationsSection />
       <HowItWorks />

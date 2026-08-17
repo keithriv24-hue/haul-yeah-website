@@ -68,11 +68,11 @@ export default function TallyInlineEmbed() {
         />
       ) : (
         <div
-          className="flex min-h-[520px] w-full items-center justify-center rounded-sm border border-slate-100 bg-slate-50"
+          className="flex min-h-[520px] w-full items-center justify-center border-2 border-dashed border-ink/25 bg-cream-deep"
           aria-hidden="true"
           data-testid="tally-embed-loading"
         >
-          <p className="text-sm text-slate-400">Loading quote form…</p>
+          <p className="text-sm uppercase tracking-[0.16em] opacity-50">Loading quote form…</p>
         </div>
       )}
 
@@ -81,7 +81,7 @@ export default function TallyInlineEmbed() {
       </div>
 
       <noscript>
-        <p className="mt-3 text-sm text-slate-600">
+        <p className="mt-3 text-sm">
           Please{" "}
           <a
             href={siteConfig.tally.fallbackUrl}

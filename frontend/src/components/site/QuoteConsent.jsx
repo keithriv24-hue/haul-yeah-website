@@ -9,7 +9,9 @@ export default function QuoteConsent({ className = "" }) {
   return (
     <p
       className={
-        "text-[11px] leading-relaxed text-slate-500 " + className
+        // currentColor at 65% so the consent line stays legible on cream AND on
+        // the black final-CTA band, where slate-500 was nearly invisible.
+        "text-[11px] leading-relaxed opacity-65 " + className
       }
       data-testid="quote-consent"
     >
