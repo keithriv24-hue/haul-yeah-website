@@ -56,44 +56,31 @@ function PreReviewTrustBlock({ sectionId }) {
   return (
     <section
       id={sectionId}
-      className="border-b border-slate-200 bg-white py-20 sm:py-28"
+      className="band band--cream2"
       aria-labelledby="pre-review-heading"
       data-testid="pre-review-trust-section"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <p className="font-display text-xs font-bold uppercase tracking-[0.28em] text-orange">
-            {kicker}
-          </p>
-          <h2
-            id="pre-review-heading"
-            className="mt-4 font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-4xl lg:text-5xl"
-            data-testid="pre-review-heading"
-          >
+      <div className="wrap">
+        <div className="bh rv">
+          <h2 id="pre-review-heading" data-testid="pre-review-heading">
             {heading}
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+          <p>
+            <span className="kick mb-2 block text-orange">{kicker}</span>
             {body}
           </p>
         </div>
 
-        <ul
-          className="mt-12 grid gap-4 sm:grid-cols-2"
-          data-testid="pre-review-points"
-        >
+        <ul className="grid3 rv" data-testid="pre-review-points">
           {points.map((point, i) => (
             <li
               key={point.title}
-              className="rounded-md border border-slate-200 bg-slate-50 p-6"
+              className="border-2 border-ink bg-cream p-6"
               data-testid={`pre-review-point-${i}`}
             >
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-sm bg-orange text-white">
-                <MessageSquareQuote className="h-4 w-4" strokeWidth={2.4} />
-              </span>
-              <h3 className="mt-4 font-display text-lg font-bold tracking-tight text-navy">
-                {point.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+              <span className="n">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{point.title}</h3>
+              <p className="mt-2.5 text-[15px] leading-relaxed opacity-80">
                 {point.description}
               </p>
             </li>
@@ -224,69 +211,76 @@ function GoogleReviewsInner({ sectionId }) {
     <section
       id={sectionId}
       ref={sectionRef}
-      className="border-b border-slate-200 bg-white py-20 sm:py-28"
+      className="band band--cream2"
       aria-labelledby="google-reviews-heading"
       data-testid="google-reviews-section"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <p className="font-display text-xs font-bold uppercase tracking-[0.28em] text-orange">
-            Reviews
-          </p>
-          <h2
-            id="google-reviews-heading"
-            className="mt-4 font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-4xl lg:text-5xl"
-            data-testid="google-reviews-heading"
-          >
+      <div className="wrap">
+        <div className="bh rv">
+          <h2 id="google-reviews-heading" data-testid="google-reviews-heading">
             {heading}
           </h2>
-          {subheading ? (
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-              {subheading}
-            </p>
-          ) : null}
+          {subheading ? <p>{subheading}</p> : null}
         </div>
 
-        <div className="mt-12" ref={mountRef} data-testid="google-reviews-slot">
-          {trustindexWidgetId ? null : (
-            <div
-              className="mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-md border border-dashed border-slate-300 bg-slate-50 p-10 text-center"
-              data-testid="reviews-placeholder"
-            >
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-sm bg-orange text-white">
-                <MessageSquareQuote className="h-5 w-5" strokeWidth={2.4} />
-              </span>
-              <p className="font-display text-lg font-bold tracking-tight text-navy">
-                Google reviews load here once connected.
-              </p>
-              <p className="max-w-md text-sm leading-relaxed text-slate-500">
-                Real customer feedback from our Essex County moves will show up
-                here as soon as our review widget goes live.
-              </p>
+        {/* Widget on the left, the four things a customer can verify BEFORE
+            paying on the right. We're a young business with a handful of
+            reviews — pairing the two is stronger than either alone, and it
+            stops the section reading as a thin five-star box. */}
+        <div className="grid gap-[clamp(28px,4vw,52px)] rv lg:grid-cols-[1.1fr_1fr]">
+          <div>
+            <div ref={mountRef} data-testid="google-reviews-slot">
+              {trustindexWidgetId ? null : (
+                <div
+                  className="border-2 border-dashed border-ink/40 p-8"
+                  data-testid="reviews-placeholder"
+                >
+                  <h3>Google reviews load here once connected.</h3>
+                  <p className="mt-2 text-[15px] opacity-75">
+                    Real customer feedback from our Essex County moves shows up
+                    here as soon as the review widget goes live.
+                  </p>
+                </div>
+              )}
             </div>
-          )}
-        </div>
 
-        {googleReviewLink ? (
-          <div
-            className="mt-10 flex flex-wrap items-center gap-4"
-            data-testid="leave-review-cta"
-          >
-            <a
-              href={googleReviewLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="leave-review-btn"
-              className="inline-flex items-center gap-2 rounded-sm bg-orange px-6 py-4 font-display text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange focus-visible:ring-offset-2"
-            >
-              Leave us a review
-              <ArrowUpRight className="h-4 w-4" strokeWidth={2.4} />
-            </a>
-            <span className="text-sm text-slate-500">
-              Google · takes 60 seconds
-            </span>
+            {googleReviewLink ? (
+              <div
+                className="mt-7 flex flex-wrap items-center gap-4"
+                data-testid="leave-review-cta"
+              >
+                <a
+                  href={googleReviewLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="leave-review-btn"
+                  className="sbtn sbtn--ghost sbtn--sm border-ink text-ink"
+                >
+                  Leave us a review ↗
+                </a>
+                <span className="text-sm opacity-65">
+                  Google · takes 60 seconds
+                </span>
+              </div>
+            ) : null}
           </div>
-        ) : null}
+
+          <ul data-testid="reviews-verify-points">
+            {siteConfig.reviews.preLaunch.points.map((point) => (
+              <li
+                key={point.title}
+                className="border-t-2 border-ink py-4 last:border-b-2"
+              >
+                <b className="font-display text-[17px] uppercase tracking-[-0.02em]">
+                  {point.title}
+                </b>
+                <p className="mt-1.5 text-[15px] leading-relaxed opacity-80">
+                  {point.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

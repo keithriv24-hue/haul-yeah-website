@@ -12,6 +12,13 @@
  *
  * • A non-developer can safely edit any value below to change copy.
  *   Do NOT rename keys — components read from these exact names.
+ *
+ * ⚠ PRICING: every number a customer can see comes from the `pricing`
+ *   and `terms` blocks below. They are derived from the owner's quote
+ *   formula and package sheet. If the formula changes, change it HERE —
+ *   do not hand-edit prices into page copy, or the site and the phone
+ *   script will drift apart and customers will argue the difference on
+ *   move day.
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -21,9 +28,20 @@ const siteConfig = {
     shortName: "Haul Yeah",
     tagline: "Weekend moves made easy",
     secondaryTagline: "NJ's weekend movers",
-    fleet: "trucks from 16 ft to 26 ft — the right size for every move",
-    hoursShort: "7 days a week",
-    hoursLong: "Open 7 days a week",
+    fleet: "Box trucks from 16 ft to 26 ft — the right size for every move.",
+    // ⚠ HOURS — READ BEFORE EDITING.
+    // We ANSWER seven days a week. We MOVE Saturdays and Sundays.
+    // The trucks run other work Monday–Friday, so weekday moving capacity is
+    // not something we can promise on a website. The old copy said "Open 7
+    // days a week", which reads as "you can book me for a Tuesday" and turns
+    // into a cancelled job and a one-star review. Keep these two ideas
+    // separate in every string below.
+    hoursShort: "We answer 7 days · we move weekends",
+    hoursLong:
+      "Phones answered seven days a week. Moves run Saturdays and Sundays.",
+    movingDays: "Saturdays & Sundays",
+    weekdayNote:
+      "Need a weekday? Ask — we take them when a truck is free, but weekends are what we staff for.",
     serviceArea: "Essex County, NJ",
     napLine: "Haul Yeah Moving · Essex County, NJ · (862) 250-3216",
     // Production domain. Change here + regenerate /public/sitemap.xml
@@ -33,20 +51,13 @@ const siteConfig = {
   },
 
   branding: {
-    // Owner-approved logo mark. The header renders it at 40x40, so it is
-    // served as a 192px webp (~8KB). The full-resolution 1024px logo.jpg
-    // (~534KB) used to be the header image on EVERY page — 31% of total page
-    // weight for a 40px icon. Keep logo.jpg for structured data only.
+    // The header no longer renders a logo image — the Archivo Black wordmark
+    // is the mark. logo.webp is kept for favicons; logo.jpg for schema.org.
     logoPath: "/logo.webp",
-    // Full-resolution mark for schema.org / rich results. Not loaded by
-    // visitors — crawlers only.
     logoSchemaPath: "/logo.jpg",
     logoAlt: "Haul Yeah Moving logo",
     faviconPath: "/logo.webp",
-    // Social share card. MUST be 1200x630 — this was /logo.jpg (a square
-    // logo) which rendered as a broken-looking crop in every Facebook,
-    // iMessage and WhatsApp preview and in Meta ad link previews.
-    // Regenerate from a real crew photo if the branding changes.
+    // Social share card. MUST be 1200x630.
     ogImagePath: "/images/og-cover.jpg",
     ogImageWidth: "1200",
     ogImageHeight: "630",
@@ -61,6 +72,112 @@ const siteConfig = {
     responseTime: "under 5 minutes",
   },
 
+  /* ─────────────────────────────────────────────────────────────
+   * PRICING — what the customer sees.
+   *
+   * These are HAUL YEAH's own package prices, not generic NJ market
+   * ranges. They come straight off the owner's package sheet and quote
+   * formula so the website, the phone script and the Square invoice all
+   * say the same number.
+   *
+   * Publishing real prices is deliberate: it filters out the shoppers
+   * looking for a $300 move before they ever occupy a phone slot, and it
+   * removes the "that's more than I expected" moment from the close.
+   *
+   * Every package price ALREADY INCLUDES truck, fuel, blankets, dollies,
+   * straps, and the first 20 miles round trip — that is what makes the
+   * "all-in" promise true. Only the `addOns` below can move the number,
+   * and they are all quoted up front, before the deposit.
+   * ───────────────────────────────────────────────────────────── */
+  pricing: {
+    heading: "What it costs",
+    subheading:
+      "Our actual price bands — published, not hidden behind a form. Your exact number is quoted per job, in writing, before you pay a deposit.",
+
+    packages: [
+      {
+        label: "Small move — studio or 1BR",
+        detail: "2 movers + truck",
+        price: "From $650",
+      },
+      {
+        label: "Standard move — 2–3BR",
+        detail: "3 movers + truck",
+        price: "$1,100–$1,400",
+      },
+      {
+        label: "Large or specialty — 3–4BR, piano, office",
+        detail: "4 movers + truck",
+        price: "$2,200–$3,000+",
+      },
+      {
+        label: "Labor only — you supply the truck",
+        detail: "2-hour minimum",
+        price: "$130–$180/hr",
+      },
+    ],
+
+    // Rendered as the "included" list — this is the all-in promise, itemised.
+    included: [
+      "The truck, the fuel and the tolls",
+      "Blankets, shrink wrap, dollies and straps",
+      "First 20 miles round trip",
+      "Disassembly and reassembly of standard furniture",
+    ],
+
+    // The ONLY things that can change your number, all quoted up front.
+    addOns: [
+      { label: "Stairs, per flight", price: "$75–$100" },
+      { label: "Mileage over the first 20 mi", price: "$0.85/mi" },
+      { label: "Upright piano", price: "$400–$600" },
+      { label: "Grand piano", price: "$600–$1,200" },
+      { label: "Safe, gym equipment, oversized items", price: "$400–$600" },
+      { label: "Packing service and materials", price: "Quoted per job" },
+    ],
+
+    // Peak pricing, stated plainly. We DO charge more for the dates everyone
+    // wants — pretending otherwise would break the "no surprises" promise the
+    // moment a customer compared a Saturday quote to a Wednesday one.
+    peakNote:
+      "Saturdays, Sundays and the last few days of the month are peak — those slots are priced higher than a mid-week job, and the weekend rate is already inside the number we quote you. Nothing gets added on move day.",
+
+    fineprint:
+      "These are our real price bands, not a teaser. A quote that comes in dramatically below them is usually planning to make the difference back with hourly extras and a \"truck fee\" once your furniture is already on the truck.",
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+   * TERMS — minimums, deposit, cancellation, damage.
+   *
+   * ⚠ These are contractual claims. Every one of them is something a
+   * customer can hold us to, and two of them used to be wrong:
+   *
+   *   • The site advertised "no minimum-hour trap" on small moves while
+   *     the business actually runs a 3-hour minimum on any job with a
+   *     truck. That is a dispute waiting to happen on the doorstep.
+   *   • The site advertised a "Damage-Free Guarantee". NJ movers default
+   *     to released-value coverage (about $0.60/lb per article) unless
+   *     the customer buys full-value protection. Advertising a guarantee
+   *     we do not underwrite is the kind of sentence that gets read back
+   *     to us in small-claims court.
+   *
+   * Fix the business first, then the copy — never the other way round.
+   * ───────────────────────────────────────────────────────────── */
+  terms: {
+    minimumTruck: "3 hours",
+    minimumLabor: "2 hours",
+    minimumLine:
+      "3-hour minimum on any job with a truck, 2-hour minimum on labor-only.",
+    depositPercent: "25%",
+    cancellationWindow: "72 hours",
+    depositLine:
+      "A 25% deposit locks your date; the balance is due when the job is done. Cancel 72 or more hours before your slot and the deposit is refunded in full.",
+    // Careful-handling promise. NOT the word "guarantee".
+    damageLine:
+      "Blankets, straps and floor runners on every job. If we damage something, we make it right.",
+    valuationLine:
+      "Basic coverage is included at the standard NJ released-value rate. Ask us about full-value protection if you're moving something you couldn't replace.",
+  },
+
   tally: {
     formId: "kdpE5d",
     embedUrl:
@@ -70,41 +187,18 @@ const siteConfig = {
   },
 
   analytics: {
-    // Owner will supply a GA4 Measurement ID later. While this is an
-    // empty string, /app/frontend/src/lib/analytics.js trackEvent()
-    // is a total no-op — no requests fire, no console noise.
-    // Example future value: "G-XXXXXXXXXX"
     measurementId: "G-E5STH1G8FF",
-    // Meta (Facebook) Pixel — the base pixel snippet lives in
-    // /app/frontend/public/index.html <head>. This ID is stored here
-    // for one-place editing / reference. Client-side navigation
-    // PageView events fire from Layout.jsx via useLocation.
+    // Meta (Facebook) Pixel — base snippet lives in public/index.html <head>.
+    // Client-side navigation PageView events fire from Layout.jsx.
     metaPixelId: "1913145279380964",
   },
 
   reviews: {
     // ── MASTER SWITCH ────────────────────────────────────────────────
-    // false = the Reviews section renders the "new business, here's how to
-    //         vet us" trust block instead of an empty widget.
-    // true  = the Trustindex Google widget renders.
-    //
-    // FLIP THIS TO true ONLY WHEN YOU HAVE 3+ LIVE GOOGLE REVIEWS.
-    // With 0 reviews the widget paints an empty box under a heading that
-    // promises "Real reviews from real Essex County moves" — which reads
-    // worse to a customer than having no reviews section at all.
+    // false = render the "new business, here's how to vet us" trust block.
+    // true  = render the Trustindex Google widget.
     enabled: true,
-    // Paste the Trustindex widget ID from the embed code they give you
-    // (looks like "abc123def456"). While this is an empty string, the
-    // section renders a graceful placeholder instead of the widget.
     trustindexWidgetId: "bcaf63578df98153d6860e9d810",
-    // NOTE: The Trustindex loader script is loaded ONCE globally via
-    // /app/frontend/public/index.html so SPA route changes never have to
-    // re-load it. The component (GoogleReviews.jsx) fetches the widget's
-    // content.html from the Trustindex CDN and hands it to the loader's
-    // TrustindexWidget class to activate — this avoids a race where the
-    // widget failed to paint after two consecutive client-side navigations.
-    // Your Google "leave a review" short link (g.page/r/...), used by the
-    // "Leave us a review" button. Paste it when you have it.
     googleReviewLink: "https://g.page/r/CVhCBro8FWmNEBM/review",
     heading: "What our customers say",
     subheading: "Real reviews from real Essex County moves.",
@@ -114,7 +208,7 @@ const siteConfig = {
     // not fabricate reviews or credentials at any stage.
     preLaunch: {
       kicker: "Straight talk",
-      heading: "We're new. Here's how to check us out anyway.",
+      heading: "We're new. Check us out anyway.",
       body:
         "We're building our Google reviews one move at a time, and we'd rather say that than show you testimonials we made up. Until they stack up, judge us on the things you can verify before you pay anything.",
       points: [
@@ -124,9 +218,9 @@ const siteConfig = {
             "You get the all-in price in writing — line by line — before any deposit changes hands.",
         },
         {
-          title: "Refundable deposit",
-            description:
-            "The deposit holds your date. Cancel outside our stated window and it comes back to you.",
+          title: "25% deposit, refundable 72 hours out",
+          description:
+            "The deposit locks your date and the balance is due on completion. Cancel 72 or more hours ahead and it comes back in full.",
         },
         {
           title: "You talk to the owner",
@@ -153,7 +247,9 @@ const siteConfig = {
    * njMoverLicense — NJ Division of Consumer Affairs Public Mover licence.
    *   Required to operate as an intrastate household-goods mover in NJ, and
    *   NJ requires the licence number to appear in advertising. This website
-   *   is advertising.
+   *   is advertising. STATUS: applied for, not yet issued (16 Aug 2026).
+   *   The moment the PM number arrives, paste it here — it renders in the
+   *   footer and on /about/ automatically, everywhere it needs to.
    *
    * usDot / mcNumber — FMCSA interstate operating authority. Required before
    *   any interstate (state-to-state) household-goods move is advertised or
@@ -164,98 +260,95 @@ const siteConfig = {
     njMoverLicense: "",
     usDot: "",
     mcNumber: "",
-    // Rendered in the footer above the copyright when any number is present.
     prefixLabel: "NJ Public Mover Lic.",
   },
 
   nav: [
-    { label: "Moving", href: "/" },
     { label: "Services", href: "/#services" },
-    { label: "Locations", href: "/#locations" },
+    { label: "Why us", href: "/#why" },
+    { label: "Cost", href: "/#cost" },
+    { label: "Towns", href: "/#locations" },
     { label: "About", href: "/about/" },
-    { label: "Reviews", href: "/#reviews" },
-    { label: "Contact", href: "/#contact" },
   ],
 
   hero: {
-    kicker: "NJ's Weekend Movers",
-    h1: "New Jersey's Weekend Movers — Booked in Minutes.",
+    kicker: "Essex County, NJ · Weekend movers",
+    h1Lead: "New Jersey's",
+    h1Mid: "weekend movers",
+    h1Accent: "booked in minutes",
     subhead:
-      "Affordable local moving in Essex County. Get an all-in quote fast.",
-    formCardTitle: "Get My Free Quote",
-    formCardSubtitle: "Response in under 5 minutes.",
+      "Apartments, small loads, same-day jobs and the Saturday move nobody else would take. An all-in price in writing before you put a deposit down.",
+    formCardTitle: "Get an all-in price",
+    formCardSubtitle: "Takes 30 seconds · answered in under 5 minutes",
     secondaryCta: "Or text us for a same-day quote",
-    // Real Haul Yeah crew photo (swap the file at /app/frontend/public/images/ to update).
     imageUrl: "/images/crew-open-truck-box.webp",
     imageAlt:
       "Haul Yeah Moving three-man crew at the open box of a 26-ft moving truck in Essex County NJ",
+    // Small stat strip under the H1.
+    stats: [
+      { label: "Fleet", value: "16–26 ft" },
+      { label: "We move", value: "Sat & Sun" },
+      { label: "Quote back", value: "< 5 min" },
+    ],
   },
 
+  // Marquee strip under the hero.
+  marquee: [
+    "Weekend movers",
+    "Essex County NJ",
+    "All-in pricing",
+    "Same day",
+    "Small moves from $650",
+    "(862) 250-3216",
+  ],
+
   trustBadges: [
-    "Trucks From 16–26 ft",
-    "7 Days a Week",
-    "Response in Under 5 Minutes",
+    "Trucks from 16–26 ft",
+    "Saturdays & Sundays",
+    "Reply in under 5 minutes",
   ],
 
   whyUs: [
     {
-      title: "Response in Under 5 Minutes",
+      title: "Response in under 5 minutes",
       description:
         "Text or call and you'll hear back before your coffee's cold. No waiting three days for a callback.",
     },
     {
-      title: "Transparent All-In Pricing",
+      title: "Transparent all-in pricing",
       description:
-        "The number you get is the number you pay. No mystery fuel fees, no truck-fee surprise on move day.",
+        "The number you get is the number you pay. Truck, fuel, blankets and the first 20 miles are already in it — no fuel fee, no truck fee invented on move day.",
     },
     {
-      title: "True Weekend Availability",
+      title: "True weekend availability",
       description:
-        "Saturday and Sunday moves are our specialty — not our exception. 7 days a week, actually staffed.",
+        "Saturday and Sunday are what we staff for, not what we squeeze you into. Weekend slots are the whole point of this company.",
     },
     {
-      title: "Damage-Free Guarantee",
+      title: "We handle it, and we own it",
       description:
-        "Blankets, straps, floor runners, and a fleet of 16–26 ft trucks driven by pros. If we break it, we make it right.",
+        "Blankets, straps, floor runners and a fleet of 16–26 ft trucks driven by pros. If we damage something, we make it right.",
     },
   ],
 
   whyImage: {
-    // Real Haul Yeah crew photo — mover with crossed arms in front of NJ-plated 26-ft truck.
     url: "/images/mover-crossed-arms-nj-truck.webp",
     alt: "Haul Yeah mover standing arms-crossed in front of a New Jersey-plated 26-ft moving truck in Essex County",
   },
 
   howItWorksImage: {
-    // Real crew photo — Haul Yeah crew working inside the truck with a wooden pallet and hand truck.
     url: "/images/crew-inside-truck-pallet.webp",
     alt: "Haul Yeah Moving crew loading a wooden pallet with a pallet jack inside a 26-ft moving truck",
   },
 
   finalCtaImage: {
-    // Real crew photo — two movers high-fiving next to the white 26-ft truck.
     url: "/images/movers-high-five.webp",
     alt: "Two Haul Yeah movers high-fiving after a successful New Jersey move",
   },
 
   teamImage: {
-    // Real crew photo — three-man Haul Yeah crew on the liftgate, middle mover in a safety vest.
-    // Used on service pages (labor-only, local-movers) as a trust visual.
     url: "/images/crew-liftgate-safety-vest.webp",
     alt: "Haul Yeah Moving three-man crew posed on the liftgate of a 26-ft moving truck, with the middle crew member in a safety vest",
-  },
-
-  // Backup / secondary images. AI-generated stock — used only where no real
-  // company photo fits yet (e.g., a packing scene page). Owner will replace over time.
-  aiImages: {
-    packing: {
-      url: "https://static.prod-images.emergentagent.com/jobs/16ab488a-3b3e-470f-9641-dde89e5faaad/images/cf0573943788ee38273716f042ac7415e715fae846b22bd0ae581161b9445eb5.jpeg",
-      alt: "Haul Yeah professional packing service wrapping items in a New Jersey home",
-    },
-    apartment: {
-      url: "https://static.prod-images.emergentagent.com/jobs/16ab488a-3b3e-470f-9641-dde89e5faaad/images/8414f310fd394bec1a5bc97262879c476aa9ad26838d29185c9016df1054f1f1.jpeg",
-      alt: "Haul Yeah apartment movers carrying boxes into a New Jersey building",
-    },
   },
 
   howItWorks: [
@@ -263,77 +356,71 @@ const siteConfig = {
       step: "01",
       title: "Get a quote",
       description:
-        "Send us a few details. We'll text back an all-in price in under 5 minutes.",
+        "Send us a few details. We'll text back an all-in price in under 5 minutes — no site visit, no sales call.",
     },
     {
       step: "02",
-      title: "Lock your date with a deposit",
+      title: "Lock your date",
       description:
-        "A small refundable deposit holds your slot. Weekends fill fast.",
+        "A 25% deposit holds your slot; the balance is due when the job is done. Cancel 72+ hours out and the deposit is refunded in full. Weekends fill fast.",
     },
     {
       step: "03",
       title: "We show up on time",
       description:
-        "Uniformed movers, blankets, dollies, straps. We wrap, load, drive, unload — done.",
+        "Blankets, dollies, straps and floor runners. We wrap, load, drive, unload — done.",
     },
   ],
 
   faqs: [
     {
-      q: "What is the cheapest day to hire movers?",
-      a: "Mid-week (Tuesday through Thursday) is usually the cheapest time to hire movers because demand is lower. Weekends and the first or last days of a month are the most expensive because everyone wants those slots. If you're comparing all-in quotes, a fair weekend mover can still beat a 'discount' weekday crew that pads the bill with hourly extras.",
-    },
-    {
-      q: "What are red flags when hiring movers?",
-      a: "No written estimate, cash-only demands, a huge upfront deposit, no USDOT or MC number for interstate jobs, no real business presence, and reviews that all sound identical. If a quote seems dramatically lower than everyone else, they're usually planning to make up the difference with hourly extras and 'truck fees' on move day.",
-    },
-    {
-      q: "What's the most affordable moving company in NJ?",
-      a: "'Most affordable' depends on your move — apartment, house, small load, weekend, or same-day all price differently. Haul Yeah Moving is built to be affordable for small, weekend, and last-minute moves in Essex County: transparent all-in pricing, no hidden truck or fuel fees. Text us the details and we'll send a real number in under 5 minutes.",
-    },
-    {
       q: "How much do movers cost in New Jersey?",
-      a: "For most local moves in NJ, expect roughly $120–$200 per hour for a two-mover crew and a truck, with three-mover crews running higher. Full apartment moves typically land around $500–$1,200, and full-house moves higher depending on size, stairs, and distance. Weekend, last-minute, and heavy-item jobs cost more — ask for an all-in quote so you know your final number before move day.",
+      a: "Across NJ, most local moves are billed at roughly $60–$65 per mover per hour with a truck, which puts a two-mover crew around $125–$130 an hour and a three-mover crew around $180–$190. Haul Yeah quotes a flat all-in number instead: small moves (studio or 1BR) start at $650, a 2–3BR runs $1,100–$1,400, and a 3–4BR or specialty job runs $2,200–$3,000+. Those prices already include the truck, fuel, blankets, equipment and the first 20 miles round trip. Stairs ($75–$100 a flight), pianos ($400–$1,200) and mileage past 20 miles are the only things that move the number, and we quote them before you pay a deposit.",
+    },
+    {
+      q: "Is there a minimum charge?",
+      a: "Yes, and we'd rather tell you now than on the doorstep. Any job with a truck has a 3-hour minimum, and labor-only jobs have a 2-hour minimum. That's why a small move starts at $650 rather than an hourly rate that looks cheap and then runs. What we don't do is put you on a 4-hour clock and pad it — you get a flat number up front and that's the number you pay.",
+    },
+    {
+      q: "How much is the deposit, and can I get it back?",
+      a: "A 25% deposit locks your date and the balance is due when the job is finished. If you cancel 72 or more hours before your slot, the deposit is refunded in full. We ask for a deposit because a weekend slot we hold for you is a slot we turned someone else away from — but a deposit should never be a hostage, which is why the refund window is stated here in writing rather than buried.",
     },
     {
       q: "Do Haul Yeah movers work on weekends?",
-      a: "Yes — emphatically. Weekend moves are our specialty. We move Saturdays and Sundays every weekend, and we staff for it, so you get real availability instead of a 'we'll try to fit you in' answer. Same-day and last-minute weekend bookings are absolutely doable — call or text (862) 250-3216.",
+      a: "Weekends are the whole business. We move Saturdays and Sundays and we staff crews for it, so you get real availability instead of a 'we'll try to fit you in' answer. Same-day and last-minute weekend bookings are genuinely doable — call or text (862) 250-3216 and we'll tell you what's open. If you need a weekday, ask: we take those when a truck is free, but weekends are what we plan around.",
+    },
+    {
+      q: "What is the cheapest day to hire movers?",
+      a: "Mid-week is the cheapest across the NJ market, because demand is lower — weekends and the first and last days of a month are the most expensive everywhere, including here. We won't pretend otherwise: our Saturday and Sunday slots are priced higher than a mid-week job would be, and that weekend rate is already inside the number we quote you rather than added on move day. If your dates are flexible and price is the deciding factor, tell us — we'll be straight with you about what a mid-week slot would save.",
+    },
+    {
+      q: "What are red flags when hiring movers?",
+      a: "No written estimate, cash-only demands, a deposit that isn't refundable under any circumstances, no NJ Public Mover licence number for an intrastate move, no USDOT or MC number for an interstate one, no real business presence, and reviews that all sound identical. If a quote comes in dramatically below everyone else's, they're usually planning to make the difference back with hourly extras and a 'truck fee' once your furniture is already loaded.",
     },
     {
       q: "How far in advance should I book a mover?",
-      a: "For weekday moves in NJ, 1–2 weeks of lead time is usually plenty. For weekend and end-of-month moves, aim for 2–4 weeks because those slots go first. That said, Haul Yeah handles last-minute and same-day moves too — if you need to move this weekend, text us and we'll tell you what's still open.",
+      a: "For a weekend or end-of-month move in NJ, aim for 2–4 weeks — those are the slots that go first, and they're the ones we sell out of. Last-minute and same-day still work more often than people expect, so it's always worth texting us to see what's open before you assume it's gone.",
+    },
+    {
+      q: "What's the most affordable moving company in NJ?",
+      a: "'Most affordable' depends on the move — a studio, a 3BR house, a labor-only load and a weekend job all price differently, so a single 'cheapest mover' answer is usually marketing. What we can tell you is exactly what we charge: from $650 for a small move, $1,100–$1,400 for a 2–3BR, all-in, with no fuel or truck fee bolted on afterwards. Text us the details and we'll send a real number in under 5 minutes so you can compare like for like.",
     },
   ],
 
   finalCta: {
-    heading: "Ready to move? Haul Yeah you are.",
+    heading: "Ready to move?",
+    headingAccent: "Haul Yeah you are.",
     subhead:
-      "Free quote in under 5 minutes. Call, text, or fill the form — we're on it.",
+      "Call, text, or send the details — we're on it. Weekend slots go first.",
   },
 
   seo: {
     homepage: {
-      title:
-        "Movers in Essex County, NJ | Same-Day & Weekend | Haul Yeah",
+      title: "Movers in Essex County, NJ | Weekend & Same-Day | Haul Yeah",
       description:
-        "Affordable movers NJ. Weekend movers NJ, same day movers NJ, and small-move specialists in Essex County. Free quote in under 5 minutes.",
+        "Weekend movers in Essex County NJ. Small moves from $650, 2–3BR $1,100–$1,400, all-in pricing with no hidden truck or fuel fees. Free quote in under 5 minutes.",
     },
   },
-
-  /* ─────────────────────────────────────────────────────────────
-   * FUTURE — Review platform badges (Google, Yelp, Thumbtack).
-   * We intentionally do NOT display any star ratings or review
-   * scores. Uncomment and populate the block below when the owner
-   * is ready to link out to review profiles (link-only, no scores).
-   * ─────────────────────────────────────────────────────────────
-   *
-   * reviewBadges: [
-   *   { platform: "Google Business Profile", url: "" },
-   *   { platform: "Yelp",                    url: "" },
-   *   { platform: "Thumbtack",               url: "" },
-   * ],
-   */
 };
 
 export default siteConfig;

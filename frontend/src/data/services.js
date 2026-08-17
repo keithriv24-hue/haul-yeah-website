@@ -23,8 +23,16 @@ const IMG = {
     url: siteConfig.hero.imageUrl,
     alt: siteConfig.hero.imageAlt,
   },
-  packing: siteConfig.aiImages.packing,
-  apartment: siteConfig.aiImages.apartment,
+  // REPLACED 2026-08-16: these two pointed at AI-generated stock hosted on
+  // static.prod-images.emergentagent.com. Two problems, both real:
+  //   1. The homepage states "Every photo on this site is a real Haul Yeah
+  //      job in Essex County — no stock images." Shipping AI stock on the
+  //      packing, apartment and piano pages made that sentence false.
+  //   2. They were hot-linked from a third-party build-tool CDN we do not
+  //      control. If it goes away, three service page heroes 404.
+  // Both now point at real company photos already in /public/images.
+  packing: siteConfig.howItWorksImage,   // crew loading inside the box
+  apartment: siteConfig.whyImage,        // mover in front of NJ-plated truck
   final: siteConfig.finalCtaImage,   // two-mover wave shot
   how: siteConfig.howItWorksImage,   // truck cab planning shot
 };
@@ -32,6 +40,8 @@ const IMG = {
 export const services = [
   {
     slug: "local-movers",
+    priceNote:
+      "A local residential move is quoted as one flat all-in number. Most 2–3BR homes land in the $1,100–$1,400 band with a three-mover crew; stairs and specialty items are quoted on top, before you pay a deposit.",
     name: "Local Residential Movers",
     iconName: "Home",
     tagline: "Full-service home moves across NJ.",
@@ -39,7 +49,7 @@ export const services = [
     seo: {
       title: "Local Movers in Essex County, NJ | Haul Yeah Moving",
       description:
-        "Local residential movers in Essex County and North NJ. Transparent all-in pricing, 7 days a week. Free quote in under 5 minutes.",
+        "Local residential movers in Essex County and North NJ. Flat all-in pricing from $650, weekend and same-day availability. Free quote in under 5 minutes.",
     },
     kicker: "Full-service local moving",
     lede: "Family-size home moves across Essex County and North Jersey.",
@@ -69,7 +79,7 @@ export const services = [
         {
           title: "Pro loading and unloading",
           description:
-            "Uniformed movers, dollies, straps, shrink wrap. Nothing gets carried by its handles.",
+            "Dollies, straps, shrink wrap and floor runners on every job. Nothing gets carried by its handles.",
         },
         {
           title: "Fuel, tolls, and truck included",
@@ -112,6 +122,8 @@ export const services = [
 
   {
     slug: "apartment-movers",
+    priceNote:
+      "Most apartment moves land between $650 (studio or 1BR, two movers) and $1,400 (2–3BR, three movers). Stairs are the single biggest variable here — budget $75–$100 per flight, each end.",
     name: "Apartment Movers",
     iconName: "Building2",
     tagline: "Walk-ups, elevators, tight staircases — handled.",
@@ -119,7 +131,7 @@ export const services = [
     seo: {
       title: "Apartment Movers in Essex County, NJ | Haul Yeah Moving",
       description:
-        "Apartment movers NJ — walk-ups, elevators, high-rises. Building move-in paperwork coordinated. 7 days a week. Free quote in 5 minutes.",
+        "Apartment movers NJ — walk-ups, elevators, high-rises. Building move-in paperwork coordinated. Weekend and same-day slots. Free quote in 5 minutes.",
     },
     kicker: "Studios, 1BR, 2BR — you name it",
     lede: "Walk-ups, elevators, tight staircases — we've done this building.",
@@ -192,34 +204,36 @@ export const services = [
 
   {
     slug: "small-moves",
+    priceNote:
+      "Small moves start at $650 flat. That covers two movers, the truck, fuel, blankets and the first 20 miles — and reflects the 3-hour minimum that applies to any job with a truck.",
     name: "Small Moves & Small Load Movers",
     iconName: "PackageOpen",
-    tagline: "A single sofa or a studio — no minimums.",
+    tagline: "A single sofa or a studio — one flat price from $650.",
     h1: "Small Move & Small Load Movers in NJ",
     seo: {
-      title: "Small Move Movers in NJ | No Hour Minimums | Haul Yeah",
+      title: "Small Move Movers in NJ | Flat Price From $650 | Haul Yeah",
       description:
-        "Small load movers NJ — single sofa, studio, or one room. No four-hour minimum. Same-day and weekend availability. Free quote in under 5 minutes.",
+        "Small load movers NJ — single sofa, studio, or one room. Flat all-in price from $650, quoted before you book. Weekend and same-day availability.",
     },
-    kicker: "One sofa. One studio. No minimums.",
+    kicker: "One sofa. One studio. One flat price.",
     lede: "The small-move mover Essex County calls when a full van company is overkill.",
     intro: [
       "Most moving companies price you for a truck whether you fill it or not. That math doesn't work for a studio, a single couch, or the last 12 boxes from mom's basement.",
-      "Haul Yeah is built for small loads. We keep smaller trucks in rotation, we price by what actually moves (not by an artificial four-hour minimum), and we can pair your job with another small run in the same corridor to keep the number honest.",
+      "Haul Yeah is built for small loads. We keep smaller trucks in rotation and we quote one flat number instead of starting a meter — a small move is $650 and up, and that price already covers the truck, the fuel, the blankets and the first 20 miles. Any job with a truck carries a 3-hour minimum, which is exactly why $650 is where the band starts rather than an hourly rate that looks cheap and then climbs.",
       "Studios in Newark, one-bedrooms in Bloomfield, a Peloton and a bookshelf out of a Nutley basement — small isn't small to us, it's most of what we do.",
     ],
     included: {
       heading: "What a small move includes",
       items: [
         {
-          title: "No minimum-hour trap",
+          title: "One flat number, not a meter",
           description:
-            "Pay for the actual work, not a 4-hour minimum you didn't need.",
+            "A 3-hour minimum applies to any job with a truck — so we quote you a flat all-in price up front instead of running a clock you have to watch.",
         },
         {
           title: "Right-sized truck",
           description:
-            "Cargo van, 16-ft, or 26-ft — matched to your load, not oversold.",
+            "16-ft or 26-ft box truck — matched to your load, not oversold.",
         },
         {
           title: "Blanket wrap on every piece",
@@ -229,7 +243,7 @@ export const services = [
         {
           title: "Same-day availability",
           description:
-            "Weekends and weekdays. Text us in the morning, move in the afternoon.",
+            "Weekend slots above all. Text us in the morning, move in the afternoon.",
         },
         {
           title: "Building paperwork handled",
@@ -250,7 +264,7 @@ export const services = [
     faqs: [
       {
         q: "Is there a minimum charge for a small move?",
-        a: "We don't require the 3–4 hour minimum some movers do. If your job is one item across town, that's what you'll get quoted — a flat, all-in number, not a padded hourly.",
+        a: "Yes — any job with a truck has a 3-hour minimum, which is why our small-move band starts at $650. We'd rather tell you that here than on the doorstep. What we don't do is put you on a 4-hour clock and pad it: you get one flat all-in number before you book, covering the truck, fuel, blankets, equipment and the first 20 miles. If you only need muscle and you've got your own truck, labor-only has a 2-hour minimum and is billed hourly at $130–$180.",
       },
       {
         q: "How small is 'small'?",
@@ -258,7 +272,7 @@ export const services = [
       },
       {
         q: "Can you do a small same-day move?",
-        a: "Yes — small same-day moves are one of our specialties. Weekend or weekday. Text (862) 250-3216 with the item, two addresses, and floors and we'll come back with a live quote.",
+        a: "Yes — small same-day moves are one of our specialties, and Saturdays and Sundays are when we hold the most capacity. Text (862) 250-3216 with the item, the two addresses and the floors and we'll come back with a live quote.",
       },
       {
         q: "Do you provide the truck, or do I need one?",
@@ -272,6 +286,8 @@ export const services = [
 
   {
     slug: "same-day-movers",
+    priceNote:
+      "Same-day is priced off the same bands as anything else — from $650 for a small load, $1,100–$1,400 for a 2–3BR. There is no surcharge for short notice.",
     name: "Last Minute & Same-Day Movers",
     iconName: "Zap",
     tagline: "Booked and moving today.",
@@ -284,8 +300,8 @@ export const services = [
     kicker: "Book this morning, move this afternoon.",
     lede: "Real availability for same-day and next-day moves in Essex County.",
     intro: [
-      "'Same-day mover' usually means 'we'll try to fit you in in 3 weeks.' Haul Yeah is actually built for it: dispatchers on-shift 7 days a week, trucks that aren't 100% pre-booked, and crews who can pick up an afternoon job with two hours' notice.",
-      "Last-minute moves happen for real reasons — a lease flipped a week early, a closing pushed up, a roommate bailed. We don't punish you for it with an emergency surcharge. Same all-in pricing, just compressed timeline.",
+      "'Same-day mover' usually means 'we'll try to fit you in in 3 weeks.' Haul Yeah is actually built for it: someone answers seven days a week, we deliberately hold weekend truck capacity back instead of pre-booking every slot, and our crews can pick up an afternoon job with two hours' notice.",
+      "Last-minute moves happen for real reasons — a lease flipped a week early, a closing pushed up, a roommate bailed. We don't punish you for it with an emergency surcharge: booking today costs what booking a fortnight out would cost. Weekend and month-end dates carry the same peak rate they always do, and that's already in the number we quote you.",
       "Weekend same-day is where we shine. Saturday morning text, Saturday afternoon load, Saturday evening you're eating pizza in the new kitchen.",
     ],
     included: {
@@ -297,9 +313,9 @@ export const services = [
             "A human answers, checks the board, and gives a real yes/no in minutes.",
         },
         {
-          title: "No emergency surcharge",
+          title: "No last-minute surcharge",
           description:
-            "Same all-in pricing as a job booked two weeks out.",
+            "Booking today costs the same as booking two weeks out. Weekend dates are priced higher than mid-week — but that's the date, not the short notice, and it's inside the quote.",
         },
         {
           title: "Small to medium loads",
@@ -314,7 +330,7 @@ export const services = [
         {
           title: "Full-service crew",
           description:
-            "Uniformed movers, wrapped furniture, floor protection — nothing skipped because it's last-minute.",
+            "Wrapped furniture, floor protection, the full kit — nothing gets skipped because it's last-minute.",
         },
         {
           title: "Digital paperwork",
@@ -334,7 +350,7 @@ export const services = [
       },
       {
         q: "Do you charge more for last-minute moves?",
-        a: "No emergency surcharge. Our same-day pricing is the same transparent all-in pricing as a job booked two weeks out. Weekends are priced slightly higher than weekdays because of demand, not because it's last-minute.",
+        a: "There's no last-minute surcharge — same-day is priced exactly like a job booked two weeks out. What does change the number is the date itself: Saturdays, Sundays and the last few days of the month are peak across the whole NJ market and we price them higher than mid-week. That weekend rate is inside the quote we give you, not added on move day.",
       },
       {
         q: "What can't be moved same-day?",
@@ -352,6 +368,8 @@ export const services = [
 
   {
     slug: "weekend-movers",
+    priceNote:
+      "Saturday and Sunday are peak across the NJ market and we price them accordingly. The weekend rate is inside the flat number we quote — there is no separate 'weekend fee' added on move day.",
     name: "Weekend Movers",
     iconName: "CalendarDays",
     tagline: "Our specialty. Saturday & Sunday moves.",
@@ -405,7 +423,7 @@ export const services = [
     },
     midCTA: {
       heading: "Lock a weekend slot",
-      body: "Small refundable deposit holds the date. Saturdays fill first.",
+      body: "A 25% deposit holds the date, refundable if you cancel 72+ hours out. Saturdays fill first.",
     },
     faqs: [
       {
@@ -432,6 +450,8 @@ export const services = [
 
   {
     slug: "commercial-movers",
+    priceNote:
+      "Office and commercial jobs are quoted flat, usually in the $2,200–$3,000+ band for a four-mover crew. Send us a floor count and a rough desk/workstation number and we'll come back with a real figure.",
     name: "Office & Commercial Movers",
     iconName: "Briefcase",
     tagline: "Nights & weekends so you don't lose a day.",
@@ -517,6 +537,8 @@ export const services = [
 
   {
     slug: "packing-services",
+    priceNote:
+      "Packing is quoted per job on top of your move price, based on room count and materials. Ask for it in the same quote so you see one number, not two invoices.",
     name: "Packing & Unpacking Services",
     iconName: "Box",
     tagline: "Materials, boxes, and pro-grade packing.",
@@ -602,6 +624,8 @@ export const services = [
 
   {
     slug: "piano-movers",
+    priceNote:
+      "Piano handling is a surcharge on top of your move: $400–$600 for an upright, $600–$1,200 for a grand. Safes and gym equipment run $400–$600. Quoted before you book, never after.",
     name: "Piano & Heavy Item Movers",
     iconName: "Music",
     tagline: "Pianos, safes, treadmills — we're built for it.",
@@ -687,6 +711,8 @@ export const services = [
 
   {
     slug: "labor-only-movers",
+    priceNote:
+      "Labor-only is billed hourly at $130–$180 with a 2-hour minimum — our lowest entry point, because you're supplying the truck. No mileage or fuel component.",
     name: "Labor-Only Loading & Unloading Help",
     iconName: "HardHat",
     tagline: "Got a truck? We'll bring the muscle.",

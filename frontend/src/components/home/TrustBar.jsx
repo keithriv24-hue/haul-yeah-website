@@ -1,38 +1,36 @@
 import React from "react";
-import { Truck, CalendarDays, Zap } from "lucide-react";
 import siteConfig from "../../data/siteConfig";
 
 /**
- * Trust bar — 3 factual badges. NO star ratings. NO review scores.
- * Navy background with subtle grain overlay for tactile depth.
+ * Scrolling marquee strip. Replaces the old three-badge trust bar.
+ *
+ * Factual claims only — NO star ratings, NO review scores, no "voted best".
+ * The strings come from siteConfig.marquee so the claims stay in one place
+ * and can't drift from the rest of the site.
+ *
+ * The list is rendered twice so the -50% keyframe loops seamlessly. The
+ * duplicate is aria-hidden so a screen reader hears the claims once, and the
+ * animation is disabled entirely under prefers-reduced-motion (index.css).
  */
-const ICONS = [Truck, CalendarDays, Zap];
-
 export default function TrustBar() {
+  const line = siteConfig.marquee;
+
+  const Run = ({ hidden }) => (
+    <span aria-hidden={hidden || undefined}>
+      {line.map((item) => (
+        <React.Fragment key={item}>
+          {item}
+          <i>·</i>
+        </React.Fragment>
+      ))}
+    </span>
+  );
+
   return (
-    <section
-      className="relative border-y border-navy/10 bg-navy text-white grain-overlay"
-      aria-label="Trust and credibility"
-      data-testid="trust-bar"
-    >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-4 gap-y-6 px-4 py-8 sm:grid-cols-3 sm:px-6 sm:py-10 lg:px-8">
-        {siteConfig.trustBadges.map((label, i) => {
-          const Icon = ICONS[i] || Truck;
-          return (
-            <div
-              key={label}
-              className="flex items-center gap-3"
-              data-testid={`trust-badge-${i}`}
-            >
-              <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-orange/15 text-orange">
-                <Icon className="h-4 w-4" strokeWidth={2.4} />
-              </span>
-              <span className="font-display text-xs font-bold uppercase tracking-wider text-white sm:text-sm">
-                {label}
-              </span>
-            </div>
-          );
-        })}
+    <section className="mq" aria-label="What we do" data-testid="trust-bar">
+      <div className="mq-t">
+        <Run />
+        <Run hidden />
       </div>
     </section>
   );

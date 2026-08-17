@@ -1,5 +1,18 @@
-/* Fonts — Archivo (display) + Inter (body), loaded via <link> in public/index.html
-   with display=swap for excellent CLS/LCP. */
+/* ─────────────────────────────────────────────────────────────
+ * HAUL YEAH MOVING — DESIGN SYSTEM
+ *
+ * Signage aesthetic: cream paper, near-black ink, safety orange.
+ * Archivo Black for display (uppercase, tight, huge), Archivo for body.
+ * Fonts load via <link> in public/index.html with display=swap.
+ *
+ * The site is built from BANDS — full-bleed horizontal blocks that
+ * alternate cream / cream-2 / black / orange down the page. Every page
+ * template composes bands, so the look is consistent across all 21 pages
+ * without each page re-inventing its own layout.
+ *
+ * Component classes live in @layer components so Tailwind utilities can
+ * still override them inline where a one-off is needed.
+ * ───────────────────────────────────────────────────────────── */
 
 @tailwind base;
 @tailwind components;
@@ -7,37 +20,49 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 55% 12%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 55% 12%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 55% 12%;
-    --primary: 220 62% 15%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 220 55% 12%;
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 16% 40%;
-    --accent: 18 100% 58%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 18 100% 58%;
-    --radius: 0.5rem;
-    --chart-1: 220 62% 15%;
-    --chart-2: 18 100% 58%;
-    --chart-3: 210 20% 60%;
-    --chart-4: 220 30% 30%;
-    --chart-5: 18 80% 45%;
-  }
-}
+    /* ── Brand palette ──────────────────────────────────────────
+     * --orange (#C2410C) is the ONLY orange allowed to carry or sit
+     * behind white text: 5.18:1 against white, passes WCAG AA.
+     * --orange-hi (#FF6B2C) is 2.84:1 against white — it is used ONLY
+     * on black or cream backgrounds, or behind BLACK text. Never put
+     * white text on --orange-hi.
+     * ───────────────────────────────────────────────────────── */
+    --cream: #f4efe3;
+    --cream-2: #e8e0ce;
+    --black: #121110;
+    --black-2: #1e1c19;
+    --orange: #c2410c;
+    --orange-hi: #ff6b2c;
+    --tan: #8a7a5e;
 
-@layer base {
-  * {
-    @apply border-border;
+    --disp: "Archivo Black", system-ui, sans-serif;
+    --body: "Archivo", system-ui, sans-serif;
+
+    /* Page gutter — scales from 20px on a phone to 64px on desktop. */
+    --gut: clamp(20px, 5vw, 64px);
+
+    /* shadcn tokens, remapped onto the new palette so any stray ui/
+       component still lands in-system instead of shipping default slate. */
+    --background: 40 41% 93%;
+    --foreground: 30 6% 7%;
+    --card: 40 41% 93%;
+    --card-foreground: 30 6% 7%;
+    --popover: 40 41% 93%;
+    --popover-foreground: 30 6% 7%;
+    --primary: 30 6% 7%;
+    --primary-foreground: 40 41% 93%;
+    --secondary: 42 33% 86%;
+    --secondary-foreground: 30 6% 7%;
+    --muted: 42 33% 86%;
+    --muted-foreground: 38 19% 45%;
+    --accent: 20 88% 40%;
+    --accent-foreground: 40 41% 93%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 41% 93%;
+    --border: 30 6% 7%;
+    --input: 30 6% 7%;
+    --ring: 20 88% 40%;
+    --radius: 0px;
   }
 
   html {
@@ -47,76 +72,488 @@
 
   body {
     margin: 0;
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #0a0f1a;
-    background: #ffffff;
-    text-rendering: optimizeLegibility;
   }
 
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  /* Display type: uppercase, tight leading, negative tracking.
+     Sizes are fluid so one rule covers phone through desktop. */
   h1,
   h2,
   h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Archivo", system-ui, sans-serif;
+  h4 {
+    font-family: var(--disp);
+    font-weight: 400;
+    margin: 0;
+    line-height: 0.94;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(40px, 7.4vw, 104px);
+    letter-spacing: -0.04em;
+  }
+  h2 {
+    font-size: clamp(32px, 5.4vw, 76px);
+  }
+  h3 {
+    font-size: clamp(19px, 2vw, 25px);
+    line-height: 1.1;
     letter-spacing: -0.02em;
   }
-
-  /* selection */
-  ::selection {
-    background: #ff6b2c;
-    color: #ffffff;
+  h4 {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    line-height: 1.4;
   }
 
-  /* focus ring */
+  ::selection {
+    background: var(--orange-hi);
+    color: var(--black);
+  }
+
   :focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.55);
-    border-radius: 4px;
+    outline: 3px solid var(--orange-hi);
+    outline-offset: 2px;
+  }
+
+  /* Anchor targets clear the sticky header instead of hiding under it. */
+  [id] {
+    scroll-margin-top: 86px;
   }
 }
 
 @layer components {
-  /* Subtle noise/grain overlay for navy sections. Keeps dark blocks from looking flat. */
-  .grain-overlay {
-    position: relative;
-  }
-  .grain-overlay::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.06;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  /* ── Layout shell ───────────────────────────────────────── */
+  .wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--gut);
   }
 
-  /* Tick / bullet used across trust bar + FAQ */
-  .bullet-orange::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #ff6b2c;
-    margin-right: 12px;
-    vertical-align: middle;
-    transform: translateY(-1px);
+  .kick {
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  /* ── Bands ──────────────────────────────────────────────── */
+  .band {
+    padding: clamp(56px, 8vw, 110px) 0;
+  }
+  .band--cream {
+    background: var(--cream);
+  }
+  .band--cream2 {
+    background: var(--cream-2);
+  }
+  .band--black {
+    background: var(--black);
+    color: var(--cream);
+  }
+  .band--orange {
+    background: var(--orange);
+    color: var(--cream);
+  }
+  .band--tight {
+    padding: clamp(40px, 5vw, 64px) 0;
+  }
+
+  /* Band heading: h2 on the left, supporting line on the right. */
+  .bh {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+    align-items: end;
+    margin-bottom: clamp(34px, 4vw, 58px);
+  }
+  .bh p {
+    font-size: clamp(16px, 1.5vw, 19px);
+    max-width: 46ch;
+    opacity: 0.82;
+  }
+  @media (max-width: 860px) {
+    .bh {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 16px;
+    }
+  }
+
+  /* ── Signage buttons ────────────────────────────────────── */
+  .sbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 62px;
+    padding: 0 34px;
+    background: var(--black);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: var(--disp);
+    font-size: 21px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.25);
+    transition: transform 0.12s, box-shadow 0.12s;
+  }
+  .sbtn:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+  }
+  .sbtn--cream {
+    background: var(--cream);
+    color: var(--black);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+  }
+  /* Black text on --orange-hi — never white. See the palette note above. */
+  .sbtn--orange {
+    background: var(--orange-hi);
+    color: var(--black);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+  }
+  .sbtn--ghost {
+    background: transparent;
+    border: 2px solid currentColor;
+    box-shadow: none;
+  }
+  .sbtn--ghost:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .sbtn--sm {
+    height: 52px;
+    font-size: 16px;
+    padding: 0 22px;
+  }
+  .sbtn--full {
+    width: 100%;
+  }
+
+  /* Bordered plate — used for the header phone/quote pair. */
+  .plate {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid currentColor;
+    padding: 7px 14px;
+    text-decoration: none;
+    font-family: var(--disp);
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* ── Numbered card rail (services, promises, steps) ─────── */
+  .n {
+    font-family: var(--disp);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--orange-hi);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(268px, 1fr);
+    gap: 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .rail > * {
+    scroll-snap-align: start;
+    background: var(--cream-2);
+    border: 2px solid var(--black);
+    padding: 26px 24px 22px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 236px;
+    transition: transform 0.14s, box-shadow 0.14s, background 0.14s;
+  }
+  .rail > *:hover {
+    background: var(--cream);
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--black);
+  }
+  .rail p {
+    margin-top: 10px;
+    font-size: 15px;
+    opacity: 0.8;
+    flex: 1;
+  }
+  .rail .go {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-top: 16px;
+  }
+  .rail-hint {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-top: 12px;
+  }
+  @media (min-width: 1100px) {
+    .rail {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(3, 1fr);
+      overflow: visible;
+    }
+    .rail-hint {
+      display: none;
+    }
+  }
+
+  /* Static grid variant — same cards, no horizontal scroll. */
+  .grid3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  /* ── Marquee strip ──────────────────────────────────────── */
+  .mq {
+    background: var(--black);
+    color: var(--cream);
+    padding: 15px 0;
+    overflow: hidden;
+    border-top: 4px solid var(--orange-hi);
+    border-bottom: 4px solid var(--orange-hi);
+  }
+  .mq-t {
+    display: flex;
+    width: max-content;
+    animation: mq 34s linear infinite;
+    font-family: var(--disp);
+    font-size: clamp(17px, 2vw, 25px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .mq-t i {
+    font-style: normal;
+    color: var(--orange-hi);
+    margin: 0 6px;
+  }
+  @keyframes mq {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mq-t {
+      animation: none;
+    }
+  }
+
+  /* ── Reveal on scroll ─────────────────────────────────────
+   * FAIL-VISIBLE BY DESIGN. Read this before "fixing" it.
+   *
+   * The obvious implementation is `.rv { opacity: 0 }` plus a class that
+   * transitions it to 1. Do NOT do that here. Every page on this site is
+   * prerendered to static HTML by scripts/prerender.js, which snapshots the
+   * DOM after effects run — so anything still below the fold at snapshot
+   * time gets written to disk with opacity:0 baked in. If JS is slow,
+   * blocked, or errors before the observer attaches, the visitor and the
+   * crawler get a page of invisible content. On a business whose entire
+   * acquisition model is local SEO, that is a catastrophic failure mode for
+   * a decorative animation.
+   *
+   * So: the base state is VISIBLE. `.in` (added by lib/useReveal.js when the
+   * element scrolls into view) plays a one-shot animation that happens to
+   * start from invisible. Elements that never receive `.in` simply never
+   * animate — they were readable the whole time.
+   * ───────────────────────────────────────────────────────── */
+  .rv.in {
+    animation: rv-in 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+  @keyframes rv-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rv.in {
+      animation: none;
+    }
+  }
+
+  /* ── Prose (service/location body copy) ─────────────────── */
+  .prose-hy p {
+    margin-top: 18px;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .prose-hy p:first-child {
+    margin-top: 0;
+  }
+  .prose-hy strong {
+    font-weight: 700;
+  }
+
+  /* ── FAQ disclosure ─────────────────────────────────────── */
+  .faq details {
+    border-top: 2px solid currentColor;
+    padding: 16px 0;
+  }
+  .faq details:last-child {
+    border-bottom: 2px solid currentColor;
+  }
+  .faq summary {
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--disp);
+    font-size: clamp(16px, 1.6vw, 19px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary::after {
+    content: "+";
+    font-size: 24px;
+    line-height: 1;
+    color: var(--orange);
+    flex-shrink: 0;
+  }
+  .faq details[open] summary::after {
+    content: "–";
+  }
+  .faq details p {
+    margin-top: 12px;
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 68ch;
+  }
+  .band--black .faq summary::after,
+  .band--orange .faq summary::after {
+    color: var(--orange-hi);
+  }
+
+  /* ── Price board ────────────────────────────────────────── */
+  .brd > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 2px solid var(--black);
+    font-size: 16px;
+  }
+  .brd > div:first-child {
+    border-top: 2px solid var(--black);
+  }
+  .brd > div > span:first-child {
+    font-weight: 500;
+  }
+  .brd > div > span:last-child {
+    font-family: var(--disp);
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .fine {
+    margin-top: 18px;
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 62ch;
+  }
+
+  /* ── Footer ─────────────────────────────────────────────── */
+  .f-mark {
+    font-family: var(--disp);
+    font-size: clamp(64px, 13vw, 190px);
+    line-height: 0.78;
+    letter-spacing: -0.03em;
+    color: rgba(244, 239, 227, 0.1);
+    text-align: center;
+    margin-top: 44px;
+    transform: translateY(0.12em);
+    user-select: none;
+    overflow: hidden;
+  }
+
+  /* ── Mobile sticky CTA bar ──────────────────────────────── */
+  .mbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    background: var(--black);
+    border-top: 4px solid var(--orange-hi);
+  }
+  .mbar a,
+  .mbar button {
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: var(--disp);
+    font-size: 19px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+  .mbar .mbar-q {
+    background: var(--orange-hi);
+    color: var(--black);
+  }
+  @media (max-width: 820px) {
+    .mbar {
+      display: grid;
+    }
+    footer {
+      padding-bottom: 92px;
+    }
   }
 }
 
-/* Hide scrollbars on the mobile CTA bar space reservation but keep body scrollable */
-@media (max-width: 767px) {
-  body {
-    /* leave 68px of breathing room so the fixed mobile CTA bar never covers footer content */
-    padding-bottom: 68px;
-  }
-}
-
-/* Reset the CRA App container centering — we do NOT want text-align:center site-wide */
+/* CRA container reset — never centre text site-wide. */
 .App {
   text-align: left;
 }

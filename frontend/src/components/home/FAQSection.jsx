@@ -3,39 +3,37 @@ import FAQAccordion from "../site/FAQAccordion";
 import siteConfig from "../../data/siteConfig";
 
 /**
- * Homepage FAQ — 6 verbatim questions. All Q&A rendered in DOM (sr-only when
- * collapsed) so search engines can index the full answer text.
+ * Homepage FAQ — cream-2 band. Every answer is in the DOM at all times so it
+ * matches the FAQPage JSON-LD emitted by Home.jsx.
+ *
+ * These answers carry real numbers (minimums, deposit, price bands). They are
+ * written to be the same answers the phone script gives, so a customer who
+ * read the site and a customer who called hear one company.
  */
 export default function FAQSection() {
   return (
     <section
-      className="border-b border-slate-200 bg-white py-20 sm:py-28"
+      className="band band--cream2"
       aria-labelledby="faq-heading"
       data-testid="faq-section"
     >
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="text-left">
-          <p className="font-display text-xs font-bold uppercase tracking-[0.28em] text-orange">
-            FAQ
-          </p>
-          <h2
-            id="faq-heading"
-            className="mt-4 font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-4xl lg:text-5xl"
-          >
-            What movers in New Jersey get asked most.
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-600">
-            Short, honest answers. No sales talk.
+      <div className="wrap">
+        <div className="bh rv">
+          <h2 id="faq-heading">Straight answers</h2>
+          <p>
+            The questions people actually ask before they book a mover — priced,
+            not hedged.
           </p>
         </div>
 
-        <div className="mt-12 divide-y divide-slate-200 border-y border-slate-200">
+        <div className="faq rv max-w-[900px]">
           {siteConfig.faqs.map((item, i) => (
             <FAQAccordion
               key={item.q}
               question={item.q}
               answer={item.a}
               index={i}
+              defaultOpen={i === 0}
             />
           ))}
         </div>

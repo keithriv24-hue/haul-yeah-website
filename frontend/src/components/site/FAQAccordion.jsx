@@ -1,43 +1,25 @@
-import React, { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import React from "react";
 
 /**
- * Reusable FAQ accordion item. Content is ALWAYS in the DOM (sr-only
- * when collapsed) so crawlers can index the answer text for SEO.
+ * Reusable FAQ disclosure.
+ *
+ * Uses native <details>/<summary> rather than a JS accordion:
+ *   • The answer text is always in the DOM, so crawlers index it and the
+ *     FAQPage JSON-LD on the page has matching visible content (Google
+ *     requires the marked-up answer to be present on the page).
+ *   • Keyboard and screen-reader behaviour is the browser's, not ours.
+ *   • It works before hydration — which matters because every page here is
+ *     prerendered and a visitor can tap an FAQ before React has booted.
+ *
+ * Styling lives in the `.faq` block in index.css, including the +/– marker.
+ * Pass defaultOpen on the first item so the section doesn't read as an
+ * unlabelled list of headings.
  */
-export default function FAQAccordion({ question, answer, index }) {
-  const [open, setOpen] = useState(false);
-
+export default function FAQAccordion({ question, answer, index, defaultOpen = false }) {
   return (
-    <div data-testid={`faq-item-${index}`}>
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        data-testid={`faq-toggle-${index}`}
-        aria-expanded={open}
-        aria-controls={`faq-answer-${index}`}
-        className="group flex w-full items-center justify-between gap-6 py-6 text-left transition-colors hover:text-orange"
-      >
-        <span className="font-display text-lg font-bold leading-tight tracking-tight text-navy sm:text-xl">
-          {question}
-        </span>
-        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-slate-300 text-navy transition-colors group-hover:border-orange group-hover:text-orange">
-          {open ? (
-            <Minus className="h-4 w-4" strokeWidth={2.6} />
-          ) : (
-            <Plus className="h-4 w-4" strokeWidth={2.6} />
-          )}
-        </span>
-      </button>
-      <div
-        id={`faq-answer-${index}`}
-        className={open ? "pb-6" : "pb-6 sr-only"}
-        data-testid={`faq-answer-${index}`}
-      >
-        <p className="max-w-2xl text-base leading-relaxed text-slate-600">
-          {answer}
-        </p>
-      </div>
-    </div>
+    <details data-testid={`faq-item-${index}`} open={defaultOpen}>
+      <summary data-testid={`faq-toggle-${index}`}>{question}</summary>
+      <p data-testid={`faq-answer-${index}`}>{answer}</p>
+    </details>
   );
 }

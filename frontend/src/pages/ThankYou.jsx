@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Phone, MessageSquare, Clock } from "lucide-react";
 import siteConfig from "../data/siteConfig";
 import { trackLead } from "../lib/analytics";
 
@@ -42,74 +41,61 @@ export default function ThankYou() {
       <title>{`Thanks — we’re on it | ${siteConfig.business.name}`}</title>
       <meta name="robots" content="noindex, nofollow" />
 
-      <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <p className="font-display text-xs font-bold uppercase tracking-[0.28em] text-orange">
-          Request received
-        </p>
-        <h1
-          className="mt-4 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-navy sm:text-5xl"
-          data-testid="thankyou-h1"
-        >
-          Got it. We&apos;re on it.
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
-          Your quote request is in. Someone from Haul Yeah will text or call you
-          back in {siteConfig.contact.responseTime} with an all-in number — not
-          a range, not a &quot;we&apos;ll get back to you.&quot;
-        </p>
+      <section className="band band--cream">
+        <div className="wrap max-w-[880px]">
+          <span className="kick text-orange">Request received</span>
+          <h1 className="mt-4" data-testid="thankyou-h1">
+            Got it. We&apos;re on it.
+          </h1>
+          <p className="mt-6 max-w-[52ch] text-[clamp(16px,1.6vw,19px)] leading-relaxed opacity-85">
+            Your quote request is in. Someone from Haul Yeah will text or call
+            you back in {siteConfig.contact.responseTime} with an all-in number
+            — not a range, not a &quot;we&apos;ll get back to you.&quot;
+          </p>
 
-        <div className="mt-10 rounded-md border border-slate-200 bg-slate-50 p-6">
-          <div className="flex items-center gap-2 text-navy">
-            <Clock className="h-4 w-4" strokeWidth={2.4} aria-hidden="true" />
-            <span className="font-display text-xs font-bold uppercase tracking-widest">
-              What happens next
-            </span>
+          <div className="mt-10 border-2 border-ink bg-cream-deep p-7">
+            <h4 className="text-orange">What happens next</h4>
+            <ol className="mt-4">
+              <li className="border-t-2 border-ink py-3.5 last:border-b-2">
+                <b className="font-display uppercase tracking-[-0.02em]">1.</b>{" "}
+                We read your details and check truck availability for your date.
+              </li>
+              <li className="border-t-2 border-ink py-3.5 last:border-b-2">
+                <b className="font-display uppercase tracking-[-0.02em]">2.</b>{" "}
+                We text or call you with the all-in price and confirm stairs,
+                access and parking.
+              </li>
+              <li className="border-t-2 border-ink py-3.5 last:border-b-2">
+                <b className="font-display uppercase tracking-[-0.02em]">3.</b>{" "}
+                {siteConfig.terms.depositLine} Weekends fill first.
+              </li>
+            </ol>
           </div>
-          <ol className="mt-4 space-y-3 text-sm leading-relaxed text-slate-600">
-            <li>
-              <strong className="text-navy">1.</strong> We read your details and
-              check truck availability for your date.
-            </li>
-            <li>
-              <strong className="text-navy">2.</strong> We text or call you with
-              the all-in price and confirm stairs, access and parking.
-            </li>
-            <li>
-              <strong className="text-navy">3.</strong> A small refundable
-              deposit locks your slot. Weekends fill first.
-            </li>
-          </ol>
-        </div>
 
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a
-            href={`tel:${siteConfig.contact.phoneTel}`}
-            data-testid="thankyou-phone-link"
-            className="inline-flex items-center justify-center gap-2 rounded-sm bg-orange px-6 py-4 font-display text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-orange-hover"
-          >
-            <Phone className="h-4 w-4" strokeWidth={2.4} aria-hidden="true" />
-            Call {siteConfig.contact.phoneDisplay}
-          </a>
-          <a
-            href={`sms:${siteConfig.contact.phoneTel}`}
-            data-testid="thankyou-sms-link"
-            className="inline-flex items-center justify-center gap-2 rounded-sm border-2 border-navy px-5 py-4 font-display text-sm font-bold uppercase tracking-wide text-navy transition-colors hover:border-orange hover:text-orange"
-          >
-            <MessageSquare
-              className="h-4 w-4"
-              strokeWidth={2.4}
-              aria-hidden="true"
-            />
-            Text us instead
-          </a>
-        </div>
+          <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
+            <a
+              href={`tel:${siteConfig.contact.phoneTel}`}
+              data-testid="thankyou-phone-link"
+              className="sbtn sbtn--orange"
+            >
+              Call {siteConfig.contact.phoneDisplay}
+            </a>
+            <a
+              href={`sms:${siteConfig.contact.phoneTel}`}
+              data-testid="thankyou-sms-link"
+              className="sbtn sbtn--ghost border-ink text-ink"
+            >
+              Text us instead
+            </a>
+          </div>
 
-        <p className="mt-10 text-sm text-slate-500">
-          Need something sooner?{" "}
-          <Link to="/" className="font-semibold text-navy hover:text-orange">
-            Back to the homepage
-          </Link>
-        </p>
+          <p className="mt-10 text-sm opacity-70">
+            Need something sooner?{" "}
+            <Link to="/" className="font-bold text-orange underline underline-offset-4">
+              Back to the homepage
+            </Link>
+          </p>
+        </div>
       </section>
     </>
   );

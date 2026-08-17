@@ -32,7 +32,7 @@ export const locations = [
     faqs: [
       {
         q: "How much do movers cost in East Orange, NJ?",
-        a: "Most local moves in East Orange run $500–$1,400 depending on load size and stairs. A one-bedroom apartment typically lands around $600–$900 with a two-mover crew; a full two-family second-floor apartment lands closer to $1,000–$1,400 with three movers. Ask for an all-in quote before you commit.",
+        a: "Local East Orange moves start at $650 flat for a studio or one-bedroom with a two-mover crew, and land in the $1,100–$1,400 band for a full two-family second-floor apartment with three movers. Stairs are the biggest variable here — budget $75–$100 per flight at each end. Every number is quoted all-in, in writing, before you pay a deposit.",
       },
       {
         q: "Do you serve all of East Orange or just certain neighborhoods?",
@@ -71,7 +71,7 @@ export const locations = [
       },
       {
         q: "How much do movers cost in Newark?",
-        a: "Local Newark moves run about $500–$1,600 depending on load size, stairs, and building paperwork turnaround. A studio downtown is usually $600–$900; a 2BR walk-up in the North Ward lands around $1,000–$1,400.",
+        a: "Local Newark moves start at $650 flat for a downtown studio with a two-mover crew; a 2BR walk-up in the North Ward lands in the $1,100–$1,400 band with three movers. Stairs ($75–$100 a flight) and building paperwork turnaround are what move the number — both get quoted before you book, not after.",
       },
       {
         q: "Can you move me on a weekend in Newark?",
@@ -95,14 +95,14 @@ export const locations = [
     intro: [
       "Montclair moves are their own thing. Victorian homes with narrow servant staircases. Historic brownstones on Church Street where you can't triple-park the truck for long. Upper Montclair colonials with wraparound porches. Bloomfield Ave apartments over storefronts.",
       "We move a lot of arts-district and Watchung Plaza residents. Our crews know the streets around Bloomfield Ave, know which downtown alleys work as loading zones, and don't get flustered by 100-year-old staircases with landings mid-flight.",
-      "Between the historic housing stock, the family homes north of Watchung, and the newer apartment buildings near the train station, Montclair keeps us busy — weekend and weekday, one couch to full 4-bedroom.",
+      "Between the historic housing stock, the family homes north of Watchung, and the newer apartment buildings near the train station, Montclair keeps us busy weekend after weekend — one couch to full 4-bedroom.",
     ],
     localTouch:
       "Victorian and brownstone staircases, Bloomfield Ave loading zones, and Watchung Plaza parking — we plan around all three.",
     faqs: [
       {
         q: "How much do movers cost in Montclair, NJ?",
-        a: "Local Montclair moves usually land between $700 and $2,200 depending on the home. A 1BR near Bloomfield Ave is about $700–$1,000; a 3–4BR family home in Upper Montclair with stairs runs $1,600–$2,200. All-in pricing so nothing shifts on move day.",
+        a: "Montclair moves start at $650 for a 1BR near Bloomfield Ave and run $1,100–$1,400 for a 2–3BR. A 3–4BR family home in Upper Montclair with stairs is a four-mover job in the $2,200–$3,000+ band. All-in pricing, so nothing shifts on move day.",
       },
       {
         q: "Can you move a piano out of a Montclair Victorian?",
@@ -137,11 +137,11 @@ export const locations = [
     faqs: [
       {
         q: "How much do movers cost in Bloomfield, NJ?",
-        a: "Local Bloomfield moves usually run $500–$1,800. A 1BR apartment is about $600–$900; a 3BR house with a driveway is $1,200–$1,800. Because Bloomfield has good street parking and driveways, moves here tend to run faster than in denser neighboring towns.",
+        a: "Local Bloomfield moves start at $650 for a 1BR apartment and run $1,100–$1,400 for a 2–3BR house. Because Bloomfield has good street parking and real driveways, moves here tend to run faster than in denser neighbouring towns — which is exactly why a flat quote works in your favour rather than an hourly meter.",
       },
       {
         q: "Do you do small moves in Bloomfield?",
-        a: "Yes — small moves and single-item runs are common for us in Bloomfield. No four-hour minimum. Text us the item, addresses, and floors and we'll come back with a real number.",
+        a: "Yes — small moves and single-item runs are common for us in Bloomfield. A 3-hour minimum applies to any job with a truck, so small jobs are quoted as one flat number from $650 rather than dropped onto a 4-hour clock. Text us the item, the two addresses and the floors and we'll come back with a real number.",
       },
       {
         q: "Can you do a weekend move in Bloomfield?",
@@ -172,7 +172,7 @@ export const locations = [
     faqs: [
       {
         q: "How much do movers cost in West Orange, NJ?",
-        a: "Local West Orange moves usually run $900–$2,500 because home sizes trend larger. A 2BR ranch is about $900–$1,300; a 4BR colonial with a piano is $2,000–$2,500. Ask for all-in pricing so nothing shifts on move day.",
+        a: "West Orange moves trend larger than the county average. A 2BR ranch sits in the $1,100–$1,400 band with three movers; a 4BR colonial is a four-mover job at $2,200–$3,000+. If there's a piano, add $400–$600 for an upright or $600–$1,200 for a grand — quoted up front, never discovered on the day.",
       },
       {
         q: "Can you handle hillside driveways?",
@@ -207,7 +207,7 @@ export const locations = [
     faqs: [
       {
         q: "How much do movers cost in Orange, NJ?",
-        a: "Local Orange moves usually run $500–$1,300 depending on load and stairs. A 1BR walk-up is about $600–$850; a two-family second-floor is $900–$1,300 with a three-mover crew.",
+        a: "Local Orange moves start at $650 for a 1BR walk-up with two movers; a two-family second-floor lands in the $1,100–$1,400 band with a three-mover crew. Stairs run $75–$100 a flight at each end and are quoted before you book.",
       },
       {
         q: "Can you do same-day moves in Orange?",
@@ -242,7 +242,7 @@ export const locations = [
     faqs: [
       {
         q: "How much do movers cost in Irvington, NJ?",
-        a: "Local Irvington moves usually run $500–$1,400 depending on load and stairs. Because most Irvington moves involve 2–3 flights of stairs, we usually recommend a three-mover crew, which puts a 1BR walk-up around $750–$950 and a 2BR walk-up around $1,000–$1,400.",
+        a: "Because most Irvington moves involve 2–3 flights of stairs, we usually recommend a three-mover crew. A 1BR walk-up starts at $650 before stairs, and with two or three flights at $75–$100 each end it typically lands closer to $850–$1,000. A 2BR walk-up sits in the $1,100–$1,400 band. We count the flights with you on the phone so the quote is right the first time.",
       },
       {
         q: "Can you handle multi-family walk-ups in Irvington?",
@@ -277,7 +277,7 @@ export const locations = [
     faqs: [
       {
         q: "How much do movers cost in Nutley, NJ?",
-        a: "Local Nutley moves usually run $700–$2,000 depending on home size. A 2BR house is about $900–$1,400; a full 3–4BR family home lands $1,600–$2,000. Nutley moves usually run faster than dense-town moves because of parking and driveways.",
+        a: "Local Nutley moves run $1,100–$1,400 for a 2BR house with three movers, and $2,200–$3,000+ for a full 3–4BR family home with a four-mover crew. Smaller one-bedroom and studio jobs start at $650. Nutley moves usually run faster than dense-town moves because of the parking and driveways.",
       },
       {
         q: "Can you handle a growing-family move in Nutley?",
@@ -285,7 +285,7 @@ export const locations = [
       },
       {
         q: "Do you do small moves in Nutley?",
-        a: "Yes — single-item and studio-size runs are on the same dispatch board as full-house moves. No 4-hour minimum forced on small jobs.",
+        a: "Yes — single-item and studio-size runs are on the same dispatch board as full-house moves. They're quoted flat from $650; the 3-hour minimum that applies to any truck job is why that's the floor, rather than a padded 4-hour minimum you never asked for.",
       },
     ],
     nearbyTowns: ["bloomfield-nj", "belleville-nj", "montclair-nj", "east-orange-nj"],
@@ -312,7 +312,7 @@ export const locations = [
     faqs: [
       {
         q: "How much do movers cost in Belleville, NJ?",
-        a: "Local Belleville moves usually run $500–$1,700. A 1BR apartment is $600–$900; a two-family second-floor is $1,000–$1,400; a 3BR Cape Cod with a driveway is $1,300–$1,700.",
+        a: "Local Belleville moves start at $650 for a 1BR apartment. A two-family second-floor or a 3BR Cape Cod with a driveway both sit in the $1,100–$1,400 band with a three-mover crew. Stairs at $75–$100 a flight are the main thing that pushes a Belleville two-family toward the top of that range.",
       },
       {
         q: "Can you move me into a Belleville two-family?",
@@ -351,7 +351,7 @@ export const locations = [
       },
       {
         q: "How much do movers cost in Jersey City?",
-        a: "Local Jersey City moves usually run $700–$1,800. A studio or 1BR high-rise is $700–$1,000; a 2BR high-rise is $1,100–$1,800. Weekend and end-of-month slots trend higher.",
+        a: "Local Jersey City moves start at $650 for a studio or 1BR high-rise; a 2BR high-rise lands in the $1,100–$1,400 band. Jersey City is outside our 20-mile round-trip allowance from parts of Essex County, so expect $0.85 a mile beyond it — and weekend and end-of-month slots carry the peak rate, which is already inside the number we quote.",
       },
       {
         q: "Can you reserve the freight elevator?",
