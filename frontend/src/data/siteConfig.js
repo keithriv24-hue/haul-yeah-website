@@ -85,7 +85,7 @@ const siteConfig = {
    * removes the "that's more than I expected" moment from the close.
    *
    * Every package price ALREADY INCLUDES truck, fuel, blankets, dollies,
-   * straps, and the first 20 miles round trip — that is what makes the
+   * straps, and the first 20 miles one way — that is what makes the
    * "all-in" promise true. Only the `addOns` below can move the number,
    * and they are all quoted up front, before the deposit.
    * ───────────────────────────────────────────────────────────── */
@@ -103,12 +103,12 @@ const siteConfig = {
       {
         label: "Standard move — 2–3BR",
         detail: "3 movers + truck",
-        price: "$1,100–$1,400",
+        price: "$1,200–$1,450",
       },
       {
         label: "Large or specialty — 3–4BR, piano, office",
         detail: "4 movers + truck",
-        price: "$2,200–$3,000+",
+        price: "$2,000–$3,000+",
       },
       {
         label: "Labor only — you supply the truck",
@@ -121,17 +121,17 @@ const siteConfig = {
     included: [
       "The truck, the fuel and the tolls",
       "Blankets, shrink wrap, dollies and straps",
-      "First 20 miles round trip",
+      "First 20 miles (one way)",
       "Disassembly and reassembly of standard furniture",
     ],
 
     // The ONLY things that can change your number, all quoted up front.
     addOns: [
-      { label: "Stairs, per flight", price: "$75–$100" },
+      { label: "Stairs, per flight", price: "$85" },
       { label: "Mileage over the first 20 mi", price: "$0.85/mi" },
-      { label: "Upright piano", price: "$400–$600" },
-      { label: "Grand piano", price: "$600–$1,200" },
-      { label: "Safe, gym equipment, oversized items", price: "$400–$600" },
+      { label: "Upright piano", price: "$500" },
+      { label: "Grand piano", price: "$800" },
+      { label: "Safe, gym, pool table, oversized items", price: "$150–$800" },
       { label: "Packing service and materials", price: "Quoted per job" },
     ],
 
@@ -281,9 +281,9 @@ const siteConfig = {
     formCardTitle: "Get an all-in price",
     formCardSubtitle: "Takes 30 seconds · answered in under 5 minutes",
     secondaryCta: "Or text us for a same-day quote",
-    imageUrl: "/images/crew-open-truck-box.webp",
+    imageUrl: "/images/crew-group-trucks.webp",
     imageAlt:
-      "Haul Yeah Moving three-man crew at the open box of a 26-ft moving truck in Essex County NJ",
+      "The Haul Yeah Moving crew standing with the box-truck fleet in Essex County, NJ",
     // Small stat strip under the H1.
     stats: [
       { label: "Fleet", value: "16–26 ft" },
@@ -332,23 +332,23 @@ const siteConfig = {
   ],
 
   whyImage: {
-    url: "/images/mover-crossed-arms-nj-truck.webp",
-    alt: "Haul Yeah mover standing arms-crossed in front of a New Jersey-plated 26-ft moving truck in Essex County",
+    url: "/images/crew-wrapping-blankets.webp",
+    alt: "A Haul Yeah mover shrink-wrapping and blanket-padding furniture before a New Jersey move",
   },
 
   howItWorksImage: {
-    url: "/images/crew-inside-truck-pallet.webp",
-    alt: "Haul Yeah Moving crew loading a wooden pallet with a pallet jack inside a 26-ft moving truck",
+    url: "/images/crew-carry-storage.webp",
+    alt: "Haul Yeah Moving crew carrying a wrapped item through a facility on a New Jersey job",
   },
 
   finalCtaImage: {
-    url: "/images/movers-high-five.webp",
-    alt: "Two Haul Yeah movers high-fiving after a successful New Jersey move",
+    url: "/images/crew-loading-truck.webp",
+    alt: "Haul Yeah Moving crew loading and stacking furniture inside a box truck on a New Jersey move",
   },
 
   teamImage: {
-    url: "/images/crew-liftgate-safety-vest.webp",
-    alt: "Haul Yeah Moving three-man crew posed on the liftgate of a 26-ft moving truck, with the middle crew member in a safety vest",
+    url: "/images/crew-flex-storage.webp",
+    alt: "Haul Yeah Moving crew on the job at a New Jersey storage facility",
   },
 
   howItWorks: [
@@ -375,7 +375,7 @@ const siteConfig = {
   faqs: [
     {
       q: "How much do movers cost in New Jersey?",
-      a: "Across NJ, most local moves are billed at roughly $60–$65 per mover per hour with a truck, which puts a two-mover crew around $125–$130 an hour and a three-mover crew around $180–$190. Haul Yeah quotes a flat all-in number instead: small moves (studio or 1BR) start at $650, a 2–3BR runs $1,100–$1,400, and a 3–4BR or specialty job runs $2,200–$3,000+. Those prices already include the truck, fuel, blankets, equipment and the first 20 miles round trip. Stairs ($75–$100 a flight), pianos ($400–$1,200) and mileage past 20 miles are the only things that move the number, and we quote them before you pay a deposit.",
+      a: "Across NJ, most local moves are billed at roughly $60–$65 per mover per hour with a truck, which puts a two-mover crew around $125–$130 an hour and a three-mover crew around $180–$190. Haul Yeah quotes a flat all-in number instead: small moves (studio or 1BR) start at $650, a 2–3BR runs $1,200–$1,450, and a 3–4BR or specialty job runs $2,000–$3,000+. Those prices already include the truck, fuel, blankets, equipment and the first 20 miles one way. Stairs ($85 a flight), pianos ($500–$800) and mileage past 20 miles are the only things that move the number, and we quote them before you pay a deposit.",
     },
     {
       q: "Is there a minimum charge?",
@@ -403,7 +403,7 @@ const siteConfig = {
     },
     {
       q: "What's the most affordable moving company in NJ?",
-      a: "'Most affordable' depends on the move — a studio, a 3BR house, a labor-only load and a weekend job all price differently, so a single 'cheapest mover' answer is usually marketing. What we can tell you is exactly what we charge: from $650 for a small move, $1,100–$1,400 for a 2–3BR, all-in, with no fuel or truck fee bolted on afterwards. Text us the details and we'll send a real number in under 5 minutes so you can compare like for like.",
+      a: "'Most affordable' depends on the move — a studio, a 3BR house, a labor-only load and a weekend job all price differently, so a single 'cheapest mover' answer is usually marketing. What we can tell you is exactly what we charge: from $650 for a small move, $1,200–$1,450 for a 2–3BR, all-in, with no fuel or truck fee bolted on afterwards. Text us the details and we'll send a real number in under 5 minutes so you can compare like for like.",
     },
   ],
 
@@ -418,7 +418,7 @@ const siteConfig = {
     homepage: {
       title: "Movers in Essex County, NJ | Weekend & Same-Day | Haul Yeah",
       description:
-        "Weekend movers in Essex County NJ. Small moves from $650, 2–3BR $1,100–$1,400, all-in pricing with no hidden truck or fuel fees. Free quote in under 5 minutes.",
+        "Weekend movers in Essex County NJ. Small moves from $650, 2–3BR $1,200–$1,450, all-in pricing with no hidden truck or fuel fees. Free quote in under 5 minutes.",
     },
   },
 };
