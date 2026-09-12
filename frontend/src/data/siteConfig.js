@@ -193,6 +193,19 @@ const siteConfig = {
     metaPixelId: "1913145279380964",
   },
 
+  // ── OFFICIAL SOCIAL / BUSINESS PROFILES ─────────────────────────
+  // Single source of truth for the company's verified profile URLs.
+  // Used by the footer links AND the schema.org sameAs entity signals.
+  // These are canonical, tracking-param-free URLs verified in-browser.
+  socialProfiles: {
+    facebook: "https://www.facebook.com/people/Haul-Yeah-Moving/61591635096018/",
+    instagram: "https://www.instagram.com/haulyeahmoves/",
+    tiktok: "https://www.tiktok.com/@haulyeahmoves",
+    x: "https://x.com/haulyeahmoves",
+    // Google Business Profile / Maps ENTITY url (identity — NOT the leave-a-review link).
+    googleBusiness: "https://maps.google.com/?cid=10189698982465651288",
+  },
+
   reviews: {
     // ── MASTER SWITCH ────────────────────────────────────────────────
     // false = render the "new business, here's how to vet us" trust block.
