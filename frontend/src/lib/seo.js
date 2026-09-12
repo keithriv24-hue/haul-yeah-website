@@ -49,6 +49,8 @@ function movingCompanyEntity(areaServed) {
     ],
     priceRange: "$$",
     slogan: siteConfig.business.tagline,
+    // Verified official profiles — one consistent identity across all pages.
+    sameAs: Object.values(siteConfig.socialProfiles || {}).filter(Boolean),
   };
 }
 
