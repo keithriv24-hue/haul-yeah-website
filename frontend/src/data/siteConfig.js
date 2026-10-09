@@ -98,7 +98,7 @@ const siteConfig = {
       {
         label: "Small move — studio or 1BR",
         detail: "2 movers + truck",
-        price: "From $650",
+        price: "From $709.50",
       },
       {
         label: "Standard move — 2–3BR",
@@ -127,8 +127,8 @@ const siteConfig = {
 
     // The ONLY things that can change your number, all quoted up front.
     addOns: [
-      { label: "Stairs, per flight", price: "$85" },
-      { label: "Mileage over the first 20 mi", price: "$0.85/mi" },
+      { label: "Stairs, per flight", price: "$100" },
+      { label: "Mileage over the first 20 mi", price: "$6/mi" },
       { label: "Upright piano", price: "$500" },
       { label: "Grand piano", price: "$800" },
       { label: "Safe, gym, pool table, oversized items", price: "$150–$800" },
@@ -311,7 +311,7 @@ const siteConfig = {
     "Essex County NJ",
     "All-in pricing",
     "Same day",
-    "Small moves from $650",
+    "Small moves from $709.50",
     "(862) 250-3216",
   ],
 
@@ -388,11 +388,11 @@ const siteConfig = {
   faqs: [
     {
       q: "How much do movers cost in New Jersey?",
-      a: "Across NJ, most local moves are billed at roughly $60–$65 per mover per hour with a truck, which puts a two-mover crew around $125–$130 an hour and a three-mover crew around $180–$190. Haul Yeah quotes a flat all-in number instead: small moves (studio or 1BR) start at $650, a 2–3BR runs $1,200–$1,450, and a 3–4BR or specialty job runs $2,000–$3,000+. Those prices already include the truck, fuel, blankets, equipment and the first 20 miles one way. Stairs ($85 a flight), pianos ($500–$800) and mileage past 20 miles are the only things that move the number, and we quote them before you pay a deposit.",
+      a: "Across NJ, most local moves are billed at roughly $60–$65 per mover per hour with a truck, which puts a two-mover crew around $125–$130 an hour and a three-mover crew around $180–$190. Haul Yeah quotes a flat all-in number instead: small moves (studio or 1BR) start at $709.50, a 2–3BR runs $1,200–$1,450, and a 3–4BR or specialty job runs $2,000–$3,000+. Those prices already include the truck, fuel, blankets, equipment and the first 20 miles one way. Stairs ($100 a flight), pianos ($500–$800) and mileage past 20 miles are the only things that move the number, and we quote them before you pay a deposit.",
     },
     {
       q: "Is there a minimum charge?",
-      a: "Yes, and we'd rather tell you now than on the doorstep. Any job with a truck has a 3-hour minimum, and labor-only jobs have a 2-hour minimum. That's why a small move starts at $650 rather than an hourly rate that looks cheap and then runs. What we don't do is put you on a 4-hour clock and pad it — you get a flat number up front and that's the number you pay.",
+      a: "Yes, and we'd rather tell you now than on the doorstep. Any job with a truck has a 3-hour minimum, and labor-only jobs have a 2-hour minimum. That's why a small move starts at $709.50 rather than an hourly rate that looks cheap and then runs. What we don't do is put you on a 4-hour clock and pad it — you get a flat number up front and that's the number you pay.",
     },
     {
       q: "How much is the deposit, and can I get it back?",
@@ -416,7 +416,7 @@ const siteConfig = {
     },
     {
       q: "What's the most affordable moving company in NJ?",
-      a: "'Most affordable' depends on the move — a studio, a 3BR house, a labor-only load and a weekend job all price differently, so a single 'cheapest mover' answer is usually marketing. What we can tell you is exactly what we charge: from $650 for a small move, $1,200–$1,450 for a 2–3BR, all-in, with no fuel or truck fee bolted on afterwards. Text us the details and we'll send a real number in under 5 minutes so you can compare like for like.",
+      a: "'Most affordable' depends on the move — a studio, a 3BR house, a labor-only load and a weekend job all price differently, so a single 'cheapest mover' answer is usually marketing. What we can tell you is exactly what we charge: from $709.50 for a small move, $1,200–$1,450 for a 2–3BR, all-in, with no fuel or truck fee bolted on afterwards. Text us the details and we'll send a real number in under 5 minutes so you can compare like for like.",
     },
   ],
 
@@ -431,7 +431,7 @@ const siteConfig = {
     homepage: {
       title: "Movers in Essex County, NJ | Weekend & Same-Day | Haul Yeah",
       description:
-        "Weekend movers in Essex County NJ. Small moves from $650, 2–3BR $1,200–$1,450, all-in pricing with no hidden truck or fuel fees. Free quote in under 5 minutes.",
+        "Weekend movers in Essex County NJ. Small moves from $709.50, 2–3BR $1,200–$1,450, all-in pricing with no hidden truck or fuel fees. Free quote in under 5 minutes.",
     },
   },
 };

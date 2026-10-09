@@ -49,7 +49,7 @@ export const services = [
     seo: {
       title: "Local Movers in Essex County, NJ | Haul Yeah Moving",
       description:
-        "Local residential movers in Essex County and North NJ. Flat all-in pricing from $650, weekend and same-day availability. Free quote in under 5 minutes.",
+        "Local residential movers in Essex County and North NJ. Flat all-in pricing from $709.50, weekend and same-day availability. Free quote in under 5 minutes.",
     },
     kicker: "Full-service local moving",
     lede: "Family-size home moves across Essex County and North Jersey.",
@@ -123,7 +123,7 @@ export const services = [
   {
     slug: "apartment-movers",
     priceNote:
-      "Most apartment moves land between $650 (studio or 1BR, two movers) and $1,400 (2–3BR, three movers). Stairs are the single biggest variable here — budget $75–$100 per flight, each end.",
+      "Most apartment moves land between $709.50 (studio or 1BR, two movers) and $1,400 (2–3BR, three movers). Stairs are the single biggest variable here — budget $100 per flight, each end.",
     name: "Apartment Movers",
     iconName: "Building2",
     tagline: "Walk-ups, elevators, tight staircases — handled.",
@@ -205,21 +205,21 @@ export const services = [
   {
     slug: "small-moves",
     priceNote:
-      "Small moves start at $650 flat. That covers two movers, the truck, fuel, blankets and the first 20 miles — and reflects the 3-hour minimum that applies to any job with a truck.",
+      "Small moves start at $709.50 flat. That covers two movers, the truck, fuel, blankets and the first 20 miles — and reflects the 3-hour minimum that applies to any job with a truck.",
     name: "Small Moves & Small Load Movers",
     iconName: "PackageOpen",
-    tagline: "A single sofa or a studio — one flat price from $650.",
+    tagline: "A single sofa or a studio — one flat price from $709.50.",
     h1: "Small Move & Small Load Movers in NJ",
     seo: {
-      title: "Small Move Movers in NJ | Flat Price From $650 | Haul Yeah",
+      title: "Small Move Movers in NJ | Flat Price From $709.50 | Haul Yeah",
       description:
-        "Small load movers NJ — single sofa, studio, or one room. Flat all-in price from $650, quoted before you book. Weekend and same-day availability.",
+        "Small load movers NJ — single sofa, studio, or one room. Flat all-in price from $709.50, quoted before you book. Weekend and same-day availability.",
     },
     kicker: "One sofa. One studio. One flat price.",
     lede: "The small-move mover Essex County calls when a full van company is overkill.",
     intro: [
       "Most moving companies price you for a truck whether you fill it or not. That math doesn't work for a studio, a single couch, or the last 12 boxes from mom's basement.",
-      "Haul Yeah is built for small loads. We keep smaller trucks in rotation and we quote one flat number instead of starting a meter — a small move is $650 and up, and that price already covers the truck, the fuel, the blankets and the first 20 miles. Any job with a truck carries a 3-hour minimum, which is exactly why $650 is where the band starts rather than an hourly rate that looks cheap and then climbs.",
+      "Haul Yeah is built for small loads. We keep smaller trucks in rotation and we quote one flat number instead of starting a meter — a small move is $709.50 and up, and that price already covers the truck, the fuel, the blankets and the first 20 miles. Any job with a truck carries a 3-hour minimum, which is exactly why $709.50 is where the band starts rather than an hourly rate that looks cheap and then climbs.",
       "Studios in Newark, one-bedrooms in Bloomfield, a Peloton and a bookshelf out of a Nutley basement — small isn't small to us, it's most of what we do.",
     ],
     included: {
@@ -264,7 +264,7 @@ export const services = [
     faqs: [
       {
         q: "Is there a minimum charge for a small move?",
-        a: "Yes — any job with a truck has a 3-hour minimum, which is why our small-move band starts at $650. We'd rather tell you that here than on the doorstep. What we don't do is put you on a 4-hour clock and pad it: you get one flat all-in number before you book, covering the truck, fuel, blankets, equipment and the first 20 miles. If you only need muscle and you've got your own truck, labor-only has a 2-hour minimum and is billed hourly at $130–$180.",
+        a: "Yes — any job with a truck has a 3-hour minimum, which is why our small-move band starts at $709.50. We'd rather tell you that here than on the doorstep. What we don't do is put you on a 4-hour clock and pad it: you get one flat all-in number before you book, covering the truck, fuel, blankets, equipment and the first 20 miles. If you only need muscle and you've got your own truck, labor-only has a 2-hour minimum and is billed hourly at $130–$180.",
       },
       {
         q: "How small is 'small'?",
@@ -287,7 +287,7 @@ export const services = [
   {
     slug: "same-day-movers",
     priceNote:
-      "Same-day is priced off the same bands as anything else — from $650 for a small load, $1,100–$1,400 for a 2–3BR. There is no surcharge for short notice.",
+      "Same-day is priced off the same bands as anything else — from $709.50 for a small load, $1,100–$1,400 for a 2–3BR. There is no surcharge for short notice.",
     name: "Last Minute & Same-Day Movers",
     iconName: "Zap",
     tagline: "Booked and moving today.",
