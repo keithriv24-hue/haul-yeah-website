@@ -16,7 +16,7 @@ import TallyPopupButton from "../site/TallyPopupButton";
  *     saw, not defending one they're hearing for the first time.
  *
  * The old version of this block published "$500–$1,200" for a full apartment
- * move — below the company's own $650 floor. Publishing a number you will not
+ * move — below the company's own $709.50 floor. Publishing a number you will not
  * honour is worse than publishing nothing: it wins the click and loses the
  * booking at the exact moment trust matters. Everything here reads from
  * siteConfig.pricing / siteConfig.terms so it can never drift again.
