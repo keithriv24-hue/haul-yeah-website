@@ -8,6 +8,7 @@ import LocationPage from "@/pages/LocationPage";
 import NotFound from "@/pages/NotFound";
 import ThankYou from "@/pages/ThankYou";
 import About from "@/pages/About";
+import Careers from "@/pages/Careers";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/services/:slug" element={<ServicePage />} />
             <Route path="/movers/:slug" element={<LocationPage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/careers" element={<Careers />} />
             {/* Conversion page. noindex + absent from sitemap.xml,
                 but prerendered via EXTRA_ROUTES in scripts/prerender.js. */}
             <Route path="/thank-you" element={<ThankYou />} />
