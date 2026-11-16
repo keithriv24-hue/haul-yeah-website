@@ -282,6 +282,7 @@ const siteConfig = {
     { label: "Cost", href: "/#cost" },
     { label: "Towns", href: "/#locations" },
     { label: "About", href: "/about/" },
+    { label: "Careers", href: "/careers/" },
   ],
 
   hero: {
