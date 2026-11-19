@@ -67,6 +67,45 @@ function waitForFbpCookie() {
   });
 }
 
+/*
+ * Campaign codes: utm_source / utm_medium / utm_campaign / utm_content and gclid (Google Ads).
+ * Read from the landing URL and kept on the device for 30 days, so a visitor who lands on one
+ * page and fills the form on another (or on the form built into the page, which Tally does not
+ * pass the page's query string to) still carries them. A new landing with any of these codes
+ * replaces the whole set: the latest click is the one that gets the credit.
+ */
+const CAMPAIGN_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "gclid"];
+const CAMPAIGN_STORAGE_KEY = "hy_campaign";
+const CAMPAIGN_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
+
+export function readCampaignParams(now = Date.now()) {
+  if (typeof window === "undefined") return {};
+  const fromUrl = {};
+  for (const key of CAMPAIGN_KEYS) {
+    const value = getQueryParam(key);
+    if (value) fromUrl[key] = value.slice(0, 200);
+  }
+  if (Object.keys(fromUrl).length) {
+    try {
+      window.localStorage.setItem(CAMPAIGN_STORAGE_KEY, JSON.stringify({ at: now, values: fromUrl }));
+    } catch {
+      /* localStorage unavailable */
+    }
+    return fromUrl;
+  }
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(CAMPAIGN_STORAGE_KEY) || "null");
+    if (!saved || typeof saved.at !== "number" || now - saved.at > CAMPAIGN_MAX_AGE_MS) return {};
+    const out = {};
+    for (const key of CAMPAIGN_KEYS) {
+      if (typeof saved.values?.[key] === "string" && saved.values[key]) out[key] = saved.values[key];
+    }
+    return out;
+  } catch {
+    return {};
+  }
+}
+
 let identifiersPromise = null;
 let cachedIdentifiers = null;
 
@@ -79,6 +118,7 @@ export function primeMetaIdentifiers() {
   if (identifiersPromise) return identifiersPromise;
   identifiersPromise = (async () => {
     const fbclid = readFbclid();
+    readCampaignParams(); // save the landing codes right away, before the 2s wait for the pixel
     const fbp = await waitForFbpCookie();
     let fbc = getCookie("_fbc");
     if (!fbc && fbclid) {
@@ -87,7 +127,8 @@ export function primeMetaIdentifiers() {
     }
     const event_source_url =
       typeof window !== "undefined" ? window.location.href : "";
-    const ids = { fbclid, fbp, fbc, event_source_url };
+    // Campaign codes ride along with the Meta identifiers into both the inline form and the popup.
+    const ids = { fbclid, fbp, fbc, event_source_url, ...readCampaignParams() };
     cachedIdentifiers = ids;
     return ids;
   })();
